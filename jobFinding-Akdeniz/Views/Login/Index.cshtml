@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="user-login">
+    <div class="container">
+        <div class="cd-form">
+            <h2>Giriş Yap</h2>
+        </div>
+        <form>
+            <div class="form-group cd-form">
+                <label class="form-group">E-mail:</label>
+                <input type="text" class="form-control" placeholder="E-mail" />
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">Parola:</label>
+                <input type="password" class="form-control" placeholder="Parola" />
+            </div>
+            <div class="form-group cd-form">
+                <input type="checkbox" class="" />
+                <span class="">Beni Hatırla</span>
+            </div>
+            <div class="form-group cd-form">
+                <input type="submit" value="Giriş Yap" class="form-control" />
+            </div>
+        </form>
+        <div class="forgetPass">@Html.ActionLink("Şifrenizi mi unuttunuz?", "Index", "CompanyRegister")</div>
+        <div class="register">Hesabınız yok mu?  @Html.ActionLink("Şimdi Kaydolun", "Index", "CompanyRegister")</div>
+        <a class="btn btn-app">ff</a>
+    </div>
+</div>
+
+

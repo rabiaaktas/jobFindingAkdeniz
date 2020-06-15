@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "İşveren Girişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="user-login">
+    <div class="container">
+        <div class="cd-form">
+            <h2>İşveren Girişi</h2>
+        </div>
+        @using (Html.BeginForm("SirketLogin", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @model jobFinding_Akdeniz.Models.company
+            <div class="form-group cd-form">
+                <label class="form-group">E-mail:</label>
+                @Html.TextBoxFor(x => x.companyEmail, new { @class = "form-control", placeholder = "E-mail" })
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">Parola:</label>
+                @Html.TextBoxFor(x => x.companyPassword, new { @class = "form-control py-4 pwd", id = "inputPassword", placeholder = "Parolanızı Giriniz", type = "password", required = "required" })
+                <span style="float: right;margin-left: -25px;margin-top: -35px;position: relative;z-index: 2;margin-right: 5px;">
+                    <button class="toggle-password btn btn-default " type="button">
+                        <i class="fas fa-eye eye"></i>
+                    </button>
+                </span>
+            </div>
+            <div class="form-group cd-form">
+                @*<input type="checkbox" class="" />
+                <span class="">Beni Hatırla</span>*@
+            </div>
+            <span style="color:red">
+                @ViewBag.Warning
+            </span>
+            <div class="form-group cd-form">
+                <input type="submit" value="Giriş Yap" class="form-control" />
+            </div>
+        }
+        <div class="forgetPass">@Html.ActionLink("Şifrenizi mi unuttunuz?", "Index", "CompanyRegister")</div>
+        <div class="register">Hesabınız yok mu?  @Html.ActionLink("Şimdi Kaydolun", "Index", "CompanyRegister")</div>
+    </div>
+</div>
+<script>
+
+        $(".toggle-password").click(function () {
+            var input = $('.pwd');
+            if (input.attr("type") == "password") {
+                $('.eye').removeClass("fa-eye");
+                $('.eye').addClass("fa-eye-slash");
+                input.attr("type", "text");
+            } else {
+                $('.eye').removeClass("fa-eye-slash");
+                $('.eye').addClass("fa-eye");
+                input.attr("type", "password");
+            }
+        });
+</script>
+
+

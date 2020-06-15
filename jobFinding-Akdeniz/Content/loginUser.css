@@ -1,0 +1,17 @@
+﻿.user-login {
+    margin: auto;
+    width: 30%;
+    background-color: #D1D5DE;
+    padding: 40px 40px;
+    border-radius:4px;
+}
+@media screen and (max-width: 600px) {
+    .user-login {
+        margin: auto;
+        background-color: #D1D5DE;
+        width: 80%;
+        padding: 40px 40px;
+        border-radius: 4px;
+    }
+
+}

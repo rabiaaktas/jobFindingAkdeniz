@@ -1,0 +1,75 @@
+﻿body {
+    font-family: "Nunito Sans", Arial, sans-serif!important;
+}
+
+.mt-5{
+    margin-top:50px;
+}
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 80px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.headerLogo{
+    float: left;
+    display: block;
+}
+.header-bottom {
+    background-color: #1f7ebe;
+}
+.header.header-top {
+    background-color: #1f7ebe;
+}
+.nav .navLink a {
+    color: wheat;
+    margin-top: 25px;
+    font-size: 16px;
+    /*font-weight: bold;*/
+}
+.nav .navLink a:hover {
+    /*background-color: #2180c0;*/
+    background-color: #1A333F;
+    text-decoration: none;
+}
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #1A333F !important;
+}
+.navbar-nav > li > .dropdown-menu {
+    background-color: #000036;
+    padding: 15px 20px;
+}
+.pageWrapper {
+    background-color: #fff;
+    display: table;
+    height: 100%;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.bodyContent {
+    background-color: #f7f7f7;
+    color: #363636;
+    font-family: Arial;
+    font-size: 14px;
+    min-height: 100%;
+    overflow-x: hidden;
+    width: 100%;
+}
+.nav.header-actions {
+    float: right;
+    margin-top:25px;
+}
+/*#1f7ebe color for navbar*/
+
+

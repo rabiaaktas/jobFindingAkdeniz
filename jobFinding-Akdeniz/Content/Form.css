@@ -1,0 +1,29 @@
+﻿.cd-form {
+    font-size: 14px;
+}
+
+.cd-form input {
+    border-radius: 10px;
+    border: 3px solid #ccc;
+}
+cd-form > div {
+    position: relative;
+    margin: 20px 0;
+}
+.cd-form select,textarea {
+    border-radius: 10px;
+    border: 3px solid #ccc;
+}
+.cd-form  textarea {
+    border-radius: 10px;
+    border: 3px solid #ccc;
+}
+.cd-form h2 {
+    font-family: "Nunito Sans", Arial, sans-serif;
+}
+.cd-form input[type=text] {
+    color: #2b3e51;
+}
+.cd-form .input-group-addon {
+    padding: 5px 4px;
+}

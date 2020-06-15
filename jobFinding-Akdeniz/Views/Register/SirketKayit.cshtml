@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "İşveren Kayıt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
+    var businessAreas = db.business_stream.ToList();
+    @model jobFinding_Akdeniz.Models.HelperModels.CompanyRegisterModel
+}
+
+
+<div class="user-login">
+    <div class="container">
+        <div class="cd-form">
+            <h2>Firma Bilgileri</h2>
+            <label class="small">* ile işaretli alanlar zorunludur.</label>
+        </div>
+        @using (Html.BeginForm("SirketKayit", "Register", FormMethod.Post, new { name = "companyRegister" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group cd-form">
+                <label class="form-group">*Firma Adı:</label>
+                @Html.TextBoxFor(x => x.companyName, new { @class = "form-control", placeholder = "Firma Adı:", required = "required" })
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.companyName)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Sektör</label>
+                <select class="form-control" name="businessID" required>
+                    <option>Sektör Seçiniz:</option>
+                    @foreach (var item in businessAreas)
+                    {
+                        <option value=@item.businessId>@item.businessName</option>
+
+                    }
+                </select>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.businessID)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label for="address">Firma Adres:</label>
+                @Html.TextAreaFor(x => x.companyAddress, new { @class = "form-control", id = "address", rows = "3" })
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">Telefon:</label>
+                @Html.TextBoxFor(x => x.companyPhone, new { @class = "form-control", placeholder = "0__________", maxlength = "11" })
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.companyPhone)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label for="comment">Web Sitesi:</label>
+                @Html.TextBoxFor(x => x.webSiteUrl, new { @class = "form-control", placeholder = "wwww.somewebsite.com" })
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.webSiteUrl)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*E-mail:</label>
+                @Html.TextBoxFor(x => x.companyEmail, new { @class = "form-control", placeholder = "E-mail", required = "required" })
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.companyEmail)
+                </div>
+
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Parola:</label>
+                @Html.TextBoxFor(x => x.NewPassword, new { @class = "form-control py-4 pwd", id = "inputPassword", placeholder = "Parolanızı Giriniz", type = "password", required = "required" })
+                <span style="float: right;margin-left: -25px;margin-top: -35px;position: relative;z-index: 2;margin-right: 5px;">
+                    <button class="btn btn-default toggle-password" type="button">
+                        <i class="fas fa-eye eye"></i>
+                    </button>
+                </span>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.NewPassword)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Parola Onay:</label>
+                @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control py-4 pwd2", id = "inputPassword", placeholder = "Parolanızı Giriniz", type = "password", required = "required" })
+                <span style="float: right;margin-left: -25px;margin-top: -35px;position: relative;z-index: 2;margin-right: 5px;">
+                    <button class="btn btn-default toggle-password2" type="button">
+                        <i class="fas fa-eye eye"></i>
+                    </button>
+                </span>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group text-danger small">
+                @ViewBag.Warning
+            </div>
+            <div class="form-group text-success small">
+                @ViewBag.Success
+            </div>
+            <div class="form-group cd-form">
+                <input type="submit" value="Kayıt Ol" class="form-control" />
+            </div>
+        }
+        <div class="form-group cd-form">
+            <a href="">Giriş Yapın</a>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(window).on('load', function () {
+        var input = $('.pwd');
+        var input2 = $('.pwd2');
+        input.attr("type", "password");
+        input2.attr("type", "password");
+    })
+    $(".toggle-password").click(function () {
+        var input = $('.pwd');
+        if (input.attr("type") == "password") {
+            $('.eye').removeClass("fa-eye");
+            $('.eye').addClass("fa-eye-slash");
+            input.attr("type", "text");
+        } else {
+            $('.eye').removeClass("fa-eye-slash");
+            $('.eye').addClass("fa-eye");
+            input.attr("type", "password");
+        }
+    });
+    $(".toggle-password2").click(function () {
+        var input = $('.pwd2');
+        if (input.attr("type") == "password") {
+            $('.eye2').removeClass("fa-eye");
+            $('.eye2').addClass("fa-eye-slash");
+            input.attr("type", "text");
+        } else {
+            $('.eye2').removeClass("fa-eye-slash");
+            $('.eye2').addClass("fa-eye");
+            input.attr("type", "password");
+        }
+    });
+</script>

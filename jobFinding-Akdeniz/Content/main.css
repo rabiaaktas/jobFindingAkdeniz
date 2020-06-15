@@ -1,0 +1,91 @@
+﻿
+.homeSearchWrapper {
+    margin-top: -60px;
+    position: relative;
+    width: 100%;
+}
+
+.homeSearchImage .bg-search-image {
+    height: 598px;
+    background-image: url(/Content/Images/search.png);
+    background-repeat: no-repeat;
+    /*background-attachment: fixed;*/
+    background-size: cover;
+    -webkit-background-size: cover;
+    margin-top: 50px;
+    display: block;
+}
+.homeSearchWrapper .homeSearch .mainSearchBox .searchSpan {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.homeSearchWrapper .homeSearch .mainSearchBox {
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 70%;
+    background: rgba(0, 0, 0,0.4);
+    border-radius: 2px;
+    padding: 30px 40px;
+    max-width: 1000px;
+    font:inherit;
+}
+.homeSearchWrapper .mainSearchBox .select-cities {
+    position: absolute;
+    width: 25%;
+    top: 1px;
+    right: 109px;
+    border-left: 1px solid #f2f2f2;
+}
+.homeSearchWrapper .mainSearchBox .select-cities select{
+    padding: 23px 16px;
+    padding-left: 16px;
+    border-radius: 0;
+    border: none;
+    padding-left: 35px;
+}
+.homeSearchWrapper .homeSearch .mainSearchBox div{
+    margin:0;
+}
+
+.mainSearchBox input {
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+.mainSearchBox input[type=text] {
+     width: 100%;
+     padding: 21px 16px;
+     padding-right: 16px;
+     padding-left: 16px;
+    /*padding-right: 150px;
+    padding-left: 50px;*/
+     position: relative;
+     border: none;
+ }
+
+    .mainSearchBox input[type=submit] {
+        position: absolute;
+        /*top: 0;
+        right: 0;*/
+        padding: 21px 40px;
+        border-radius: 0 2px 2px 0;
+        border:none;
+    }
+#imageSearch {
+     align-self: flex-end !important;
+     width: 50%;
+     position: relative;
+     /*z-index:-1;*/
+}
+

@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Öğretim Görevlisi Kayıt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
+    var universities = db.universities.ToList();
+    var departments = db.departments.ToList();
+}
+
+@model jobFinding_Akdeniz.Models.HelperModels.TeacherRegisterModel
+<div class="user-login">
+    <div class="container">
+        <div class="cd-form">
+            <h2>Kullanıcı Bilgileri</h2>
+            <label class="small">* ile işaretli alanlar zorunludur.</label>
+        </div>
+        @using (Html.BeginForm("OgretmenKayit", "Register", FormMethod.Post, new { name = "studentRegister" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group cd-form">
+                <label class="form-group">*Adınız:</label>
+                @Html.TextBoxFor(x => x.firstName, new { @class = "form-control", placeholder = "Adınız", required = "required" })
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.firstName)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Soyadınız:</label>
+                @Html.TextBoxFor(x => x.lastName, new { @class = "form-control", placeholder = "Soyadınız", required = "required" })
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.lastName)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*E-mail:</label>
+                @Html.TextBoxFor(x => x.userEmail, new { @class = "form-control", placeholder = "E-mail", required = "required" })
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.userEmail)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Parola:</label>
+                @Html.TextBoxFor(x => x.password, new { @class = "form-control py-4 pwd", id = "inputPassword", placeholder = "Parolanızı Giriniz", type = "password", required = "required" })
+                <span style="float: right;margin-left: -25px;margin-top: -35px;position: relative;z-index: 2;margin-right: 5px;">
+                    <button class="btn btn-default toggle-password" type="button">
+                        <i class="fas fa-eye eye"></i>
+                    </button>
+                </span>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.password)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Parola Onay:</label>
+                @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control py-4 pwd2", id = "inputPassword", placeholder = "Parolanızı Giriniz", type = "password", required = "required" })
+                <span style="float: right;margin-left: -25px;margin-top: -35px;position: relative;z-index: 2;margin-right: 5px;">
+                    <button class="btn btn-default toggle-password2" type="button">
+                        <i class="fas fa-eye eye"></i>
+                    </button>
+                </span>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="cd-form">
+                <h2>İş Bilgileri</h2>
+                <label class="small">Şu anda çalıştığınız okulu ve bölümünüzü yazınız.</label>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Üniversite Adı::</label>
+                <select class="form-control" name="universityName" required>
+                    <option class="text-muted">Üniversite Seçiniz:</option>
+                    @foreach (var item in universities)
+                    {
+                        <option value="@item.universityName">@item.universityName</option>
+                    }
+                </select>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.universityName)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Bölüm:</label>
+                <select class="form-control" name="description" required>
+                    <option class="text-muted">Bölüm Seçiniz:</option>
+                    @foreach (var item in departments)
+                    {
+                        <option value="@item.departmentName">@item.departmentName</option>
+                    }
+                </select>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.description)
+                </div>
+            </div>
+            <div class="form-group cd-form">
+                <label class="form-group">*Ünvanınız:</label>
+                <select class="form-control" name="degree" required>
+                    <option class="text-muted">Ünvan Seçiniz:</option>
+                    <option value="Öğr.Gör.">Öğretim Görevlisi</option>
+                    <option value="Arş.Gör.">Araştırma Görevlisi</option>
+                    <option value="Arş.Gör.Dr.">Araştırma Görevlisi Doktor</option>
+                    <option value="Dr.Öğr.Üyesi">Doktor Öğretim Üyesi</option>
+                    <option value="Doç.">Doçent </option>
+                    <option value="Doç.Dr."> Doçent Doktor </option>
+                    <option value="Prof."> Profesör  </option>
+                    
+                </select>
+                <div class="form-group text-danger small">
+                    @Html.ValidationMessageFor(m => m.degree)
+                </div>
+            </div>
+            <div class="form-group text-danger small">
+                @ViewBag.Warning
+            </div>
+            <div class="form-group text-success small">
+                @ViewBag.Success
+            </div>
+            <div class="form-group cd-form">
+                <input type="submit" value="Kayıt Ol" class="form-control" />
+            </div>
+        }
+        <div class="form-group cd-form">
+            <a href="">Giriş Yapın</a>
+        </div>
+
+    </div>
+</div>
+<script>
+    $(window).on('load', function () {
+        var input = $('.pwd');
+        var input2 = $('.pwd2');
+        input.attr("type", "password");
+        input2.attr("type", "password");
+    })
+    $(".toggle-password").click(function () {
+        var input = $('.pwd');
+        if (input.attr("type") == "password") {
+            $('.eye').removeClass("fa-eye");
+            $('.eye').addClass("fa-eye-slash");
+            input.attr("type", "text");
+        } else {
+            $('.eye').removeClass("fa-eye-slash");
+            $('.eye').addClass("fa-eye");
+            input.attr("type", "password");
+        }
+    });
+    $(".toggle-password2").click(function () {
+        var input = $('.pwd2');
+        if (input.attr("type") == "password") {
+            $('.eye2').removeClass("fa-eye");
+            $('.eye2').addClass("fa-eye-slash");
+            input.attr("type", "text");
+        } else {
+            $('.eye2').removeClass("fa-eye-slash");
+            $('.eye2').addClass("fa-eye");
+            input.attr("type", "password");
+        }
+    });
+</script>
+

@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="homeSearchWrapper " style="outline: none !important;">
+    <div class="homeSearch">
+        <div class="homeSearchImage">
+            <div>
+                <div class="bg-search-image "></div>
+            </div>
+
+        </div>
+        <div class="mainSearchBox">
+            <form id="homepagejobsearch" class="cd-form" action="/is-ilanlari" autocomplete="off">
+
+                <div>
+                    <h3 class="SearchJobText" style="display:none;">Aradığın İşi Bul!</h3>
+                    <input name="g" type="text" placeholder="Örnek: garson, mühendis, muhasebe..." />
+                    <div class="select-cities">
+                        <p class="cd-select">
+                            <select name="a">
+                                <option value="">T&#252;m Şehirler</option>
+                                <option value="87">İstanbul(Avrupa)</option>
+                                <option value="86">İstanbul(Anadolu)</option>
+                                <option value="7">Ankara</option>
+                                <option value="42">İzmir</option>
+                                <option value="1">Adana</option>
+                                <option value="2">Adıyaman</option>
+                                <option value="3">Afyon</option>
+                                <option value="83">Afyonkarahisar</option>
+                                <option value="4">Ağrı</option>
+                                <option value="5">Aksaray</option>
+                                <option value="6">Amasya</option>
+                                <option value="8">Antalya</option>
+                                <option value="9">Ardahan</option>
+                                <option value="10">Artvin</option>
+                                <option value="11">Aydın</option>
+                                <option value="12">Balıkesir</option>
+                                <option value="13">Bartın</option>
+                                <option value="14">Batman</option>
+                                <option value="15">Bayburt</option>
+                                <option value="16">Bilecik</option>
+                                <option value="17">Bing&#246;l</option>
+                                <option value="18">Bitlis</option>
+                                <option value="19">Bolu</option>
+                                <option value="20">Burdur</option>
+                                <option value="21">Bursa</option>
+                                <option value="22">&#199;anakkale</option>
+                                <option value="23">&#199;ankırı</option>
+                                <option value="24">&#199;orum</option>
+                                <option value="25">Denizli</option>
+                                <option value="26">Diyarbakır</option>
+                                <option value="27">D&#252;zce</option>
+                                <option value="28">Edirne</option>
+                                <option value="29">Elazığ</option>
+                                <option value="30">Erzincan</option>
+                                <option value="31">Erzurum</option>
+                                <option value="32">Eskişehir</option>
+                                <option value="33">Gaziantep</option>
+                                <option value="34">Giresun</option>
+                                <option value="35">G&#252;m&#252;şhane</option>
+                                <option value="36">Hakkari</option>
+                                <option value="37">Hatay</option>
+                                <option value="38">Iğdır</option>
+                                <option value="39">Isparta</option>
+                                <option value="40">İ&#231;el</option>
+                                <option value="43">Kahramanmaraş</option>
+                                <option value="44">Karab&#252;k</option>
+                                <option value="45">Karaman</option>
+                                <option value="46">Kars</option>
+                                <option value="47">Kastamonu</option>
+                                <option value="48">Kayseri</option>
+                                <option value="88">Kıbrıs</option>
+                                <option value="49">Kırıkkale</option>
+                                <option value="50">Kırklareli</option>
+                                <option value="51">Kırşehir</option>
+                                <option value="52">Kilis</option>
+                                <option value="53">Kocaeli</option>
+                                <option value="54">Konya</option>
+                                <option value="55">K&#252;tahya</option>
+                                <option value="56">Malatya</option>
+                                <option value="57">Manisa</option>
+                                <option value="58">Mardin</option>
+                                <option value="82">Mersin</option>
+                                <option value="59">Muğla</option>
+                                <option value="60">Muş</option>
+                                <option value="61">Nevşehir</option>
+                                <option value="62">Niğde</option>
+                                <option value="63">Ordu</option>
+                                <option value="64">Osmaniye</option>
+                                <option value="65">Rize</option>
+                                <option value="66">Sakarya</option>
+                                <option value="67">Samsun</option>
+                                <option value="68">Siirt</option>
+                                <option value="69">Sinop</option>
+                                <option value="70">Sivas</option>
+                                <option value="71">Şanlıurfa</option>
+                                <option value="72">Şırnak</option>
+                                <option value="73">Tekirdağ</option>
+                                <option value="74">Tokat</option>
+                                <option value="75">Trabzon</option>
+                                <option value="76">Tunceli</option>
+                                <option value="77">Uşak</option>
+                                <option value="78">Van</option>
+                                <option value="79">Yalova</option>
+                                <option value="80">Yozgat</option>
+                                <option value="81">Zonguldak</option>
+                            </select>
+                        </p>
+                    </div>
+                    <input type="submit" class="uni-button-darkblue" value="Ara" />
+                </div>
+
+            </form>
+        </div>
+    </div>
+ </div>
+<div class="lastAddedPosts">
+    <div class="container">
+        <h1>Last Added Posts</h1>
+        <div class="row">
+            <div class="col-lg-4">dfjdjf</div>
+            <div class="col-lg-4">dfjdjf</div>
+            <div class="col-lg-4">dfjdjf</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">dfjdjf</div>
+            <div class="col-lg-4">dfjdjf</div>
+            <div class="col-lg-4">dfjdjf</div>
+        </div>
+    </div>
+
+</div>
