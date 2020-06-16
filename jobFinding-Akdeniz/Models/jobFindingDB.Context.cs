@@ -48,6 +48,7 @@ namespace jobFinding_Akdeniz.Models
         public virtual DbSet<user_teacher> user_teacher { get; set; }
         public virtual DbSet<user_type> user_type { get; set; }
         public virtual DbSet<company_log> company_log { get; set; }
+        public virtual DbSet<business_departments> business_departments { get; set; }
     
         public virtual int sp_InsertStudent(string userEmail, string firstName, string lastName, string userPassword, string userIsActive, string userIsConfirmed, string statusStd, string degreeName, string universityName, string startingDate, string endingDate, Nullable<double> gANO, Nullable<int> gANOINT, string department)
         {

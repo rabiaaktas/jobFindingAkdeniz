@@ -8,6 +8,13 @@
     <Property Name="loginDate" Type="date" Nullable="false" />
     <Property Name="loginIp" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
+  <EntityType Name="business_departments">
+    <Key>
+      <PropertyRef Name="businessDepId" />
+    </Key>
+    <Property Name="businessDepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="businessDepName" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
   <EntityType Name="business_stream">
     <Key>
       <PropertyRef Name="businessId" />
@@ -446,6 +453,7 @@
   </Function>
   <EntityContainer Name="akdenizjobfindingModelStoreContainer">
     <EntitySet Name="admin_log" EntityType="Self.admin_log" Schema="akdenizjobfinding" store:Type="Tables" />
+    <EntitySet Name="business_departments" EntityType="Self.business_departments" Schema="akdenizjobfinding" store:Type="Tables" />
     <EntitySet Name="business_stream" EntityType="Self.business_stream" Schema="akdenizjobfinding" store:Type="Tables" />
     <EntitySet Name="company" EntityType="Self.company" Schema="akdenizjobfinding" store:Type="Tables" />
     <EntitySet Name="company_log" EntityType="Self.company_log" Schema="akdenizjobfinding" store:Type="Tables" />

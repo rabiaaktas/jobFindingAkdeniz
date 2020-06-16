@@ -40,8 +40,18 @@ namespace jobFinding_Akdeniz
 
             routes.MapRoute(
                name: "İsveren İlan Basvuranlar",
-               url: "basvuranlar/{id}",
+               url: "ilanlarim/basvuranlar/{id}",
                defaults: new { controller = "Company", action = "GetApplicants", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+              name: "İsveren İlan Duzenleme",
+              url: "ilanlarim/duzenle/{id}",
+              defaults: new { controller = "Company", action = "Edit", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+              name: "İsveren İlan Ekleme",
+              url: "ilan-ekle",
+              defaults: new { controller = "Company", action = "PostAdd" });
 
             routes.MapRoute(
                 name: "Default",

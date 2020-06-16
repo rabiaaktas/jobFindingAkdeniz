@@ -1,30 +1,30 @@
 ﻿
 @{
-    ViewBag.Title = "İlan Düzenleme";
+    ViewBag.Title = "İlan Ekleme";
     Layout = "~/Views/Shared/_Layout.cshtml";
     jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
     var countries = db.countries.ToList();
     var jobType = db.job_type.ToList();
     var businessDepartments = db.business_departments.ToList();
 }
+
 @model jobFinding_Akdeniz.Models.job_post
 
 <div class="user-login">
     <div class="container">
         <div class="cd-form">
-            <h2>İlan Düzenleme</h2>
+            <h2>İlan Ekleme</h2>
         </div>
-        @using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { name = "postEdit" }))
+        @using (Html.BeginForm("PostAdd", "Company", FormMethod.Post, new { name = "postEdit" }))
         {
             @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.jobPostId)
             <div class="form-group cd-form">
                 <label class="form-group">İlan Başlığı:</label>
                 @Html.TextBoxFor(x => x.jobPostTitle, new { @class = "form-control", placeholder = "Adınız", required = "required" })
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Bitiş Tarihi:</label>
-                @Html.TextBoxFor(model => model.postEndedDay, new { @class = "date-picker form-control py-4" })
+                @Html.TextBoxFor(x => x.postEndedDay, new { @class = "date-picker form-control py-4" })
             </div>
             <div class="form-group cd-form">
                 <label class="form-group">Departman : </label>
@@ -32,7 +32,7 @@
                     @foreach (var item in businessDepartments)
                     {
 
-                        <option value=@item.businessDepName @if (item.businessDepName == Model.department) { <text> selected="selected" </text> }>
+                        <option value=@item.businessDepName>
                             @item.businessDepName
                         </option>
 
@@ -40,12 +40,12 @@
                 </select>
             </div>
             <div class="form-group cd-form">
-                <label class="form-group">Değiştirmek istediğiniz şehri seçiniz : </label>
+                <label class="form-group">İşin bulunduğu şehir seçiniz : </label>
                 <select id="countrySelect" class="form-control" name="job_location.city">
                     @foreach (var item in countries)
                     {
 
-                        <option value=@item.countryName @if (item.countryName == Model.job_location.city) { <text> selected="selected" </text> }>
+                        <option value=@item.countryName>
                             @item.countryName
                         </option>
 
@@ -53,8 +53,8 @@
                 </select>
             </div>
             <div class="form-group cd-form">
-                <label class="form-group"> Adres:</label>
-                @Html.TextAreaFor(x => x.job_location.streetAddress, new { @class = "form-control py-4", id = "inAddress", placeholder = @Model.job_location.streetAddress, required = "required", type = "text" })
+                <label class="form-group">İş Yeri Adresi:</label>
+                @Html.TextAreaFor(x => x.job_location.streetAddress, new { @class = "form-control py-4", id = "inAddress", required = "required", type = "text" })
             </div>
             <div class="form-group cd-form">
                 <label class="form-group">Değiştirmek istediğiniz iş tipini seçiniz : </label>
@@ -62,7 +62,7 @@
                     @foreach (var item in jobType)
                     {
 
-                        <option value=@item.jobTypeId @if (item.jobTypeId == Model.jobTypeID) { <text> selected="selected" </text> }>
+                        <option value=@item.jobTypeId>
                             @item.jobTypeName
                         </option>
 
@@ -71,7 +71,7 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Açıklama:</label>
-                @Html.TextAreaFor(x => x.jobDescription, new { @class = "form-control py-4", id = "inAddress", placeholder = @Model.jobDescription, required = "required", type = "text" })
+                @Html.TextAreaFor(x => x.jobDescription, new { @class = "form-control py-4", id = "inAddress", required = "required", type = "text" })
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Eğitim Düzeyi:</label>
@@ -89,7 +89,7 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Askerlik Durumu: </label>
-                <select class="selectpicker selectMultiM military form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="militaryStiation" >
+                <select class="selectpicker selectMultiM military form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="militaryStiation">
                     <option value="Yapıldı">Yapıldı</option>
                     <option value="Yapılmadı">Yapılmadı</option>
 
@@ -99,8 +99,8 @@
             <div class="form-group cd-form">
                 <label class="form-group"> Deneyim Durumu: </label>
                 <select class="selectpicker selectMulti form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="experienceStatus">
-                        <option value="Deneyimli">Deneyimli</option>
-                        <option value="Deneyimsiz">Deneyimsiz</option>
+                    <option value="Deneyimli">Deneyimli</option>
+                    <option value="Deneyimsiz">Deneyimsiz</option>
 
                 </select>
             </div>
@@ -115,11 +115,10 @@
 
     </div>
 </div>
-
 <script type="text/javascript">
     $(function () {
         $('.selectMultiM').selectpicker('render');
-        $('.date-picker').datepicker({ dateFormat: "d/m/yy" });
+        $('.date-picker').datepicker({ dateFormat: "d/m/yy", language: "tr" });
     })
     function ToJavaScriptDate(value) {
         var pattern = /Date\(([^)]+)\)/;

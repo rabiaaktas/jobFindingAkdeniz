@@ -15,5 +15,7 @@ namespace jobFinding_Akdeniz
             //DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        public const string FilePath = "";
     }
 }

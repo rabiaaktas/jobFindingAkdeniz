@@ -237,5 +237,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="business_departments">
+      <EntityTypeMapping TypeName="akdenizjobfindingModel.business_departments">
+        <MappingFragment StoreEntitySet="business_departments">
+          <ScalarProperty Name="businessDepName" ColumnName="businessDepName" />
+          <ScalarProperty Name="businessDepId" ColumnName="businessDepId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

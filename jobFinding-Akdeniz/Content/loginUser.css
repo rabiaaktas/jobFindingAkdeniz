@@ -5,7 +5,15 @@
     padding: 40px 40px;
     border-radius:4px;
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 1056px) {
+    .user-login .container {
+        transition: none;
+        -o-transition: none;
+        -webkit-transition: none;
+    }
+}
+@media screen and (max-width: 800px) {
     .user-login {
         margin: auto;
         background-color: #D1D5DE;
@@ -13,5 +21,15 @@
         padding: 40px 40px;
         border-radius: 4px;
     }
-
 }
+
+@media screen and (min-width:460px) and (max-width: 1250px) {
+    .user-login {
+        margin: auto;
+        background-color: #D1D5DE;
+        width: 50%;
+        padding: 40px 40px;
+        border-radius: 4px;
+    }
+}
+

@@ -13,6 +13,13 @@
           <Property Name="loginDate" Type="date" Nullable="false" />
           <Property Name="loginIp" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="business_departments">
+          <Key>
+            <PropertyRef Name="businessDepId" />
+          </Key>
+          <Property Name="businessDepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="businessDepName" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
         <EntityType Name="business_stream">
           <Key>
             <PropertyRef Name="businessId" />
@@ -451,6 +458,7 @@
         </Function>
         <EntityContainer Name="akdenizjobfindingModelStoreContainer">
           <EntitySet Name="admin_log" EntityType="Self.admin_log" Schema="akdenizjobfinding" store:Type="Tables" />
+          <EntitySet Name="business_departments" EntityType="Self.business_departments" Schema="akdenizjobfinding" store:Type="Tables" />
           <EntitySet Name="business_stream" EntityType="Self.business_stream" Schema="akdenizjobfinding" store:Type="Tables" />
           <EntitySet Name="company" EntityType="Self.company" Schema="akdenizjobfinding" store:Type="Tables" />
           <EntitySet Name="company_log" EntityType="Self.company_log" Schema="akdenizjobfinding" store:Type="Tables" />
@@ -1091,6 +1099,7 @@
             <End Role="company" EntitySet="company" />
             <End Role="company_log" EntitySet="company_log" />
           </AssociationSet>
+          <EntitySet Name="business_departments" EntityType="akdenizjobfindingModel.business_departments" />
         </EntityContainer>
         <EntityType Name="company_log">
           <Key>
@@ -1113,6 +1122,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="business_departments">
+          <Key>
+            <PropertyRef Name="businessDepId" />
+          </Key>
+          <Property Name="businessDepId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="businessDepName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1352,6 +1368,14 @@
                 <ScalarProperty Name="loginIp" ColumnName="loginIp" />
                 <ScalarProperty Name="loginDate" ColumnName="loginDate" />
                 <ScalarProperty Name="companyID" ColumnName="companyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="business_departments">
+            <EntityTypeMapping TypeName="akdenizjobfindingModel.business_departments">
+              <MappingFragment StoreEntitySet="business_departments">
+                <ScalarProperty Name="businessDepName" ColumnName="businessDepName" />
+                <ScalarProperty Name="businessDepId" ColumnName="businessDepId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

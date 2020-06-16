@@ -70,5 +70,11 @@ namespace jobFinding_Akdeniz.Controllers
             }
             return View();
         }
+
+        public JsonResult Logout()
+        {
+            Session.Clear();
+            return Json("ok", JsonRequestBehavior.AllowGet);
+        }
     }
 }

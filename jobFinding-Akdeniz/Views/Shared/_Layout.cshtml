@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
     <title>@ViewBag.Title</title>
     @*<link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />*@
+    <script src="~/Scripts/jquery.min.js"></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
@@ -13,8 +14,10 @@
     <link href="~/Content/buttons.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/loginUser.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery.min.js"></script>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap-select.css" />
     <link href="~/Content/DataTableCss/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DataTableCss/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DataTableCss/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -64,8 +67,8 @@
                                                     İlanlarım
                                                 </a>
                                             </li>
-                                            <li class="  navLink">
-                                                <a href="#">
+                                            <li class="nav-item navLink">
+                                                <a href="/ilan-ekle">
                                                     İlan Ekle
                                                 </a>
                                             </li>
@@ -76,16 +79,25 @@
                                             </li>
                                             <li class=" dropdown navLink">
                                                 <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    @companyName
+                                                    @companyName <i class="fas fa-caret-down"></i>
                                                 </a>
-                                                <div class="nav-link dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                    <a class="dropdown-item" href="/ogretmen-kayit">Öğretmen Kayıt</a>
-                                                    <a class="dropdown-item" href="/Login/Index">Öğretmen Girişi</a>
+                                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                    <a class="dropdown-item" href="/ogretmen-kayit">Profil Düzenle</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="javascript:GoOut('@jobFinding_Akdeniz.MvcApplication.FilePath')">Çıkış Yap</a>
 
                                                 </div>
                                             </li>
                                         </ul>
-
+                                        <script>
+                                            function GoOut(url) {
+                                                $.getJSON(url + "/Login/Logout", null, function (data) {
+                                                    window.location.reload();
+                                                    window.location = url + "/Home/Login";
+                                                    window.location.reload();
+                                                });
+                                            }
+                                        </script>
                                     </div><!-- /.navbar-collapse -->
                                 }
                                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -149,10 +161,12 @@
         </div>
         @*<script src="~/Scripts/popper.min.js"></script>*@
         <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/datetime.js"></script>
         @*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
         <script src="~/Scripts/jquery-ui.min.js"></script>
         <script src="~/Scripts/modernizr-2.6.2.js"></script>
         <script src="~/Scripts/all.min.js"></script>
+        <script src="~/Scripts/bootstrap-select.min.js"></script>
     </div>
 </body>
 </html>

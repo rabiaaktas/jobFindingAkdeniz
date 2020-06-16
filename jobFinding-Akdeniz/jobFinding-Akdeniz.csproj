@@ -136,6 +136,7 @@
     <Content Include="Content\buttons.css" />
     <Content Include="Content\DataTableCss\dataTables.bootstrap4.min.css" />
     <Content Include="Content\DataTableCss\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTableCss\responsive.dataTables.min.css" />
     <Content Include="Content\Form.css" />
     <Content Include="Content\Images\search.png" />
     <Content Include="Content\Images\undraw_work_time_lhoj.svg" />
@@ -170,6 +171,8 @@
       <LastGenOutput>jobFindingDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\all.min.js" />
+    <Content Include="Content\bootstrap-select.css" />
+    <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -201,8 +204,10 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTablesJs\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\DataTablesJs\dataTables.responsive.min.js" />
     <Content Include="Scripts\DataTablesJs\dataTables.tableTools.min.js" />
     <Content Include="Scripts\DataTablesJs\jquery.dataTables.min.js" />
+    <Content Include="Scripts\datetime.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -228,6 +233,9 @@
     </Compile>
     <Compile Include="LoginStatus.cs" />
     <Compile Include="Models\admin_log.cs">
+      <DependentUpon>jobFindingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\business_departments.cs">
       <DependentUpon>jobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\business_stream.cs">
@@ -333,6 +341,7 @@
     <Content Include="Views\Company\Details.cshtml" />
     <Content Include="Views\Company\GetApplicants.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\PostAdd.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

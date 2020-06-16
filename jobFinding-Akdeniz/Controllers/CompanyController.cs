@@ -156,5 +156,46 @@ namespace jobFinding_Akdeniz.Controllers
         {
             return View(db.job_post.FirstOrDefault(x => x.jobPostId == id));
         }
+
+        [UserCheckCompany]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(job_post post)
+        {
+            var jp = db.job_post.FirstOrDefault(x => x.jobPostId == post.jobPostId);
+            var jl = db.job_location.FirstOrDefault(x => x.jobLocationId == jp.jobLocationID);
+            if (jp != null)
+            {
+                jp.jobPostTitle = post.jobPostTitle;
+                jp.postEndedDay = post.postEndedDay;
+                jp.department = post.department;
+                jp.job_location.city = post.job_location.city;
+                jp.job_location.streetAddress = post.job_location.streetAddress;
+                jp.jobTypeID = post.jobTypeID;
+                jp.jobDescription = post.jobDescription;
+                if(post.educationInfo != null)
+                {
+                    jp.educationInfo = post.educationInfo;
+                }
+                jp.militaryStiation = post.militaryStiation;
+                if(post.experienceStatus != null)
+                {
+                    jp.experienceStatus = post.experienceStatus;
+                }
+                db.SaveChanges();
+                return RedirectToAction("CompanyPosts", "Company");
+            }
+            else
+            {
+                ViewBag.Warning = "Düzenleme gerçekleştirilemedi.";
+                return View();
+            }
+        }
+
+        [UserCheckCompany]
+        public ActionResult PostAdd()
+        {
+            return View();
+        }
     }
 }
