@@ -80,7 +80,7 @@
     <Property Name="companyID" Type="int" Nullable="false" />
     <Property Name="isCompanyNameHidden" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="postCreatedDate" Type="date" Nullable="false" />
-    <Property Name="postEndedDay" Type="date" Nullable="false" />
+    <Property Name="postEndedDay" Type="date" />
     <Property Name="jobDescription" Type="text" Nullable="false" />
     <Property Name="jobLocationID" Type="int" Nullable="false" />
     <Property Name="isActivePost" Type="varchar" MaxLength="1" Nullable="false" />
@@ -424,6 +424,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_InsertCompanyPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
+    <Parameter Name="city" Type="varchar" Mode="In" />
+    <Parameter Name="streetAddress" Type="varchar" Mode="In" />
+    <Parameter Name="jobTypeID" Type="int" Mode="In" />
+    <Parameter Name="companyID" Type="int" Mode="In" />
+    <Parameter Name="isCompanyNameHidden" Type="varchar" Mode="In" />
+    <Parameter Name="postEndedDay" Type="date" Mode="In" />
+    <Parameter Name="jobDescription" Type="text" Mode="In" />
+    <Parameter Name="jobPostTitle" Type="varchar" Mode="In" />
+    <Parameter Name="department" Type="varchar" Mode="In" />
+    <Parameter Name="experienceStatus" Type="varchar" Mode="In" />
+    <Parameter Name="educationInfo" Type="varchar" Mode="In" />
+    <Parameter Name="militaryStiation" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_InsertStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
     <Parameter Name="userEmail" Type="varchar" Mode="In" />
     <Parameter Name="firstName" Type="varchar" Mode="In" />

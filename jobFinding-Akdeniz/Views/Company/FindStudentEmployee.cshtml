@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Öğrenci Arama";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
+    var languages = db.languages.ToList();
+    var departments = db.departments.ToList();
+}
+@model jobFinding_Akdeniz.Models.job_post
+
+<div class="user-login">
+    <div class="container">
+        <div class="cd-form">
+            <h2>Öğrenci Arama</h2>
+            <label class="small form-group">İstediğiniz özellikleri seçerek listeye ulaşabilirsiniz.</label>
+        </div>
+        @using (Html.BeginForm("PostAdd", "Company", FormMethod.Post, new { name = "postEdit" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label class="form-group">Öğrenci/Mezun Durumu:</label>
+                <div class="">
+                    <select class="form-control" name="educationInfo" >
+                        <option class="text-muted" disabled selected>Öğrenci/Mezun Durumu</option>
+                        <option>ÖĞRENCİ</option>
+                        <option>MEZUN</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="form-group"> Bölümü:</label>
+                <select class="form-control" name="department" required>
+                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                    @foreach (var item in departments)
+                    {
+                        <option value="@item.departmentName">@item.departmentName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-group"> Yabancı Dil:</label>
+                <select class="form-control" name="language" required>
+                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                    @foreach (var item in languages)
+                    {
+                        <option value="@item.languageId">@item.languageName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-group"> İlgilendiği Alan:</label>
+                <select class="form-control" name="department" required>
+                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                    @foreach (var item in languages)
+                    {
+                        <option value="@item.languageId">@item.languageName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group text-danger small">
+                @ViewBag.Warning
+            </div>
+            <div class="form-group cd-form">
+                <input type="submit" value="Düzenle" class="form-control" />
+            </div>
+        }
+
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('.selectMultiM').selectpicker('render');
+    })
+    function ToJavaScriptDate(value) {
+        var pattern = /Date\(([^)]+)\)/;
+        var results = pattern.exec(value);
+        var dt = new Date(parseFloat(results[1]));
+        return dt;
+    }
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        $('.selectpicker').selectpicker('mobile');
+    }
+</script>

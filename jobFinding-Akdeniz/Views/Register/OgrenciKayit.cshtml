@@ -68,7 +68,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Öğrenci/Mezun Durumu:</label>
                 <select class="form-control" name="statusStd" required>
-                    <option class="text-muted">Öğrenci/Mezun Durumu Seçiniz:</option>
+                    <option class="text-muted" disabled selected>Öğrenci/Mezun Durumu Seçiniz:</option>
                     <option value="ÖĞRENCİ">ÖĞRENCİ</option>
                     <option value="MEZUN">MEZUN</option>
 
@@ -80,7 +80,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Eğitim Türü:</label>
                 <select class="form-control" name="degreeName" required>
-                    <option class="text-muted">Eğitim Türü Seçiniz:</option>
+                    <option class="text-muted" disabled selected>Eğitim Türü Seçiniz:</option>
                     <option value="ÖnLisans">Ön Lisans</option>
                     <option value="Lisans">Lisans</option>
                     <option value="YüksekLisans">Yüksek Lisans</option>
@@ -93,7 +93,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Üniversite:</label>
                 <select class="form-control" name="universityName" required>
-                    <option class="text-muted">Üniversite Seçiniz:</option>
+                    <option class="text-muted" disabled selected>Üniversite Seçiniz:</option>
                     @foreach (var item in universities)
                     {
                         <option value="@item.universityName">@item.universityName</option>
@@ -106,7 +106,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Bölüm:</label>
                 <select class="form-control" name="department" required>
-                    <option class="text-muted">Bölüm Seçiniz:</option>
+                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
                     @foreach (var item in departments)
                     {
                         <option value="@item.departmentName">@item.departmentName</option>

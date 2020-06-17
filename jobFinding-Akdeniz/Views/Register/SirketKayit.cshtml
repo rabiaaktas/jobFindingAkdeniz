@@ -27,7 +27,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Sektör</label>
                 <select class="form-control" name="businessID" required>
-                    <option>Sektör Seçiniz:</option>
+                    <option disabled selected>Sektör Seçiniz:</option>
                     @foreach (var item in businessAreas)
                     {
                         <option value=@item.businessId>@item.businessName</option>

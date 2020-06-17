@@ -25,7 +25,7 @@ namespace jobFinding_Akdeniz.Models
         public int companyID { get; set; }
         public string isCompanyNameHidden { get; set; }
         public System.DateTime postCreatedDate { get; set; }
-        public System.DateTime postEndedDay { get; set; }
+        public Nullable<System.DateTime> postEndedDay { get; set; }
         public string jobDescription { get; set; }
         public int jobLocationID { get; set; }
         public string isActivePost { get; set; }

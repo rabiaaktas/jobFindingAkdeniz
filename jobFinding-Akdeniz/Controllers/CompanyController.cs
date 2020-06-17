@@ -177,7 +177,10 @@ namespace jobFinding_Akdeniz.Controllers
                 {
                     jp.educationInfo = post.educationInfo;
                 }
-                jp.militaryStiation = post.militaryStiation;
+                if (post.militaryStiation != null)
+                {
+                    jp.militaryStiation = post.militaryStiation;
+                }
                 if(post.experienceStatus != null)
                 {
                     jp.experienceStatus = post.experienceStatus;
@@ -194,6 +197,28 @@ namespace jobFinding_Akdeniz.Controllers
 
         [UserCheckCompany]
         public ActionResult PostAdd()
+        {
+            return View();
+        }
+
+        [UserCheckCompany]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostAdd(job_post jb)
+        {
+            var status = db.sp_InsertCompanyPost(jb.job_location.city, jb.job_location.streetAddress, jb.jobTypeID, LoginStatus.Current.companyId,"0", jb.postEndedDay, jb.jobDescription,jb.jobPostTitle, jb.department, jb.experienceStatus, jb.educationInfo, jb.militaryStiation);
+            db.SaveChanges();
+            return RedirectToAction("CompanyPosts", "Company");
+        }
+
+        [UserCheckCompany]
+        public ActionResult FindStudentEmployee()
+        {
+            return View();
+        }
+
+        [UserCheckCompany]
+        public ActionResult EditProfile()
         {
             return View();
         }

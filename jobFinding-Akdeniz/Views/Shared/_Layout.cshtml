@@ -16,8 +16,9 @@
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/bootstrap-select.css" />
-    <link href="~/Content/DataTableCss/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DataTableCss/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DataTableCss/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DataTableCss/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DataTableCss/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -72,17 +73,23 @@
                                                     İlan Ekle
                                                 </a>
                                             </li>
-                                            <li class="  navLink">
-                                                <a href="/Company/Index">
-                                                    Eleman Ara
+                                            <li class=" dropdown navLink">
+                                                <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Eleman Ara <i class="fas fa-angle-down"></i>
                                                 </a>
+                                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Öğrenci Arama</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="javascript:GoOut('@jobFinding_Akdeniz.MvcApplication.FilePath')">Çıkış Yap</a>
+
+                                                </div>
                                             </li>
                                             <li class=" dropdown navLink">
                                                 <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    @companyName <i class="fas fa-caret-down"></i>
+                                                    @companyName <i class="fas fa-angle-down"></i>
                                                 </a>
                                                 <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                    <a class="dropdown-item" href="/ogretmen-kayit">Profil Düzenle</a>
+                                                    <a class="dropdown-item" href="/profili-duzenle">Profil Düzenle</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:GoOut('@jobFinding_Akdeniz.MvcApplication.FilePath')">Çıkış Yap</a>
 
@@ -111,7 +118,7 @@
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="nav-item dropdown navLink">
                                                 <a class=" dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    İşveren <i class="fas fa-caret-down"></i>
+                                                    İşveren <i class="fas fa-angle-down"></i>
                                                 </a>
 
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
@@ -122,7 +129,7 @@
                                             </li>
                                             <li class=" dropdown navLink">
                                                 <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Öğrenci <i class="fas fa-caret-down"></i>
+                                                    Öğrenci <i class="fas fa-angle-down"></i>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                                                     <a class="dropdown-item" href="/ogrenci-kayit">Öğrenci Kayıt</a>
@@ -132,7 +139,7 @@
                                             </li>
                                             <li class=" dropdown navLink">
                                                 <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Öğretmen <i class="fas fa-caret-down"></i>
+                                                    Öğretmen <i class="fas fa-angle-down"></i>
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
                                                     <a class="dropdown-item" href="/ogretmen-kayit">Öğretmen Kayıt</a>
@@ -161,7 +168,8 @@
         </div>
         @*<script src="~/Scripts/popper.min.js"></script>*@
         <script src="~/Scripts/bootstrap.min.js"></script>
-        <script src="~/Scripts/datetime.js"></script>
+        <script src="~/Scripts/moment-with-locales.js"></script>
+        <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
         @*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@
         <script src="~/Scripts/jquery-ui.min.js"></script>
         <script src="~/Scripts/modernizr-2.6.2.js"></script>

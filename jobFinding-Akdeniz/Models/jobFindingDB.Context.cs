@@ -28,8 +28,10 @@ namespace jobFinding_Akdeniz.Models
         }
     
         public virtual DbSet<admin_log> admin_log { get; set; }
+        public virtual DbSet<business_departments> business_departments { get; set; }
         public virtual DbSet<business_stream> business_stream { get; set; }
         public virtual DbSet<company> company { get; set; }
+        public virtual DbSet<company_log> company_log { get; set; }
         public virtual DbSet<countries> countries { get; set; }
         public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<job_location> job_location { get; set; }
@@ -47,8 +49,6 @@ namespace jobFinding_Akdeniz.Models
         public virtual DbSet<user_student> user_student { get; set; }
         public virtual DbSet<user_teacher> user_teacher { get; set; }
         public virtual DbSet<user_type> user_type { get; set; }
-        public virtual DbSet<company_log> company_log { get; set; }
-        public virtual DbSet<business_departments> business_departments { get; set; }
     
         public virtual int sp_InsertStudent(string userEmail, string firstName, string lastName, string userPassword, string userIsActive, string userIsConfirmed, string statusStd, string degreeName, string universityName, string startingDate, string endingDate, Nullable<double> gANO, Nullable<int> gANOINT, string department)
         {
@@ -150,6 +150,59 @@ namespace jobFinding_Akdeniz.Models
                 new ObjectParameter("description", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertTeacher", userEmailParameter, firstNameParameter, lastNameParameter, userPasswordParameter, userIsActiveParameter, userIsConfirmedParameter, degreeParameter, universityNameParameter, descriptionParameter);
+        }
+    
+        public virtual int sp_InsertCompanyPost(string city, string streetAddress, Nullable<int> jobTypeID, Nullable<int> companyID, string isCompanyNameHidden, Nullable<System.DateTime> postEndedDay, string jobDescription, string jobPostTitle, string department, string experienceStatus, string educationInfo, string militaryStiation)
+        {
+            var cityParameter = city != null ?
+                new ObjectParameter("city", city) :
+                new ObjectParameter("city", typeof(string));
+    
+            var streetAddressParameter = streetAddress != null ?
+                new ObjectParameter("streetAddress", streetAddress) :
+                new ObjectParameter("streetAddress", typeof(string));
+    
+            var jobTypeIDParameter = jobTypeID.HasValue ?
+                new ObjectParameter("jobTypeID", jobTypeID) :
+                new ObjectParameter("jobTypeID", typeof(int));
+    
+            var companyIDParameter = companyID.HasValue ?
+                new ObjectParameter("companyID", companyID) :
+                new ObjectParameter("companyID", typeof(int));
+    
+            var isCompanyNameHiddenParameter = isCompanyNameHidden != null ?
+                new ObjectParameter("isCompanyNameHidden", isCompanyNameHidden) :
+                new ObjectParameter("isCompanyNameHidden", typeof(string));
+    
+            var postEndedDayParameter = postEndedDay.HasValue ?
+                new ObjectParameter("postEndedDay", postEndedDay) :
+                new ObjectParameter("postEndedDay", typeof(System.DateTime));
+    
+            var jobDescriptionParameter = jobDescription != null ?
+                new ObjectParameter("jobDescription", jobDescription) :
+                new ObjectParameter("jobDescription", typeof(string));
+    
+            var jobPostTitleParameter = jobPostTitle != null ?
+                new ObjectParameter("jobPostTitle", jobPostTitle) :
+                new ObjectParameter("jobPostTitle", typeof(string));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("department", department) :
+                new ObjectParameter("department", typeof(string));
+    
+            var experienceStatusParameter = experienceStatus != null ?
+                new ObjectParameter("experienceStatus", experienceStatus) :
+                new ObjectParameter("experienceStatus", typeof(string));
+    
+            var educationInfoParameter = educationInfo != null ?
+                new ObjectParameter("educationInfo", educationInfo) :
+                new ObjectParameter("educationInfo", typeof(string));
+    
+            var militaryStiationParameter = militaryStiation != null ?
+                new ObjectParameter("militaryStiation", militaryStiation) :
+                new ObjectParameter("militaryStiation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertCompanyPost", cityParameter, streetAddressParameter, jobTypeIDParameter, companyIDParameter, isCompanyNameHiddenParameter, postEndedDayParameter, jobDescriptionParameter, jobPostTitleParameter, departmentParameter, experienceStatusParameter, educationInfoParameter, militaryStiationParameter);
         }
     }
 }

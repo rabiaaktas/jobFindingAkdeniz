@@ -129,12 +129,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\buttons.css" />
     <Content Include="Content\DataTableCss\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTableCss\jquery.dataTables.min.css" />
     <Content Include="Content\DataTableCss\responsive.bootstrap.min.css" />
     <Content Include="Content\DataTableCss\responsive.dataTables.min.css" />
     <Content Include="Content\Form.css" />
@@ -172,6 +174,7 @@
     </Content>
     <Content Include="Scripts\all.min.js" />
     <Content Include="Content\bootstrap-select.css" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -207,7 +210,6 @@
     <Content Include="Scripts\DataTablesJs\dataTables.responsive.min.js" />
     <Content Include="Scripts\DataTablesJs\dataTables.tableTools.min.js" />
     <Content Include="Scripts\DataTablesJs\jquery.dataTables.min.js" />
-    <Content Include="Scripts\datetime.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -215,6 +217,8 @@
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -342,6 +346,8 @@
     <Content Include="Views\Company\GetApplicants.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\PostAdd.cshtml" />
+    <Content Include="Views\Company\FindStudentEmployee.cshtml" />
+    <Content Include="Views\Company\EditProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

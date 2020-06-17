@@ -20,105 +20,109 @@
             @Html.AntiForgeryToken()
             <div class="form-group cd-form">
                 <label class="form-group">İlan Başlığı:</label>
-                @Html.TextBoxFor(x => x.jobPostTitle, new { @class = "form-control", placeholder = "Adınız", required = "required" })
+                @Html.TextBoxFor(x => x.jobPostTitle, new { @class = "form-control", placeholder = "Başlık", required = "required" })
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Bitiş Tarihi:</label>
-                @Html.TextBoxFor(x => x.postEndedDay, new { @class = "date-picker form-control py-4" })
+                <div class="controls" style="position: relative">
+                    @Html.TextBoxFor(x => x.postEndedDay, new { @class = "form-control py-4", id = "datetimepicker4" })
+                </div>
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group">Departman : </label>
+                    <select class="form-control" name="department" required>
+                        @foreach (var item in businessDepartments)
+                        {
+
+                            <option value=@item.businessDepName>
+                                @item.businessDepName
+                            </option>
+
+                        }
+                    </select>
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group">İşin bulunduğu şehir seçiniz : </label>
+                    <select id="countrySelect" class="form-control" name="job_location.city" required>
+                        @foreach (var item in countries)
+                        {
+
+                            <option value=@item.countryName>
+                                @item.countryName
+                            </option>
+
+                        }
+                    </select>
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group">İş Yeri Adresi:</label>
+                    @Html.TextAreaFor(x => x.job_location.streetAddress, new { @class = "form-control py-4", required = "required"})
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group">Değiştirmek istediğiniz iş tipini seçiniz : </label>
+                    <select id="typeSelect" class="form-control" name="jobTypeID" required>
+                        @foreach (var item in jobType)
+                        {
+
+                            <option value=@item.jobTypeId>
+                                @item.jobTypeName
+                            </option>
+
+                        }
+                    </select>
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group"> Açıklama:</label>
+                    @Html.TextAreaFor(x => x.jobDescription, new { @class = "form-control py-4", required = "required" })
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group"> Eğitim Düzeyi:</label>
+                    <select class="selectpicker selectMulti form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="educationInfo" required>
+
+                        <option>Ön Lisans(Mezun)</option>
+                        <option>Üniversite(Öğrenci)</option>
+                        <option>Üniversite(Mezun)</option>
+                        <option>Yüksek Lisans(Öğrenci)</option>
+                        <option>Yüksek Lisans(Mezun)</option>
+                        <option>Doktora(Öğrenci)</option>
+                        <option>Doktora(Mezun)</option>
+
+                    </select>
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group"> Askerlik Durumu: </label>
+                    @Html.TextAreaFor(x => x.militaryStiation, new { @class = "form-control py-4", required = "required" })
+
+                </div>
+                <div class="form-group cd-form">
+                    <label class="form-group"> Deneyim Durumu: </label>
+                    @Html.TextAreaFor(x => x.experienceStatus, new { @class = "form-control py-4", required = "required" })
+
+                </div>
+                <div class="form-group text-danger small">
+                    @ViewBag.Warning
+                </div>
+                <div class="form-group cd-form">
+                    <input type="submit" value="Düzenle" class="form-control" />
+                </div>
+                }
+
+
             </div>
-            <div class="form-group cd-form">
-                <label class="form-group">Departman : </label>
-                <select id="countrySelect" class="form-control" name="department">
-                    @foreach (var item in businessDepartments)
-                    {
-
-                        <option value=@item.businessDepName>
-                            @item.businessDepName
-                        </option>
-
-                    }
-                </select>
-            </div>
-            <div class="form-group cd-form">
-                <label class="form-group">İşin bulunduğu şehir seçiniz : </label>
-                <select id="countrySelect" class="form-control" name="job_location.city">
-                    @foreach (var item in countries)
-                    {
-
-                        <option value=@item.countryName>
-                            @item.countryName
-                        </option>
-
-                    }
-                </select>
-            </div>
-            <div class="form-group cd-form">
-                <label class="form-group">İş Yeri Adresi:</label>
-                @Html.TextAreaFor(x => x.job_location.streetAddress, new { @class = "form-control py-4", id = "inAddress", required = "required", type = "text" })
-            </div>
-            <div class="form-group cd-form">
-                <label class="form-group">Değiştirmek istediğiniz iş tipini seçiniz : </label>
-                <select id="typeSelect" class="form-control" name="jobTypeID">
-                    @foreach (var item in jobType)
-                    {
-
-                        <option value=@item.jobTypeId>
-                            @item.jobTypeName
-                        </option>
-
-                    }
-                </select>
-            </div>
-            <div class="form-group cd-form">
-                <label class="form-group"> Açıklama:</label>
-                @Html.TextAreaFor(x => x.jobDescription, new { @class = "form-control py-4", id = "inAddress", required = "required", type = "text" })
-            </div>
-            <div class="form-group cd-form">
-                <label class="form-group"> Eğitim Düzeyi:</label>
-                <select class="selectpicker selectMulti form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="educationInfo">
-
-                    <option>Ön Lisans(Mezun)</option>
-                    <option>Üniversite(Öğrenci)</option>
-                    <option>Üniversite(Mezun)</option>
-                    <option>Yüksek Lisans(Öğrenci)</option>
-                    <option>Yüksek Lisans(Mezun)</option>
-                    <option>Doktora(Öğrenci)</option>
-                    <option>Doktora(Mezun)</option>
-
-                </select>
-            </div>
-            <div class="form-group cd-form">
-                <label class="form-group"> Askerlik Durumu: </label>
-                <select class="selectpicker selectMultiM military form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="militaryStiation">
-                    <option value="Yapıldı">Yapıldı</option>
-                    <option value="Yapılmadı">Yapılmadı</option>
-
-
-                </select>
-            </div>
-            <div class="form-group cd-form">
-                <label class="form-group"> Deneyim Durumu: </label>
-                <select class="selectpicker selectMulti form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="experienceStatus">
-                    <option value="Deneyimli">Deneyimli</option>
-                    <option value="Deneyimsiz">Deneyimsiz</option>
-
-                </select>
-            </div>
-            <div class="form-group text-danger small">
-                @ViewBag.Warning
-            </div>
-            <div class="form-group cd-form">
-                <input type="submit" value="Düzenle" class="form-control" />
-            </div>
-        }
-
-
-    </div>
 </div>
 <script type="text/javascript">
     $(function () {
+        $('#datetimepicker4').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+            locale: 'tr',
+            minDate: moment()
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
         $('.selectMultiM').selectpicker('render');
-        $('.date-picker').datepicker({ dateFormat: "d/m/yy", language: "tr" });
     })
     function ToJavaScriptDate(value) {
         var pattern = /Date\(([^)]+)\)/;

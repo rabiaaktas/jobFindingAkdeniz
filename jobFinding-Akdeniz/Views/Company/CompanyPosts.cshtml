@@ -87,10 +87,6 @@
         </div>
     </div>
 </div>
-<script src="~/Scripts/DataTablesJs/dataTables.responsive.min.js"></script>
-<script src="~/Scripts/DataTablesJs/jquery.dataTables.min.js"></script>
-<script src="~/Scripts/DataTablesJs/dataTables.bootstrap4.min.js"></script>
-<script src="~/Scripts/DataTablesJs/dataTables.tableTools.min.js"></script>
 <script>
     function ToJavaScriptDate(value) {
         var pattern = /Date\(([^)]+)\)/;
@@ -100,11 +96,11 @@
     }
     $(document).ready(function () {
         $("#postTable").DataTable({
+            "responsive": true,
             "processing": true, // for show progress bar
             "serverSide": true, // for process server side
             "filter": true, // this is for disable filter (search box)
             "orderMulti": false, // for disable multiple column at once
-            //"pageLength": 5,
             "paging": true,
             "language": {
                 "sEmptyTable": "Tabloda mevcut veri yok",
@@ -132,7 +128,7 @@
             "ajax": {
                 "url": "/Company/LoadPostList",
                 "type": "POST",
-                "datatype": "json"
+                "dataType": "json",
             },
             "columnDefs":
                 [{
@@ -272,4 +268,8 @@
         });
     }
 </script>
+<script src="~/Scripts/DataTablesJs/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTablesJs/dataTables.bootstrap4.min.js"></script>
+<script src="~/Scripts/DataTablesJs/dataTables.tableTools.min.js"></script>
+@*<script src="~/Scripts/DataTablesJs/dataTables.responsive.min.js"></script>*@ 
 

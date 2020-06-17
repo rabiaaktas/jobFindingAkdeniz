@@ -70,7 +70,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Üniversite Adı::</label>
                 <select class="form-control" name="universityName" required>
-                    <option class="text-muted">Üniversite Seçiniz:</option>
+                    <option class="text-muted" disabled selected>Üniversite Seçiniz:</option>
                     @foreach (var item in universities)
                     {
                         <option value="@item.universityName">@item.universityName</option>
@@ -83,7 +83,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Bölüm:</label>
                 <select class="form-control" name="description" required>
-                    <option class="text-muted">Bölüm Seçiniz:</option>
+                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
                     @foreach (var item in departments)
                     {
                         <option value="@item.departmentName">@item.departmentName</option>
@@ -96,7 +96,7 @@
             <div class="form-group cd-form">
                 <label class="form-group">*Ünvanınız:</label>
                 <select class="form-control" name="degree" required>
-                    <option class="text-muted">Ünvan Seçiniz:</option>
+                    <option class="text-muted" disabled selected>Ünvan Seçiniz:</option>
                     <option value="Öğr.Gör.">Öğretim Görevlisi</option>
                     <option value="Arş.Gör.">Araştırma Görevlisi</option>
                     <option value="Arş.Gör.Dr.">Araştırma Görevlisi Doktor</option>

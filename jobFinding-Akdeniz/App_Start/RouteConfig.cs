@@ -54,6 +54,16 @@ namespace jobFinding_Akdeniz
               defaults: new { controller = "Company", action = "PostAdd" });
 
             routes.MapRoute(
+              name: "İsveren Eleman Arama",
+              url: "eleman-arama/ogrenci",
+              defaults: new { controller = "Company", action = "FindStudentEmployee" });
+
+            routes.MapRoute(
+              name: "İsveren Profil",
+              url: "profili-duzenle",
+              defaults: new { controller = "Company", action = "EditProfile" });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

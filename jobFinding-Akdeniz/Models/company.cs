@@ -35,8 +35,8 @@ namespace jobFinding_Akdeniz.Models
         public string isCompanyActive { get; set; }
     
         public virtual business_stream business_stream { get; set; }
+        public virtual company_log company_log { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<job_post> job_post { get; set; }
-        public virtual company_log company_log { get; set; }
     }
 }

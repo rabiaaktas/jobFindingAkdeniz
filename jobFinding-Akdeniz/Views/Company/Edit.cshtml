@@ -24,7 +24,9 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Bitiş Tarihi:</label>
-                @Html.TextBoxFor(model => model.postEndedDay, new { @class = "date-picker form-control py-4" })
+                <div class="controls" style="position: relative">
+                    @Html.TextBoxFor(x => x.postEndedDay, new { @class = "form-control py-4", id = "datetimepicker4" })
+                </div>
             </div>
             <div class="form-group cd-form">
                 <label class="form-group">Departman : </label>
@@ -54,7 +56,7 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Adres:</label>
-                @Html.TextAreaFor(x => x.job_location.streetAddress, new { @class = "form-control py-4", id = "inAddress", placeholder = @Model.job_location.streetAddress, required = "required", type = "text" })
+                @Html.TextAreaFor(x => x.job_location.streetAddress, new { @class = "form-control py-4", placeholder = @Model.job_location.streetAddress, required = "required" })
             </div>
             <div class="form-group cd-form">
                 <label class="form-group">Değiştirmek istediğiniz iş tipini seçiniz : </label>
@@ -71,7 +73,7 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Açıklama:</label>
-                @Html.TextAreaFor(x => x.jobDescription, new { @class = "form-control py-4", id = "inAddress", placeholder = @Model.jobDescription, required = "required", type = "text" })
+                @Html.TextAreaFor(x => x.jobDescription, new { @class = "form-control py-4", placeholder = @Model.jobDescription, required = "required" })
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Eğitim Düzeyi:</label>
@@ -89,20 +91,13 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Askerlik Durumu: </label>
-                <select class="selectpicker selectMultiM military form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="militaryStiation" >
-                    <option value="Yapıldı">Yapıldı</option>
-                    <option value="Yapılmadı">Yapılmadı</option>
+                @Html.TextAreaFor(x => x.militaryStiation, new { @class = "form-control py-4", placeholder = @Model.militaryStiation, required = "required" })
 
-
-                </select>
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Deneyim Durumu: </label>
-                <select class="selectpicker selectMulti form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="experienceStatus">
-                        <option value="Deneyimli">Deneyimli</option>
-                        <option value="Deneyimsiz">Deneyimsiz</option>
+                @Html.TextAreaFor(x => x.experienceStatus, new { @class = "form-control py-4", placeholder = @Model.experienceStatus, required = "required" })
 
-                </select>
             </div>
             <div class="form-group text-danger small">
                 @ViewBag.Warning
@@ -115,11 +110,19 @@
 
     </div>
 </div>
-
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+            viewMode: 'days',
+            format: 'DD/MM/YYYY',
+            locale: 'tr',
+            minDate: moment()
+        });
+    });
+</script>
 <script type="text/javascript">
     $(function () {
         $('.selectMultiM').selectpicker('render');
-        $('.date-picker').datepicker({ dateFormat: "d/m/yy" });
     })
     function ToJavaScriptDate(value) {
         var pattern = /Date\(([^)]+)\)/;

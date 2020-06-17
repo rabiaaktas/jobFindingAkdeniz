@@ -3,20 +3,17 @@
 }
 
 .cd-form input {
-    border-radius: 10px;
-    border: 3px solid #ccc;
+    border: 2px solid #ccc;
 }
 cd-form > div {
     position: relative;
     margin: 20px 0;
 }
 .cd-form select,textarea {
-    border-radius: 10px;
-    border: 3px solid #ccc;
+    border: 2px solid #ccc;
 }
 .cd-form  textarea {
-    border-radius: 10px;
-    border: 3px solid #ccc;
+    border: 2px solid #ccc;
 }
 .cd-form h2 {
     font-family: "Nunito Sans", Arial, sans-serif;

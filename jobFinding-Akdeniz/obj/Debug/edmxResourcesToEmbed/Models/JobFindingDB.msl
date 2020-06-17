@@ -10,6 +10,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="business_departments">
+      <EntityTypeMapping TypeName="akdenizjobfindingModel.business_departments">
+        <MappingFragment StoreEntitySet="business_departments">
+          <ScalarProperty Name="businessDepId" ColumnName="businessDepId" />
+          <ScalarProperty Name="businessDepName" ColumnName="businessDepName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="business_stream">
       <EntityTypeMapping TypeName="akdenizjobfindingModel.business_stream">
         <MappingFragment StoreEntitySet="business_stream">
@@ -34,6 +42,15 @@
           <ScalarProperty Name="companyLogo" ColumnName="companyLogo" />
           <ScalarProperty Name="registrationCompanyDate" ColumnName="registrationCompanyDate" />
           <ScalarProperty Name="isCompanyActive" ColumnName="isCompanyActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="company_log">
+      <EntityTypeMapping TypeName="akdenizjobfindingModel.company_log">
+        <MappingFragment StoreEntitySet="company_log">
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="loginDate" ColumnName="loginDate" />
+          <ScalarProperty Name="loginIp" ColumnName="loginIp" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -228,22 +245,6 @@
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_InsertStudent" FunctionName="akdenizjobfindingModel.Store.sp_InsertStudent" />
     <FunctionImportMapping FunctionImportName="sp_InsertTeacher" FunctionName="akdenizjobfindingModel.Store.sp_InsertTeacher" />
-    <EntitySetMapping Name="company_log">
-      <EntityTypeMapping TypeName="akdenizjobfindingModel.company_log">
-        <MappingFragment StoreEntitySet="company_log">
-          <ScalarProperty Name="loginIp" ColumnName="loginIp" />
-          <ScalarProperty Name="loginDate" ColumnName="loginDate" />
-          <ScalarProperty Name="companyID" ColumnName="companyID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="business_departments">
-      <EntityTypeMapping TypeName="akdenizjobfindingModel.business_departments">
-        <MappingFragment StoreEntitySet="business_departments">
-          <ScalarProperty Name="businessDepName" ColumnName="businessDepName" />
-          <ScalarProperty Name="businessDepId" ColumnName="businessDepId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_InsertCompanyPost" FunctionName="akdenizjobfindingModel.Store.sp_InsertCompanyPost" />
   </EntityContainerMapping>
 </Mapping>
