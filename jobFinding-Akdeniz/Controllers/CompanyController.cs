@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Web;
 using System.Web.Mvc;
 using jobFinding_Akdeniz.Models;
+using jobFinding_Akdeniz.Models.HelperModels;
+using static jobFinding_Akdeniz.States;
 
 namespace jobFinding_Akdeniz.Controllers
 {
@@ -218,9 +222,137 @@ namespace jobFinding_Akdeniz.Controllers
         }
 
         [UserCheckCompany]
-        public ActionResult EditProfile()
+        [RestoreModelStateFromTempData]
+        public ActionResult EditProfileCompany()
         {
-            return View();
+            if (TempData["Success"] != null)
+            {
+                ViewBag.Success = TempData["Success"].ToString();
+            }
+            if (TempData["Warning"] != null)
+            {
+                ViewBag.Warning = TempData["Warning"].ToString();
+            }
+            var companyInfos = db.company.Where(x => x.companyId == LoginStatus.Current.companyId).FirstOrDefault();
+            //dynamic mymodel = new ExpandoObject();
+            //mymodel.companyInfos = companyInfos;
+            //var passwordModel = new ChangePasswordModel();
+            //passwordModel.ID = companyInfos.companyId;
+            //passwordModel.OldPassword = companyInfos.companyPassword;
+            //mymodel.passwordModel = passwordModel;
+            return View(companyInfos);
+        }
+
+        [UserCheckCompany]
+        [SetTempDataModelState]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CompanyInfos(company comp)
+        {
+            if (ModelState.IsValid)
+            {
+                var selectedCompany = db.company.Where(x => x.companyId == comp.companyId).FirstOrDefault();
+                selectedCompany.companyName = comp.companyName;
+                selectedCompany.companyEmail = comp.companyEmail;
+                selectedCompany.businessID = comp.businessID;
+                selectedCompany.foundationYear = comp.foundationYear;
+                selectedCompany.webSiteUrl = comp.webSiteUrl;
+                selectedCompany.companyPhone = comp.companyPhone;
+                selectedCompany.companyAddress = comp.companyAddress;
+                db.SaveChanges();
+                TempData["Success"] = "Bilgileriniz Güncellendi.";
+            }
+            else
+            {
+                TempData["Warning"] = "Bilgiler güncellenemedi.";
+            }
+            return RedirectToAction("EditProfileCompany", "Company");
+        }
+
+        [UserCheckCompany]
+        public ActionResult ChangePassword()
+        {
+            if (TempData["Success"] != null)
+            {
+                ViewBag.Success = TempData["Success"].ToString();
+            }
+            if (TempData["Warning"] != null)
+            {
+                ViewBag.Warning = TempData["Warning"].ToString();
+            }
+            var companyInfos = db.company.Where(x => x.companyId == LoginStatus.Current.companyId).FirstOrDefault();
+            ViewBag.companyLogo = companyInfos.companyLogo;
+            var passwordModel = new ChangePasswordModel();
+            if (companyInfos != null)
+            {
+                passwordModel.ID = companyInfos.companyId;
+                var old = Crypt.Decrypt(companyInfos.companyPassword);
+                passwordModel.OldPassword = old;
+            }
+            ViewBag.web = companyInfos.webSiteUrl;
+            return View(passwordModel);
+        }
+
+        [UserCheckCompany]
+        [HttpPost]
+        [SetTempDataModelState]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordModel ps)
+        {
+            if (ModelState.IsValid)
+            {
+                var companyInfos = db.company.Where(x => x.companyId == LoginStatus.Current.companyId).FirstOrDefault();
+                if(companyInfos != null)
+                {
+                    ViewBag.companyLogo = companyInfos.companyLogo;
+                    ViewBag.web = companyInfos.webSiteUrl;
+                    var oldPass = Crypt.Decrypt(companyInfos.companyPassword);
+                    if (oldPass == ps.NewPassword)
+                    {
+                        ViewBag.Warning = "Yeni parola eskisi ile aynı olamaz. Tekrar deneyiniz.";
+                    }
+                    else
+                    {
+                        var changedPs = Crypt.Encrypt(ps.NewPassword);
+                        companyInfos.companyPassword = changedPs;
+                        ps.NewPassword = "";
+                        ps.ConfirmPassword = "";
+                        db.SaveChanges();
+                        TempData["Success"] = "Parola başarı ile değiştirildi.";
+                    }
+                }
+                else
+                {
+                    ViewBag.Warning = "Kullanıcı bulunamadı. Tekrar deneyiniz.";
+                }
+            }
+            else
+            {
+                TempData["Warning"] = "Parola değiştirilemedi.";
+            }
+            return View(ps);
+        }
+
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
+        }
+
+        [UserCheckCompany]
+        public ActionResult ImageUploadEdit(HttpPostedFileBase file, company comp)
+        {
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(file.InputStream))
+            {
+                bytes = br.ReadBytes(file.ContentLength);
+            }
+            var companyLogo = db.company.Where(x => x.companyId == comp.companyId).FirstOrDefault();
+            companyLogo.companyLogo = bytes;
+            db.SaveChanges();
+            return RedirectToAction("EditProfileCompany", "Company");
         }
     }
 }

@@ -18,6 +18,9 @@ cd-form > div {
 .cd-form h2 {
     font-family: "Nunito Sans", Arial, sans-serif;
 }
+.cd-form h4 {
+    font-family: "Nunito Sans", Arial, sans-serif;
+}
 .cd-form input[type=text] {
     color: #2b3e51;
 }

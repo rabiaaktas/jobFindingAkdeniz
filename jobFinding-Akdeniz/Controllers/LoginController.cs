@@ -26,8 +26,8 @@ namespace jobFinding_Akdeniz.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SirketLogin(company company)
         {
-            //var password = Crypt.Encrypt(user.userPassword);
-            var data = db.company.Where(x => x.companyEmail == company.companyEmail && x.companyPassword == company.companyPassword && x.isCompanyActive == "1").FirstOrDefault();
+            var password = Crypt.Encrypt(company.companyPassword);
+            var data = db.company.Where(x => x.companyEmail == company.companyEmail && x.companyPassword == password && x.isCompanyActive == "1").FirstOrDefault();
             if (data != null)
             {
                 LoginStatus.Current.IsLogin = true;

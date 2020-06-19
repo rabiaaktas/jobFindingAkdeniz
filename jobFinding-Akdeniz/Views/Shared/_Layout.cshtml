@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
     <title>@ViewBag.Title</title>
     @*<link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />*@
-    <script src="~/Scripts/jquery.min.js"></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/main.css" rel="stylesheet" type="text/css" />
@@ -16,6 +15,8 @@
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/bootstrap-select.css" />
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/DataTableCss/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DataTableCss/responsive.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/DataTableCss/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -80,8 +81,7 @@
                                                 <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                                     <a class="dropdown-item" href="/eleman-arama/ogrenci">Öğrenci Arama</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="javascript:GoOut('@jobFinding_Akdeniz.MvcApplication.FilePath')">Çıkış Yap</a>
-
+                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Hoca Arama</a>
                                                 </div>
                                             </li>
                                             <li class=" dropdown navLink">
@@ -166,8 +166,7 @@
                 <p>&copy; @DateTime.Now.Year </p>
             </footer>
         </div>
-        @*<script src="~/Scripts/popper.min.js"></script>*@
-        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/scripts/popper.min.js"></script>
         <script src="~/Scripts/moment-with-locales.js"></script>
         <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
         @*<script src="~/Scripts/bootstrap.bundle.min.js"></script>*@

@@ -61,7 +61,12 @@ namespace jobFinding_Akdeniz
             routes.MapRoute(
               name: "İsveren Profil",
               url: "profili-duzenle",
-              defaults: new { controller = "Company", action = "EditProfile" });
+              defaults: new { controller = "Company", action = "EditProfileCompany" });
+
+            routes.MapRoute(
+              name: "İsveren Sifre Değistir",
+              url: "sifre-degistir",
+              defaults: new { controller = "Company", action = "ChangePassword" });
 
             routes.MapRoute(
                 name: "Default",

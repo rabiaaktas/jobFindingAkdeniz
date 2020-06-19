@@ -11,7 +11,8 @@ namespace jobFinding_Akdeniz.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class company
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,7 +26,13 @@ namespace jobFinding_Akdeniz.Models
         public int businessID { get; set; }
         public string foundationYear { get; set; }
         public string companyAddress { get; set; }
+
+        [Required]
+        [RegularExpression(@"^http(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$", ErrorMessage = "URL türü yanlýþ.")]
         public string webSiteUrl { get; set; }
+
+        [Required]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail adresi geçerli deðil.")]
         public string companyEmail { get; set; }
         public string companyPassword { get; set; }
         public string companyInfo { get; set; }

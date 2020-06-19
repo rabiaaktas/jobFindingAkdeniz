@@ -257,6 +257,7 @@
     <Compile Include="Models\departments.cs">
       <DependentUpon>jobFindingDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HelperModels\ChangePasswordModel.cs" />
     <Compile Include="Models\HelperModels\CompanyRegisterModel.cs" />
     <Compile Include="Models\HelperModels\StudentRegisterModel.cs" />
     <Compile Include="Models\HelperModels\TeacherRegisterModel.cs" />
@@ -321,6 +322,7 @@
       <DependentUpon>jobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States.cs" />
     <Compile Include="UserCheckCompany.cs" />
     <Compile Include="UserCheckStudent.cs" />
     <Compile Include="UserCheckTeacher.cs" />
@@ -347,7 +349,8 @@
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\PostAdd.cshtml" />
     <Content Include="Views\Company\FindStudentEmployee.cshtml" />
-    <Content Include="Views\Company\EditProfile.cshtml" />
+    <Content Include="Views\Company\EditProfileCompany.cshtml" />
+    <Content Include="Views\Company\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
