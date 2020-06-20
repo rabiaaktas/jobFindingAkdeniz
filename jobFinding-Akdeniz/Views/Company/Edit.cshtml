@@ -77,9 +77,11 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group"> Eğitim Düzeyi:</label>
-                <select class="selectpicker selectMulti form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." name="educationInfo">
+                @*@Html.TextBoxFor(x => x.educationInfo, new  { @class= "hidden", id="result"})*@
+                <input type="hidden" name="educationInfo" value="@Model.educationInfo" id="result" />
+                 <select class="selectpicker selectMulti form-control" multiple title="Aşağıdaki seçeneklerden seçiniz..." id="multSelect">
 
-                    <option>Ön Lisans(Mezun)</option>
+                    <option value="Ön Lisans(Mezun)">Ön Lisans(Mezun)</option>
                     <option>Üniversite(Öğrenci)</option>
                     <option>Üniversite(Mezun)</option>
                     <option>Yüksek Lisans(Öğrenci)</option>
@@ -121,9 +123,15 @@
     });
 </script>
 <script type="text/javascript">
-    $(function () {
-        $('.selectMultiM').selectpicker('render');
-    })
+    $(document).ready(function () {
+        $('.selectpicker').selectpicker('refresh')
+        $("#multSelect").change(function () {
+            var selMulti = $.map($("#multSelect option:selected"), function (el, i) {
+                return $(el).text();
+            });
+            $("#result").val(selMulti.join(", "));
+        });
+    });
     function ToJavaScriptDate(value) {
         var pattern = /Date\(([^)]+)\)/;
         var results = pattern.exec(value);

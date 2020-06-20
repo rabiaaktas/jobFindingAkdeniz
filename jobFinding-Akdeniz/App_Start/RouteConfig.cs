@@ -34,6 +34,11 @@ namespace jobFinding_Akdeniz
                defaults: new { controller = "Login", action = "SirketLogin" });
 
             routes.MapRoute(
+               name: "Ogrenci Giris",
+               url: "ogrenci-giris",
+               defaults: new { controller = "Login", action = "OgrenciGirisi" });
+
+            routes.MapRoute(
                name: "İsveren İlanlar",
                url: "ilanlarim",
                defaults: new { controller = "Company", action = "CompanyPosts" });
@@ -49,7 +54,7 @@ namespace jobFinding_Akdeniz
               defaults: new { controller = "Company", action = "Edit", id = UrlParameter.Optional });
 
             routes.MapRoute(
-              name: "İsveren İlan Ekleme",
+              name: "İsveren İlanEkleme",
               url: "ilan-ekle",
               defaults: new { controller = "Company", action = "PostAdd" });
 

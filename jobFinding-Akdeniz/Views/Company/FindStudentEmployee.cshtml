@@ -5,14 +5,16 @@
     jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
     var languages = db.languages.ToList();
     var departments = db.departments.ToList();
+    var bDepartment = db.business_stream.ToList();
 }
-@model jobFinding_Akdeniz.Models.job_post
+@model jobFinding_Akdeniz.Models.HelperModels.StudentSearchModel
 
 <div class="user-login">
     <div class="container">
         <div class="cd-form">
             <h2>Öğrenci Arama</h2>
             <label class="small form-group">İstediğiniz özellikleri seçerek listeye ulaşabilirsiniz.</label>
+            <label class="small form-group">* ile işaretli alanlar zorunludur.</label>
         </div>
         @using (Html.BeginForm("PostAdd", "Company", FormMethod.Post, new { name = "postEdit" }))
         {
@@ -20,7 +22,7 @@
             <div class="form-group">
                 <label class="form-group">Öğrenci/Mezun Durumu:</label>
                 <div class="">
-                    <select class="form-control" name="educationInfo" >
+                    <select class="form-control" name="statusStd" >
                         <option class="text-muted" disabled selected>Öğrenci/Mezun Durumu</option>
                         <option>ÖĞRENCİ</option>
                         <option>MEZUN</option>
@@ -29,7 +31,7 @@
 
             </div>
             <div class="form-group">
-                <label class="form-group"> Bölümü:</label>
+                <label class="form-group"> *Bölümü:</label>
                 <select class="form-control" name="department" required>
                     <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
                     @foreach (var item in departments)
@@ -40,8 +42,8 @@
             </div>
             <div class="form-group">
                 <label class="form-group"> Yabancı Dil:</label>
-                <select class="form-control" name="language" required>
-                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                <select class="form-control" name="languageID">
+                    <option class="text-muted" disabled selected>Dil Seçiniz:</option>
                     @foreach (var item in languages)
                     {
                         <option value="@item.languageId">@item.languageName</option>
@@ -50,11 +52,11 @@
             </div>
             <div class="form-group">
                 <label class="form-group"> İlgilendiği Alan:</label>
-                <select class="form-control" name="department" required>
+                <select class="form-control" name="intrestedSectorId">
                     <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
-                    @foreach (var item in languages)
+                    @foreach (var item in bDepartment)
                     {
-                        <option value="@item.languageId">@item.languageName</option>
+                        <option value="@item.businessId">@item.businessName</option>
                     }
                 </select>
             </div>
@@ -62,7 +64,7 @@
                 @ViewBag.Warning
             </div>
             <div class="form-group cd-form">
-                <input type="submit" value="Düzenle" class="form-control" />
+                <input type="submit" value="Ara" class="form-control" />
             </div>
         }
 
@@ -70,9 +72,6 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(function () {
-        $('.selectMultiM').selectpicker('render');
-    })
     function ToJavaScriptDate(value) {
         var pattern = /Date\(([^)]+)\)/;
         var results = pattern.exec(value);

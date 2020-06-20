@@ -71,6 +71,61 @@ namespace jobFinding_Akdeniz.Controllers
             return View();
         }
 
+        public ActionResult OgrenciGirisi()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OgrenciGirisi(user_account user)
+        {
+            var password = Crypt.Encrypt(user.userPassword);
+            var data = db.user_account.Where(x => x.userEmail == user.userEmail && x.userPassword == password && x.userIsActive == "1" && x.userTypeID == 2).FirstOrDefault();
+            if (data != null)
+            {
+                LoginStatus.Current.IsLogin = true;
+                LoginStatus.Current.Name = data.firstName;
+                LoginStatus.Current.Surname = data.lastName;
+                LoginStatus.Current.UserId = data.userAccountId;
+                LoginStatus.Current.IsActive = data.userIsActive;
+                LoginStatus.Current.UserType = data.userTypeID;
+                var userLog = db.user_log.Where(x => x.userAccountID == data.userAccountId).FirstOrDefault();
+                if (userLog == null)
+                {
+                    user_log log = new user_log();
+                    log.userAccountID = data.userAccountId;
+                    log.loginDate = DateTime.Now;
+                    string ipAddress = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                    if (ipAddress == "" || ipAddress == null)
+                    {
+                        ipAddress = Request.ServerVariables["REMOTE_ADDR"];
+                    }
+                    log.loginIp = ipAddress;
+                    db.user_log.Add(log);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    userLog.loginDate = DateTime.Now;
+                    string ipAddress = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+                    if (ipAddress == "" || ipAddress == null)
+                    {
+                        ipAddress = Request.ServerVariables["REMOTE_ADDR"];
+                    }
+                    userLog.loginIp = ipAddress;
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Warning = "Kullanıcı adı ve ya şifre hatalı.";
+            }
+            return View();
+        }
+
         public JsonResult Logout()
         {
             Session.Clear();

@@ -202,7 +202,8 @@ namespace jobFinding_Akdeniz.Controllers
         [UserCheckCompany]
         public ActionResult PostAdd()
         {
-            return View();
+            var jb = new job_post();
+            return View(jb);
         }
 
         [UserCheckCompany]
