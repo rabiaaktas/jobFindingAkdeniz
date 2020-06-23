@@ -45,6 +45,8 @@
     <NavigationProperty Name="business_stream" Relationship="Self.company_ibfk_1" FromRole="company" ToRole="business_stream" />
     <NavigationProperty Name="company_log" Relationship="Self.company_log_ibfk_1" FromRole="company" ToRole="company_log" />
     <NavigationProperty Name="job_post" Relationship="Self.job_post_ibfk_3" FromRole="company" ToRole="job_post" />
+    <Property Name="resetPasswordCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="mailActivationCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="company_log">
     <Key>
@@ -589,6 +591,15 @@
       <Parameter Name="experienceStatus" Mode="In" Type="String" />
       <Parameter Name="educationInfo" Mode="In" Type="String" />
       <Parameter Name="militaryStiation" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertCompany">
+      <Parameter Name="companyName" Mode="In" Type="String" />
+      <Parameter Name="businessID" Mode="In" Type="Int32" />
+      <Parameter Name="companyAddress" Mode="In" Type="String" />
+      <Parameter Name="companyPhone" Mode="In" Type="String" />
+      <Parameter Name="webSiteUrl" Mode="In" Type="String" />
+      <Parameter Name="companyEmail" Mode="In" Type="String" />
+      <Parameter Name="companyPassword" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
 </Schema>

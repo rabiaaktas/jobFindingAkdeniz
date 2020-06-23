@@ -14,7 +14,7 @@ namespace jobFinding_Akdeniz
             {
                 filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary
                 {
-                    {"controller","Home" }, {"action","Login"}
+                    {"controller","Login" }, {"action","OgretmenGirisi"}
                 }); ;
             }
             base.OnActionExecuting(filterContext);

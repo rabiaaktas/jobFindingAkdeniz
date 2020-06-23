@@ -36,7 +36,7 @@
             var company = db.company.Where(x => x.companyId == LoginStatus.Current.companyId).FirstOrDefault();
             companyName = company.companyName;
         }
-        if(LoginStatus.Current.UserType == 2)
+        if(LoginStatus.Current.UserType == 2 || LoginStatus.Current.UserType == 3)
         {
             jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
             var user = db.user_account.Where(x => x.userAccountId == LoginStatus.Current.UserId).FirstOrDefault();
@@ -109,7 +109,7 @@
                                             function GoOut(url) {
                                                 $.getJSON(url + "/Login/Logout", null, function (data) {
                                                     window.location.reload();
-                                                    window.location = url + "/Home/Login";
+                                                    window.location = url + "/Home/Index";
                                                     window.location.reload();
                                                 });
                                             }
@@ -148,7 +148,7 @@
                                                     @ad  @soyad <i class="fas fa-angle-down"></i>
                                                 </a>
                                                 <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                    <a class="dropdown-item" href="/profili-duzenle">Profil Düzenle</a>
+                                                    <a class="dropdown-item" href="/profil-duzenle">Profil Düzenle</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:GoOut('@jobFinding_Akdeniz.MvcApplication.FilePath')">Çıkış Yap</a>
 
@@ -159,7 +159,57 @@
                                             function GoOut(url) {
                                                 $.getJSON(url + "/Login/Logout", null, function (data) {
                                                     window.location.reload();
-                                                    window.location = url + "/Home/Login";
+                                                    window.location = url + "/Home/Index";
+                                                    window.location.reload();
+                                                });
+                                            }
+                                        </script>
+                                    </div><!-- /.navbar-collapse -->
+                                }
+                                @if (LoginStatus.Current.UserType == 3 && LoginStatus.Current.IsLogin == true)
+                                {
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item navLink">@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+                                        </ul>
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li class="nav-item  navLink">
+                                                <a href="/ilanlarim">
+                                                    İlanlarım
+                                                </a>
+                                            </li>
+                                            <li class="nav-item navLink">
+                                                <a href="/ilan-ekle">
+                                                    İlan Ekle
+                                                </a>
+                                            </li>
+                                            <li class=" dropdown navLink">
+                                                <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Eleman Ara <i class="fas fa-angle-down"></i>
+                                                </a>
+                                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Öğrenci Arama</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Hoca Arama</a>
+                                                </div>
+                                            </li>
+                                            <li class=" dropdown navLink">
+                                                <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    @ad  @soyad <i class="fas fa-angle-down"></i>
+                                                </a>
+                                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                    <a class="dropdown-item" href="/profil-ayarları">Profil Düzenle</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="javascript:GoOut('@jobFinding_Akdeniz.MvcApplication.FilePath')">Çıkış Yap</a>
+
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <script>
+                                            function GoOut(url) {
+                                                $.getJSON(url + "/Login/Logout", null, function (data) {
+                                                    window.location.reload();
+                                                    window.location = url + "/Home/Index";
                                                     window.location.reload();
                                                 });
                                             }
@@ -202,7 +252,7 @@
                                                 </a>
                                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
                                                     <a class="dropdown-item" href="/ogretmen-kayit">Öğretmen Kayıt</a>
-                                                    <a class="dropdown-item" href="/Login/Index">Öğretmen Girişi</a>
+                                                    <a class="dropdown-item" href="/ogretmen-giris">Öğretmen Girişi</a>
 
                                                 </div>
                                             </li>

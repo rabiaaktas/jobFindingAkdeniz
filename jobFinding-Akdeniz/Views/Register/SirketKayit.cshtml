@@ -51,7 +51,7 @@
             </div>
             <div class="form-group cd-form">
                 <label for="comment">Web Sitesi:</label>
-                @Html.TextBoxFor(x => x.webSiteUrl, new { @class = "form-control", placeholder = "wwww.somewebsite.com" })
+                @Html.TextBoxFor(x => x.webSiteUrl, new { @class = "form-control", placeholder = "https://wwww.somewebsite.com" })
                 <div class="form-group text-danger small">
                     @Html.ValidationMessageFor(m => m.webSiteUrl)
                 </div>

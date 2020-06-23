@@ -39,6 +39,12 @@ namespace jobFinding_Akdeniz
                defaults: new { controller = "Login", action = "OgrenciGirisi" });
 
             routes.MapRoute(
+               name: "Ogretmen Giris",
+               url: "ogretmen-giris",
+               defaults: new { controller = "Login", action = "OgretmenGirisi" });
+
+
+            routes.MapRoute(
                name: "İsveren İlanlar",
                url: "ilanlarim",
                defaults: new { controller = "Company", action = "CompanyPosts" });
@@ -69,9 +75,24 @@ namespace jobFinding_Akdeniz
               defaults: new { controller = "Company", action = "EditProfileCompany" });
 
             routes.MapRoute(
+              name: "Ogrenci Profil",
+              url: "profil-duzenle",
+              defaults: new { controller = "Student", action = "EditProfileStudent" });
+
+            routes.MapRoute(
+              name: "Ogretmen Profil",
+              url: "profil-ayarları",
+              defaults: new { controller = "Teacher", action = "EditProfileTeacher" });
+
+            routes.MapRoute(
               name: "İsveren Sifre Değistir",
               url: "sifre-degistir",
               defaults: new { controller = "Company", action = "ChangePassword" });
+
+            routes.MapRoute(
+             name: "Ogrenci Sifre Değistir",
+             url: "ogrenci-sifre-degistir",
+             defaults: new { controller = "Student", action = "ChangePassword" });
 
             routes.MapRoute(
                 name: "Default",

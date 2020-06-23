@@ -232,6 +232,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Crypt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -354,6 +355,10 @@
     <Content Include="Views\Company\ChangePassword.cshtml" />
     <Content Include="Views\Company\PostAdd.cshtml" />
     <Content Include="Views\Login\OgrenciGirisi.cshtml" />
+    <Content Include="Views\Student\EditProfileStudent.cshtml" />
+    <Content Include="Views\Login\OgretmenGirisi.cshtml" />
+    <Content Include="Views\Student\ChangePassword.cshtml" />
+    <Content Include="Views\Teacher\EditProfileTeacher.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -363,7 +368,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

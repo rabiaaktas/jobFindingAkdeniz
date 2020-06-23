@@ -10,19 +10,18 @@ using static jobFinding_Akdeniz.States;
 
 namespace jobFinding_Akdeniz.Controllers
 {
-    public class StudentController : Controller
+    public class TeacherController : Controller
     {
-
         private DBEntities db = new DBEntities();
-        // GET: Student
+        // GET: Teacher
         public ActionResult Index()
         {
             return View();
         }
 
-        [UserCheckStudent]
+        [UserCheckTeacher]
         [RestoreModelStateFromTempData]
-        public ActionResult EditProfileStudent()
+        public ActionResult EditProfileTeacher()
         {
             if (TempData["Success"] != null)
             {
@@ -36,22 +35,21 @@ namespace jobFinding_Akdeniz.Controllers
             return View(userInfos);
         }
 
-        [UserCheckStudent]
+        [UserCheckTeacher]
         [SetTempDataModelState]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfileStudent(user_account user)
+        public ActionResult EditProfileTeacher(user_account user)
         {
             if (ModelState.IsValid)
             {
-                var selectedStudent = db.user_account.Where(x => x.userAccountId == user.userAccountId).FirstOrDefault();
-                selectedStudent.firstName = user.firstName;
-                selectedStudent.lastName = user.lastName;
-                selectedStudent.userBday = user.userBday;
-                selectedStudent.userPhone = user.userPhone;
-                selectedStudent.userAddress = user.userAddress;
-                selectedStudent.user_student.intrestedSectorId = user.user_student.intrestedSectorId;
-                selectedStudent.user_student.statusStd = user.user_student.statusStd;
+                var selectedTeacher = db.user_account.Where(x => x.userAccountId == user.userAccountId).FirstOrDefault();
+                selectedTeacher.firstName = user.firstName;
+                selectedTeacher.lastName = user.lastName;
+                selectedTeacher.userBday = user.userBday;
+                selectedTeacher.userPhone = user.userPhone;
+                selectedTeacher.userAddress = user.userAddress;
+                selectedTeacher.user_teacher.interestAreas = user.user_teacher.interestAreas;
                 db.SaveChanges();
                 TempData["Success"] = "Bilgileriniz Güncellendi.";
             }
@@ -59,10 +57,10 @@ namespace jobFinding_Akdeniz.Controllers
             {
                 TempData["Warning"] = "Bilgiler güncellenemedi.";
             }
-            return RedirectToAction("EditProfileStudent", "Student");
+            return RedirectToAction("EditProfileTeacher", "Teacher");
         }
 
-        [UserCheckStudent]
+        [UserCheckTeacher]
         [RestoreModelStateFromTempData]
         public ActionResult ChangePassword()
         {
@@ -87,7 +85,7 @@ namespace jobFinding_Akdeniz.Controllers
             return View(passwordModel);
         }
 
-        [UserCheckStudent]
+        [UserCheckTeacher]
         [HttpPost]
         [SetTempDataModelState]
         [ValidateAntiForgeryToken]
@@ -136,7 +134,7 @@ namespace jobFinding_Akdeniz.Controllers
             return imageBytes;
         }
 
-        [UserCheckStudent]
+        [UserCheckTeacher]
         public ActionResult ImageUploadEdit(HttpPostedFileBase file, user_account user)
         {
             byte[] bytes;
@@ -147,7 +145,7 @@ namespace jobFinding_Akdeniz.Controllers
             var userImage = db.user_account.Where(x => x.userAccountId == user.userAccountId).FirstOrDefault();
             userImage.userImage = bytes;
             db.SaveChanges();
-            return RedirectToAction("EditProfileStudent", "Student");
+            return RedirectToAction("EditProfileTeacher", "Teacher");
         }
     }
 }

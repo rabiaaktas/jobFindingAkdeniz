@@ -55,7 +55,7 @@ namespace jobFinding_Akdeniz.Controllers
         public Boolean checkExistence(company com)
         {
             var exist = false;
-            var company = db.company.Where(x => x.companyName == com.companyName && x.companyEmail == com.companyEmail && x.business_stream == com.business_stream).FirstOrDefault();
+            var company = db.company.Where(x => x.companyName == com.companyName && x.companyEmail == com.companyEmail && x.businessID == com.businessID).FirstOrDefault();
             if (company != null)
             {
                 exist = true;

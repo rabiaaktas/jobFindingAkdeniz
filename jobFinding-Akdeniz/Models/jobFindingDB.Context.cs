@@ -204,5 +204,38 @@ namespace jobFinding_Akdeniz.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertCompanyPost", cityParameter, streetAddressParameter, jobTypeIDParameter, companyIDParameter, isCompanyNameHiddenParameter, postEndedDayParameter, jobDescriptionParameter, jobPostTitleParameter, departmentParameter, experienceStatusParameter, educationInfoParameter, militaryStiationParameter);
         }
+    
+        public virtual int sp_InsertCompany(string companyName, Nullable<int> businessID, string companyAddress, string companyPhone, string webSiteUrl, string companyEmail, string companyPassword)
+        {
+            var companyNameParameter = companyName != null ?
+                new ObjectParameter("companyName", companyName) :
+                new ObjectParameter("companyName", typeof(string));
+    
+            var businessIDParameter = businessID.HasValue ?
+                new ObjectParameter("businessID", businessID) :
+                new ObjectParameter("businessID", typeof(int));
+    
+            var companyAddressParameter = companyAddress != null ?
+                new ObjectParameter("companyAddress", companyAddress) :
+                new ObjectParameter("companyAddress", typeof(string));
+    
+            var companyPhoneParameter = companyPhone != null ?
+                new ObjectParameter("companyPhone", companyPhone) :
+                new ObjectParameter("companyPhone", typeof(string));
+    
+            var webSiteUrlParameter = webSiteUrl != null ?
+                new ObjectParameter("webSiteUrl", webSiteUrl) :
+                new ObjectParameter("webSiteUrl", typeof(string));
+    
+            var companyEmailParameter = companyEmail != null ?
+                new ObjectParameter("companyEmail", companyEmail) :
+                new ObjectParameter("companyEmail", typeof(string));
+    
+            var companyPasswordParameter = companyPassword != null ?
+                new ObjectParameter("companyPassword", companyPassword) :
+                new ObjectParameter("companyPassword", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertCompany", companyNameParameter, businessIDParameter, companyAddressParameter, companyPhoneParameter, webSiteUrlParameter, companyEmailParameter, companyPasswordParameter);
+        }
     }
 }

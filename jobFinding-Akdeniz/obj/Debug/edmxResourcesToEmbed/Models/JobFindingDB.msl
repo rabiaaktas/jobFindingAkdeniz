@@ -29,6 +29,8 @@
     <EntitySetMapping Name="company">
       <EntityTypeMapping TypeName="akdenizjobfindingModel.company">
         <MappingFragment StoreEntitySet="company">
+          <ScalarProperty Name="mailActivationCode" ColumnName="mailActivationCode" />
+          <ScalarProperty Name="resetPasswordCode" ColumnName="resetPasswordCode" />
           <ScalarProperty Name="companyId" ColumnName="companyId" />
           <ScalarProperty Name="companyName" ColumnName="companyName" />
           <ScalarProperty Name="businessID" ColumnName="businessID" />
@@ -246,5 +248,6 @@
     <FunctionImportMapping FunctionImportName="sp_InsertStudent" FunctionName="akdenizjobfindingModel.Store.sp_InsertStudent" />
     <FunctionImportMapping FunctionImportName="sp_InsertTeacher" FunctionName="akdenizjobfindingModel.Store.sp_InsertTeacher" />
     <FunctionImportMapping FunctionImportName="sp_InsertCompanyPost" FunctionName="akdenizjobfindingModel.Store.sp_InsertCompanyPost" />
+    <FunctionImportMapping FunctionImportName="sp_InsertCompany" FunctionName="akdenizjobfindingModel.Store.sp_InsertCompany" />
   </EntityContainerMapping>
 </Mapping>
