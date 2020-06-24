@@ -23,14 +23,14 @@
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(x => x.companyId)
-                        if (@Model.companyLogo == null)
+                        if (ViewBag.companyLogo == null)
                         {
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar" >
 
                         }
                         else
                         {
-                            <img  src="data:image/jpg;base64,@Convert.ToBase64String(Model.companyLogo)" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <img  src="data:image/jpg;base64,@Convert.ToBase64String(ViewBag.companyLogo)" class="avatar img-circle img-thumbnail" alt="avatar">
                         }
                         <h6>Upload a different photo...</h6>
                         <input type="file" class="text-center center-block file-upload" name="file" data-size="sm">
@@ -126,7 +126,7 @@
                             <div class="form-group  cd-form">
                                 <div class="col-lg-6">
                                     <label for="webSiteUrl"><h4>Web Sitesi</h4></label>
-                                    @Html.TextBoxFor(x => x.webSiteUrl, new { @class = "form-control", id = "webSiteUrl", required = "required", placeholder = "https://www.somesite.com/" })
+                                    @Html.TextBoxFor(x => x.webSiteUrl, new { @class = "form-control", id = "webSiteUrl", placeholder = "https://www.somesite.com/" })
                                 </div>
                                 <div class="form-group error">
                                     <div class="col-lg-6">

@@ -25,14 +25,14 @@
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(x => x.userAccountId)
-                            if (@Model.userImage == null)
+                            if (ViewBag.image == null)
                             {
                                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
 
                             }
                             else
                             {
-                                <img src="data:image/jpg;base64,@Convert.ToBase64String(Model.userImage)" class="avatar img-circle img-thumbnail" alt="avatar">
+                                <img src="data:image/jpg;base64,@Convert.ToBase64String(ViewBag.image)" class="avatar img-circle img-thumbnail" alt="avatar">
                             }
                             <h6>Upload a different photo...</h6>
                             <input type="file" class="text-center center-block file-upload" name="file" data-size="sm">
@@ -69,7 +69,7 @@
                                 @ViewBag.Success
                             </div>
                         </div>
-                        @using (Html.BeginForm("EditProfileStudent", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("EditProfileStudent", "Student", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(x => x.userAccountId)
@@ -110,26 +110,6 @@
                             </div>
                             <div class="form-group  cd-form">
                                 <div class="col-lg-6">
-                                    <label for="interested"><h4>İlgi Alanı</h4></label>
-                                    <select class="form-control" name="user_student.intrestedSectorId">
-                                        <option>Sektör Seçiniz:</option>
-                                        @foreach (var item in businessAreas)
-                                        {
-                                            <option value=@item.businessId @if (item.businessId == Model.user_student.intrestedSectorId) { <text> selected="selected" </text> }>
-                                                @item.businessName
-                                            </option>
-
-                                        }
-                                    </select>
-                                    <div class="form-group error">
-                                        <div class="col-lg-6">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group  cd-form">
-                                <div class="col-lg-6">
                                     <label for="foundationYear"><h4>Doğum Tarihi</h4></label>
                                     <div class="controls" style="position: relative">
                                         @Html.TextBoxFor(x => x.userBday, new { @class = "form-control py-4", id = "datetimepicker4" })
@@ -152,14 +132,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group cd-form">
+                            <div class="form-group  cd-form">
                                 <div class="col-lg-6">
-                                    <label class="form-group">*Öğrenci/Mezun Durumu:</label>
-                                    <select class="form-control" name="user_student.statusStd" required>
-                                        <option class="text-muted" disabled>Öğrenci/Mezun Durumu Seçiniz:</option>
-                                        <option value="ÖĞRENCİ"@if ("ÖĞRENCİ" == Model.user_student.statusStd) { <text> selected="selected" </text> }>ÖĞRENCİ</option>
-                                        <option value="MEZUN" @if ("MEZUN" == Model.user_student.statusStd) { <text> selected="selected" </text> }>MEZUN</option>
+                                    <label for="companyPhone"><h4>İlgi Alanı</h4></label>
+                                    <select class="form-control" name="user_student.intrestedSectorId">
+                                        <option disabled selected>Sektör Seçiniz:</option>
+                                        @foreach (var item in businessAreas)
+                                        {
+                                            <option value=@item.businessId @if (item.businessId == Model.user_student.intrestedSectorId) { <text> selected="selected" </text> }>@item.businessName</option>
 
+                                        }
                                     </select>
                                     <div class="form-group error">
                                         <div class="col-lg-6">

@@ -20,18 +20,18 @@
                 <!--left col-->
 
                 <div class="text-center">
-                    @using (Html.BeginForm("ImageUploadEdit", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("ImageUploadEdit", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
                         @Html.HiddenFor(x => x.userAccountId)
-                        if (@Model.userImage == null)
+                        if (ViewBag.image == null)
                         {
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
 
                         }
                         else
                         {
-                            <img src="data:image/jpg;base64,@Convert.ToBase64String(Model.userImage)" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <img src="data:image/jpg;base64,@Convert.ToBase64String(ViewBag.image)" class="avatar img-circle img-thumbnail" alt="avatar">
                         }
                         <h6>Upload a different photo...</h6>
                         <input type="file" class="text-center center-block file-upload" name="file" data-size="sm">
@@ -49,7 +49,7 @@
             <div class="col-sm-9">
                 <ul class="nav nav-tabs tabs">
                     <li class="active"><a href="#home">Kullanıcı Bilgileri</a></li>
-                    <li><a href="/ogrenci-sifre-degistir">Şifre Değiştir</a></li>
+                    <li><a href="/sifreni-degistir">Şifre Değiştir</a></li>
                 </ul>
 
                 <div class="tab-content">
@@ -68,7 +68,7 @@
                                 @ViewBag.Success
                             </div>
                         </div>
-                        @using (Html.BeginForm("EditProfileStudent", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("EditProfileTeacher", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(x => x.userAccountId)

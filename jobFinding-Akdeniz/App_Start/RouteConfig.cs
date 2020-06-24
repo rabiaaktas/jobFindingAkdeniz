@@ -95,6 +95,31 @@ namespace jobFinding_Akdeniz
              defaults: new { controller = "Student", action = "ChangePassword" });
 
             routes.MapRoute(
+             name: "Ogretmen Sifre Değistir",
+             url: "sifreni-degistir",
+             defaults: new { controller = "Teacher", action = "ChangePassword" });
+
+            routes.MapRoute(
+             name: "Sifremi Unuttum",
+             url: "sifremi-unuttum",
+             defaults: new { controller = "ForgetPassword", action = "ForgetPasswordUser" });
+
+            routes.MapRoute(
+            name: "Sirket Sifremi Unuttum",
+            url: "sifrenizi-mi-unuttunuz",
+            defaults: new { controller = "ForgetPassword", action = "ForgetPasswordCompany" });
+
+            routes.MapRoute(
+             name: "Sifremi Unuttum Yenile",
+             url: "sifreyi-sifirla/{id}",
+             defaults: new { controller = "ForgetPassword", action = "ResetPasswordUser", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+             name: "Sirket Sifremi Unuttum Yenile",
+             url: "sifrenizi-sifirlayin/{id}",
+             defaults: new { controller = "ForgetPassword", action = "ResetPasswordCompany", id = UrlParameter.Optional });
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

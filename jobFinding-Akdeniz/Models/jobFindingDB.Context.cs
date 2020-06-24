@@ -32,6 +32,7 @@ namespace jobFinding_Akdeniz.Models
         public virtual DbSet<business_stream> business_stream { get; set; }
         public virtual DbSet<company> company { get; set; }
         public virtual DbSet<company_log> company_log { get; set; }
+        public virtual DbSet<company_logo> company_logo { get; set; }
         public virtual DbSet<countries> countries { get; set; }
         public virtual DbSet<departments> departments { get; set; }
         public virtual DbSet<job_location> job_location { get; set; }
@@ -44,11 +45,65 @@ namespace jobFinding_Akdeniz.Models
         public virtual DbSet<user_admin> user_admin { get; set; }
         public virtual DbSet<user_education> user_education { get; set; }
         public virtual DbSet<user_experinence_detail> user_experinence_detail { get; set; }
+        public virtual DbSet<user_image> user_image { get; set; }
         public virtual DbSet<user_language_skill> user_language_skill { get; set; }
         public virtual DbSet<user_log> user_log { get; set; }
         public virtual DbSet<user_student> user_student { get; set; }
         public virtual DbSet<user_teacher> user_teacher { get; set; }
         public virtual DbSet<user_type> user_type { get; set; }
+    
+        public virtual int sp_InsertCompanyPost(string city, string streetAddress, Nullable<int> jobTypeID, Nullable<int> companyID, string isCompanyNameHidden, Nullable<System.DateTime> postEndedDay, string jobDescription, string jobPostTitle, string department, string experienceStatus, string educationInfo, string militaryStiation)
+        {
+            var cityParameter = city != null ?
+                new ObjectParameter("city", city) :
+                new ObjectParameter("city", typeof(string));
+    
+            var streetAddressParameter = streetAddress != null ?
+                new ObjectParameter("streetAddress", streetAddress) :
+                new ObjectParameter("streetAddress", typeof(string));
+    
+            var jobTypeIDParameter = jobTypeID.HasValue ?
+                new ObjectParameter("jobTypeID", jobTypeID) :
+                new ObjectParameter("jobTypeID", typeof(int));
+    
+            var companyIDParameter = companyID.HasValue ?
+                new ObjectParameter("companyID", companyID) :
+                new ObjectParameter("companyID", typeof(int));
+    
+            var isCompanyNameHiddenParameter = isCompanyNameHidden != null ?
+                new ObjectParameter("isCompanyNameHidden", isCompanyNameHidden) :
+                new ObjectParameter("isCompanyNameHidden", typeof(string));
+    
+            var postEndedDayParameter = postEndedDay.HasValue ?
+                new ObjectParameter("postEndedDay", postEndedDay) :
+                new ObjectParameter("postEndedDay", typeof(System.DateTime));
+    
+            var jobDescriptionParameter = jobDescription != null ?
+                new ObjectParameter("jobDescription", jobDescription) :
+                new ObjectParameter("jobDescription", typeof(string));
+    
+            var jobPostTitleParameter = jobPostTitle != null ?
+                new ObjectParameter("jobPostTitle", jobPostTitle) :
+                new ObjectParameter("jobPostTitle", typeof(string));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("department", department) :
+                new ObjectParameter("department", typeof(string));
+    
+            var experienceStatusParameter = experienceStatus != null ?
+                new ObjectParameter("experienceStatus", experienceStatus) :
+                new ObjectParameter("experienceStatus", typeof(string));
+    
+            var educationInfoParameter = educationInfo != null ?
+                new ObjectParameter("educationInfo", educationInfo) :
+                new ObjectParameter("educationInfo", typeof(string));
+    
+            var militaryStiationParameter = militaryStiation != null ?
+                new ObjectParameter("militaryStiation", militaryStiation) :
+                new ObjectParameter("militaryStiation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertCompanyPost", cityParameter, streetAddressParameter, jobTypeIDParameter, companyIDParameter, isCompanyNameHiddenParameter, postEndedDayParameter, jobDescriptionParameter, jobPostTitleParameter, departmentParameter, experienceStatusParameter, educationInfoParameter, militaryStiationParameter);
+        }
     
         public virtual int sp_InsertStudent(string userEmail, string firstName, string lastName, string userPassword, string userIsActive, string userIsConfirmed, string statusStd, string degreeName, string universityName, string startingDate, string endingDate, Nullable<double> gANO, Nullable<int> gANOINT, string department)
         {
@@ -152,90 +207,43 @@ namespace jobFinding_Akdeniz.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertTeacher", userEmailParameter, firstNameParameter, lastNameParameter, userPasswordParameter, userIsActiveParameter, userIsConfirmedParameter, degreeParameter, universityNameParameter, descriptionParameter);
         }
     
-        public virtual int sp_InsertCompanyPost(string city, string streetAddress, Nullable<int> jobTypeID, Nullable<int> companyID, string isCompanyNameHidden, Nullable<System.DateTime> postEndedDay, string jobDescription, string jobPostTitle, string department, string experienceStatus, string educationInfo, string militaryStiation)
+        public virtual int sp_InsertFirstLogo(byte[] companyLogo, Nullable<int> companyId)
         {
-            var cityParameter = city != null ?
-                new ObjectParameter("city", city) :
-                new ObjectParameter("city", typeof(string));
+            var companyLogoParameter = companyLogo != null ?
+                new ObjectParameter("companyLogo", companyLogo) :
+                new ObjectParameter("companyLogo", typeof(byte[]));
     
-            var streetAddressParameter = streetAddress != null ?
-                new ObjectParameter("streetAddress", streetAddress) :
-                new ObjectParameter("streetAddress", typeof(string));
+            var companyIdParameter = companyId.HasValue ?
+                new ObjectParameter("companyId", companyId) :
+                new ObjectParameter("companyId", typeof(int));
     
-            var jobTypeIDParameter = jobTypeID.HasValue ?
-                new ObjectParameter("jobTypeID", jobTypeID) :
-                new ObjectParameter("jobTypeID", typeof(int));
-    
-            var companyIDParameter = companyID.HasValue ?
-                new ObjectParameter("companyID", companyID) :
-                new ObjectParameter("companyID", typeof(int));
-    
-            var isCompanyNameHiddenParameter = isCompanyNameHidden != null ?
-                new ObjectParameter("isCompanyNameHidden", isCompanyNameHidden) :
-                new ObjectParameter("isCompanyNameHidden", typeof(string));
-    
-            var postEndedDayParameter = postEndedDay.HasValue ?
-                new ObjectParameter("postEndedDay", postEndedDay) :
-                new ObjectParameter("postEndedDay", typeof(System.DateTime));
-    
-            var jobDescriptionParameter = jobDescription != null ?
-                new ObjectParameter("jobDescription", jobDescription) :
-                new ObjectParameter("jobDescription", typeof(string));
-    
-            var jobPostTitleParameter = jobPostTitle != null ?
-                new ObjectParameter("jobPostTitle", jobPostTitle) :
-                new ObjectParameter("jobPostTitle", typeof(string));
-    
-            var departmentParameter = department != null ?
-                new ObjectParameter("department", department) :
-                new ObjectParameter("department", typeof(string));
-    
-            var experienceStatusParameter = experienceStatus != null ?
-                new ObjectParameter("experienceStatus", experienceStatus) :
-                new ObjectParameter("experienceStatus", typeof(string));
-    
-            var educationInfoParameter = educationInfo != null ?
-                new ObjectParameter("educationInfo", educationInfo) :
-                new ObjectParameter("educationInfo", typeof(string));
-    
-            var militaryStiationParameter = militaryStiation != null ?
-                new ObjectParameter("militaryStiation", militaryStiation) :
-                new ObjectParameter("militaryStiation", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertCompanyPost", cityParameter, streetAddressParameter, jobTypeIDParameter, companyIDParameter, isCompanyNameHiddenParameter, postEndedDayParameter, jobDescriptionParameter, jobPostTitleParameter, departmentParameter, experienceStatusParameter, educationInfoParameter, militaryStiationParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertFirstLogo", companyLogoParameter, companyIdParameter);
         }
     
-        public virtual int sp_InsertCompany(string companyName, Nullable<int> businessID, string companyAddress, string companyPhone, string webSiteUrl, string companyEmail, string companyPassword)
+        public virtual int sp_InsertFirstImageStd(byte[] userImage, Nullable<int> userAccountId)
         {
-            var companyNameParameter = companyName != null ?
-                new ObjectParameter("companyName", companyName) :
-                new ObjectParameter("companyName", typeof(string));
+            var userImageParameter = userImage != null ?
+                new ObjectParameter("userImage", userImage) :
+                new ObjectParameter("userImage", typeof(byte[]));
     
-            var businessIDParameter = businessID.HasValue ?
-                new ObjectParameter("businessID", businessID) :
-                new ObjectParameter("businessID", typeof(int));
+            var userAccountIdParameter = userAccountId.HasValue ?
+                new ObjectParameter("userAccountId", userAccountId) :
+                new ObjectParameter("userAccountId", typeof(int));
     
-            var companyAddressParameter = companyAddress != null ?
-                new ObjectParameter("companyAddress", companyAddress) :
-                new ObjectParameter("companyAddress", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertFirstImageStd", userImageParameter, userAccountIdParameter);
+        }
     
-            var companyPhoneParameter = companyPhone != null ?
-                new ObjectParameter("companyPhone", companyPhone) :
-                new ObjectParameter("companyPhone", typeof(string));
+        public virtual int sp_InsertFirstImageTeac(byte[] userImage, Nullable<int> userAccountId)
+        {
+            var userImageParameter = userImage != null ?
+                new ObjectParameter("userImage", userImage) :
+                new ObjectParameter("userImage", typeof(byte[]));
     
-            var webSiteUrlParameter = webSiteUrl != null ?
-                new ObjectParameter("webSiteUrl", webSiteUrl) :
-                new ObjectParameter("webSiteUrl", typeof(string));
+            var userAccountIdParameter = userAccountId.HasValue ?
+                new ObjectParameter("userAccountId", userAccountId) :
+                new ObjectParameter("userAccountId", typeof(int));
     
-            var companyEmailParameter = companyEmail != null ?
-                new ObjectParameter("companyEmail", companyEmail) :
-                new ObjectParameter("companyEmail", typeof(string));
-    
-            var companyPasswordParameter = companyPassword != null ?
-                new ObjectParameter("companyPassword", companyPassword) :
-                new ObjectParameter("companyPassword", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertCompany", companyNameParameter, businessIDParameter, companyAddressParameter, companyPhoneParameter, webSiteUrlParameter, companyEmailParameter, companyPasswordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertFirstImageTeac", userImageParameter, userAccountIdParameter);
         }
     }
 }

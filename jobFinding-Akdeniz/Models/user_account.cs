@@ -31,7 +31,7 @@ namespace jobFinding_Akdeniz.Models
         public string userPassword { get; set; }
         public string userIsActive { get; set; }
         public string userIsConfirmed { get; set; }
-        public byte[] userImage { get; set; }
+        public Nullable<int> userImageID { get; set; }
         public Nullable<System.DateTime> userRegistrationDate { get; set; }
         public Nullable<System.DateTime> userBday { get; set; }
         public string userPhone { get; set; }
@@ -42,6 +42,7 @@ namespace jobFinding_Akdeniz.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<job_post_activity> job_post_activity { get; set; }
         public virtual user_type user_type { get; set; }
+        public virtual user_image user_image { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_education> user_education { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -235,12 +235,15 @@ namespace jobFinding_Akdeniz.Controllers
                 ViewBag.Warning = TempData["Warning"].ToString();
             }
             var companyInfos = db.company.Where(x => x.companyId == LoginStatus.Current.companyId).FirstOrDefault();
-            //dynamic mymodel = new ExpandoObject();
-            //mymodel.companyInfos = companyInfos;
-            //var passwordModel = new ChangePasswordModel();
-            //passwordModel.ID = companyInfos.companyId;
-            //passwordModel.OldPassword = companyInfos.companyPassword;
-            //mymodel.passwordModel = passwordModel;
+            if (companyInfos.companyLogoID != null)
+            {
+                var companyLogo = db.company_logo.Where(x => x.companyLogoId == companyInfos.companyLogoID).FirstOrDefault();
+                ViewBag.companyLogo = companyLogo.companyLogo;
+            }
+            else
+            {
+                ViewBag.companyLogo = null;
+            }
             return View(companyInfos);
         }
 
@@ -253,6 +256,15 @@ namespace jobFinding_Akdeniz.Controllers
             if (ModelState.IsValid)
             {
                 var selectedCompany = db.company.Where(x => x.companyId == comp.companyId).FirstOrDefault();
+                if (selectedCompany.companyLogoID != null)
+                {
+                    var companyLogo = db.company_logo.Where(x => x.companyLogoId == selectedCompany.companyLogoID).FirstOrDefault();
+                    ViewBag.companyLogo = companyLogo.companyLogo;
+                }
+                else
+                {
+                    ViewBag.companyLogo = null;
+                }
                 selectedCompany.companyName = comp.companyName;
                 selectedCompany.companyEmail = comp.companyEmail;
                 selectedCompany.businessID = comp.businessID;
@@ -282,7 +294,15 @@ namespace jobFinding_Akdeniz.Controllers
                 ViewBag.Warning = TempData["Warning"].ToString();
             }
             var companyInfos = db.company.Where(x => x.companyId == LoginStatus.Current.companyId).FirstOrDefault();
-            ViewBag.companyLogo = companyInfos.companyLogo;
+            if (companyInfos.companyLogoID != null)
+            {
+                var companyLogo = db.company_logo.Where(x => x.companyLogoId == companyInfos.companyLogoID).FirstOrDefault();
+                ViewBag.companyLogo = companyLogo.companyLogo;
+            }
+            else
+            {
+                ViewBag.companyLogo = null;
+            }
             var passwordModel = new ChangePasswordModel();
             if (companyInfos != null)
             {
@@ -305,7 +325,15 @@ namespace jobFinding_Akdeniz.Controllers
                 var companyInfos = db.company.Where(x => x.companyId == LoginStatus.Current.companyId).FirstOrDefault();
                 if(companyInfos != null)
                 {
-                    ViewBag.companyLogo = companyInfos.companyLogo;
+                    if(companyInfos.companyLogoID != null)
+                    {
+                        var companyLogo = db.company_logo.Where(x => x.companyLogoId == companyInfos.companyLogoID).FirstOrDefault();
+                        ViewBag.companyLogo = companyLogo.companyLogo;
+                    }
+                    else
+                    {
+                        ViewBag.companyLogo = null;
+                    }
                     ViewBag.web = companyInfos.webSiteUrl;
                     var oldPass = Crypt.Decrypt(companyInfos.companyPassword);
                     if (oldPass == ps.NewPassword)
@@ -350,9 +378,18 @@ namespace jobFinding_Akdeniz.Controllers
             {
                 bytes = br.ReadBytes(file.ContentLength);
             }
-            var companyLogo = db.company.Where(x => x.companyId == comp.companyId).FirstOrDefault();
-            companyLogo.companyLogo = bytes;
-            db.SaveChanges();
+            var company = db.company.Where(x => x.companyId == comp.companyId).FirstOrDefault();
+            var companyLogo = db.company_logo.Where(x => x.companyLogoId == company.companyLogoID).FirstOrDefault();
+            if(companyLogo == null)
+            {
+                var logo = db.sp_InsertFirstLogo(bytes, company.companyId);
+                db.SaveChanges();
+            }
+            else
+            {
+                companyLogo.companyLogo = bytes;
+                db.SaveChanges();
+            }
             return RedirectToAction("EditProfileCompany", "Company");
         }
     }

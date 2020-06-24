@@ -162,15 +162,15 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\jobFindingDB.Context.tt">
+    <Content Include="Models\JobFindingDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>jobFindingDB.edmx</DependentUpon>
-      <LastGenOutput>jobFindingDB.Context.cs</LastGenOutput>
+      <DependentUpon>JobFindingDB.edmx</DependentUpon>
+      <LastGenOutput>JobFindingDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\jobFindingDB.tt">
+    <Content Include="Models\JobFindingDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>jobFindingDB.edmx</DependentUpon>
-      <LastGenOutput>jobFindingDB.cs</LastGenOutput>
+      <DependentUpon>JobFindingDB.edmx</DependentUpon>
+      <LastGenOutput>JobFindingDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\all.min.js" />
     <Content Include="Content\bootstrap-select.css" />
@@ -198,12 +198,12 @@
     <Content Include="fonts\open-iconic\open-iconic.otf" />
     <Content Include="fonts\open-iconic\open-iconic.ttf" />
     <Content Include="fonts\open-iconic\open-iconic.woff" />
-    <EntityDeploy Include="Models\jobFindingDB.edmx">
+    <EntityDeploy Include="Models\JobFindingDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>jobFindingDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>JobFindingDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\jobFindingDB.edmx.diagram">
-      <DependentUpon>jobFindingDB.edmx</DependentUpon>
+    <Content Include="Models\JobFindingDB.edmx.diagram">
+      <DependentUpon>JobFindingDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTablesJs\dataTables.bootstrap4.min.js" />
@@ -227,6 +227,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\ForgetPasswordController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SirketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -239,90 +240,97 @@
     </Compile>
     <Compile Include="LoginStatus.cs" />
     <Compile Include="Models\admin_log.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\business_departments.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\business_stream.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\company.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\company_log.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\company_logo.cs">
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\countries.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\departments.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HelperModels\ChangePasswordModel.cs" />
     <Compile Include="Models\HelperModels\CompanyRegisterModel.cs" />
+    <Compile Include="Models\HelperModels\resetPassword.cs" />
     <Compile Include="Models\HelperModels\StudentRegisterModel.cs" />
     <Compile Include="Models\HelperModels\StudentSearchModel.cs" />
     <Compile Include="Models\HelperModels\TeacherRegisterModel.cs" />
-    <Compile Include="Models\jobFindingDB.Context.cs">
+    <Compile Include="Models\JobFindingDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>jobFindingDB.Context.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\jobFindingDB.cs">
+    <Compile Include="Models\JobFindingDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\jobFindingDB.Designer.cs">
+    <Compile Include="Models\JobFindingDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>jobFindingDB.edmx</DependentUpon>
+      <DependentUpon>JobFindingDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\job_location.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\job_post.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\job_post_activity.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\job_type.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\languages.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\universities.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_account.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_admin.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_education.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_experinence_detail.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_image.cs">
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_language_skill.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_log.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_student.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_teacher.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\user_type.cs">
-      <DependentUpon>jobFindingDB.tt</DependentUpon>
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States.cs" />
@@ -359,6 +367,11 @@
     <Content Include="Views\Login\OgretmenGirisi.cshtml" />
     <Content Include="Views\Student\ChangePassword.cshtml" />
     <Content Include="Views\Teacher\EditProfileTeacher.cshtml" />
+    <Content Include="Views\Teacher\ChangePassword.cshtml" />
+    <Content Include="Views\ForgetPassword\ForgetPasswordUser.cshtml" />
+    <Content Include="Views\ForgetPassword\ResetPasswordUser.cshtml" />
+    <Content Include="Views\ForgetPassword\ForgetPasswordCompany.cshtml" />
+    <Content Include="Views\ForgetPassword\ResetPasswordCompany.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
