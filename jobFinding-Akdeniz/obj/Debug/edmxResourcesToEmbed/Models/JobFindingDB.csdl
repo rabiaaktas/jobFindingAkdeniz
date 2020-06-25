@@ -666,5 +666,19 @@
       <Parameter Name="userImage" Mode="In" Type="Binary" />
       <Parameter Name="userAccountId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="sp_StudentInfo" ReturnType="Collection(akdenizjobfindingModel.sp_StudentInfo_Result)">
+      <Parameter Name="userAccountId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_EducationAdd">
+      <Parameter Name="userAccountId" Mode="In" Type="Int32" />
+      <Parameter Name="degreeName" Mode="In" Type="String" />
+      <Parameter Name="universityName" Mode="In" Type="String" />
+      <Parameter Name="startingDate" Mode="In" Type="String" />
+      <Parameter Name="endingDate" Mode="In" Type="String" />
+      <Parameter Name="GANO" Mode="In" Type="Double" />
+      <Parameter Name="GANOINT" Mode="In" Type="Int32" />
+      <Parameter Name="department" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="sp_StudentInfo_Result" />
 </Schema>

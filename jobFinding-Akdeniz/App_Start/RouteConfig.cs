@@ -80,6 +80,15 @@ namespace jobFinding_Akdeniz
               defaults: new { controller = "Student", action = "EditProfileStudent" });
 
             routes.MapRoute(
+             name: "Ogrenci Deneyim Ozgecmis",
+             url: "deneyim-bilgileri",
+             defaults: new { controller = "Student", action = "experienceInfos" });
+            routes.MapRoute(
+             name: "Ogrenci Ozgecmis",
+             url: "ozgecmis-bilgileri",
+             defaults: new { controller = "Student", action = "StudentInfos" });
+
+            routes.MapRoute(
               name: "Ogretmen Profil",
               url: "profil-ayarları",
               defaults: new { controller = "Teacher", action = "EditProfileTeacher" });

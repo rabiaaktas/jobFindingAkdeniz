@@ -245,5 +245,51 @@ namespace jobFinding_Akdeniz.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertFirstImageTeac", userImageParameter, userAccountIdParameter);
         }
+    
+        public virtual ObjectResult<sp_StudentInfo_Result> sp_StudentInfo(Nullable<int> userAccountId)
+        {
+            var userAccountIdParameter = userAccountId.HasValue ?
+                new ObjectParameter("userAccountId", userAccountId) :
+                new ObjectParameter("userAccountId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_StudentInfo_Result>("sp_StudentInfo", userAccountIdParameter);
+        }
+    
+        public virtual int sp_EducationAdd(Nullable<int> userAccountId, string degreeName, string universityName, string startingDate, string endingDate, Nullable<double> gANO, Nullable<int> gANOINT, string department)
+        {
+            var userAccountIdParameter = userAccountId.HasValue ?
+                new ObjectParameter("userAccountId", userAccountId) :
+                new ObjectParameter("userAccountId", typeof(int));
+    
+            var degreeNameParameter = degreeName != null ?
+                new ObjectParameter("degreeName", degreeName) :
+                new ObjectParameter("degreeName", typeof(string));
+    
+            var universityNameParameter = universityName != null ?
+                new ObjectParameter("universityName", universityName) :
+                new ObjectParameter("universityName", typeof(string));
+    
+            var startingDateParameter = startingDate != null ?
+                new ObjectParameter("startingDate", startingDate) :
+                new ObjectParameter("startingDate", typeof(string));
+    
+            var endingDateParameter = endingDate != null ?
+                new ObjectParameter("endingDate", endingDate) :
+                new ObjectParameter("endingDate", typeof(string));
+    
+            var gANOParameter = gANO.HasValue ?
+                new ObjectParameter("GANO", gANO) :
+                new ObjectParameter("GANO", typeof(double));
+    
+            var gANOINTParameter = gANOINT.HasValue ?
+                new ObjectParameter("GANOINT", gANOINT) :
+                new ObjectParameter("GANOINT", typeof(int));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("department", department) :
+                new ObjectParameter("department", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EducationAdd", userAccountIdParameter, degreeNameParameter, universityNameParameter, startingDateParameter, endingDateParameter, gANOParameter, gANOINTParameter, departmentParameter);
+        }
     }
 }

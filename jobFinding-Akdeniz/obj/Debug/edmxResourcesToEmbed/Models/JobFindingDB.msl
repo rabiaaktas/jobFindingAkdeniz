@@ -267,5 +267,11 @@
     <FunctionImportMapping FunctionImportName="sp_InsertFirstLogo" FunctionName="akdenizjobfindingModel.Store.sp_InsertFirstLogo" />
     <FunctionImportMapping FunctionImportName="sp_InsertFirstImageStd" FunctionName="akdenizjobfindingModel.Store.sp_InsertFirstImageStd" />
     <FunctionImportMapping FunctionImportName="sp_InsertFirstImageTeac" FunctionName="akdenizjobfindingModel.Store.sp_InsertFirstImageTeac" />
+    <FunctionImportMapping FunctionImportName="sp_StudentInfo" FunctionName="akdenizjobfindingModel.Store.sp_StudentInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="akdenizjobfindingModel.sp_StudentInfo_Result" />
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_EducationAdd" FunctionName="akdenizjobfindingModel.Store.sp_EducationAdd" />
   </EntityContainerMapping>
 </Mapping>

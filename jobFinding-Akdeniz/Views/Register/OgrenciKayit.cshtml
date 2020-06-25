@@ -87,9 +87,9 @@
                 <label class="form-group">*Eğitim Türü:</label>
                 <select class="form-control" name="degreeName" required>
                     <option class="text-muted" disabled selected>Eğitim Türü Seçiniz:</option>
-                    <option value="ÖnLisans">Ön Lisans</option>
+                    <option value="Ön Lisans">Ön Lisans</option>
                     <option value="Lisans">Lisans</option>
-                    <option value="YüksekLisans">Yüksek Lisans</option>
+                    <option value="Yüksek Lisans">Yüksek Lisans</option>
                     <option value="Doktora">Doktora</option>
                 </select>
                 <div class="form-group text-danger small">
@@ -148,7 +148,7 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group">Gano(4'lük Sistem):</label>
-                @Html.TextBoxFor(x => x.GANO, new { @class = "form-control", placeholder = "GANO(3.25)"})
+                <input name="GANO" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="GANO" />
                 <div class="form-group text-danger small">
                     @Html.ValidationMessageFor(m => m.GANO)
                 </div>
@@ -194,5 +194,17 @@
             $('.eye2').addClass("fa-eye");
             input.attr("type", "password");
         }
+    });
+    $(document).on('keydown', 'input[pattern]', function (e) {
+        var input = $(this);
+        var oldVal = input.val();
+        var regex = new RegExp(input.attr('pattern'), 'g');
+
+        setTimeout(function () {
+            var newVal = input.val();
+            if (!regex.test(newVal) || newVal > 4.0) {
+                input.val(oldVal);
+            }
+        }, 0);
     });
 </script>

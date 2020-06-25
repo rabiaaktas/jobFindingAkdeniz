@@ -470,6 +470,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_EducationAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
+    <Parameter Name="userAccountId" Type="int" Mode="In" />
+    <Parameter Name="degreeName" Type="varchar" Mode="In" />
+    <Parameter Name="universityName" Type="varchar" Mode="In" />
+    <Parameter Name="startingDate" Type="varchar" Mode="In" />
+    <Parameter Name="endingDate" Type="varchar" Mode="In" />
+    <Parameter Name="GANO" Type="double" Mode="In" />
+    <Parameter Name="GANOINT" Type="int" Mode="In" />
+    <Parameter Name="department" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_InsertCompanyPost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
     <Parameter Name="city" Type="varchar" Mode="In" />
     <Parameter Name="streetAddress" Type="varchar" Mode="In" />
@@ -522,6 +532,9 @@
     <Parameter Name="degree" Type="varchar" Mode="In" />
     <Parameter Name="universityName" Type="varchar" Mode="In" />
     <Parameter Name="description" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_StudentInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
+    <Parameter Name="userAccountId" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="akdenizjobfindingModelStoreContainer">
     <EntitySet Name="admin_log" EntityType="Self.admin_log" Schema="akdenizjobfinding" store:Type="Tables" />

@@ -1,0 +1,683 @@
+﻿
+@{
+    ViewBag.Title = "Özgeçmiş Bilgileri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
+    var universities = db.universities.ToList();
+    var departments = db.departments.ToList();
+}
+@model jobFinding_Akdeniz.Models.user_account
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 cd-form"><h2>Özgeçmiş Bilgileri</h2></div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#educationInfos">Eğitim Bilgileri</a>
+                    <a class="list-group-item list-group-item-action" href="/deneyim-bilgileri">İş Deneyimleri</a>
+                    <a class="list-group-item list-group-item-action" href="#languageInfo">Yabancı Dil</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example">
+                    <div class="educationInfo cd-form" id="educationInfos">
+                        <h4 id="list-item-1">Eğitim Bilgileri</h4>
+                        <div class="panel-group">
+                            @foreach (var education in Model.user_education.ToList())
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" href="#education_@education.educationId"><i class="fas fa-plus-circle"></i> @education.degreeName</a>
+                                        </h4>
+                                    </div>
+                                    <div id="education_@education.educationId" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-danger small">
+                                                <div class="col-lg-12">
+                                                    @ViewBag.Warning
+                                                </div>
+                                            </div>
+                                            <div class="text-success small">
+                                                <div class="col-lg-12">
+                                                    @ViewBag.Success
+                                                </div>
+                                            </div>
+                                            @using (Html.BeginForm("EditEducation", "Student", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" value="@education.educationId" name="educationId" />
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>Eğitim Türü</h5></label>
+                                                        <select class="form-control" name="degreeName" id="educationType_@education.educationId" required>
+                                                            <option class="text-muted" disabled>Eğitim Türü Seçiniz:</option>
+                                                            <option value="Ön Lisans" @if ("Ön Lisans" == @education.degreeName) { <text> selected="selected" </text> }>
+                                                                Ön Lisans
+                                                            </option>
+                                                            <option value="Lisans" @if ("Lisans" == @education.degreeName) { <text> selected="selected" </text> }>
+                                                                Lisans
+                                                            </option>
+                                                            <option value="Yüksek Lisans" @if ("Yüksek Lisans" == @education.degreeName) { <text> selected="selected" </text> }>
+                                                                Yüksek Lisans
+                                                            </option>
+                                                            <option value="Doktora" @if ("Doktora" == @education.degreeName) { <text> selected="selected" </text> }>
+                                                                Doktora
+                                                            </option>
+                                                        </select>
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>Üniversite</h5></label>
+                                                        <select class="form-control" name="universityName" required>
+                                                            <option class="text-muted" disabled>Üniversite Seçiniz:</option>
+                                                            @foreach (var item in universities)
+                                                            {
+                                                                <option value="@item.universityName" @if (item.universityName == @education.universityName) { <text> selected="selected" </text> }>
+                                                                    @item.universityName
+                                                                </option>
+                                                            }
+                                                        </select>
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>Bölüm</h5></label>
+                                                        <select class="form-control" name="department" required>
+                                                            <option class="text-muted" disabled>Bölüm Seçiniz:</option>
+                                                            @foreach (var item in departments)
+                                                            {
+                                                                <option value="@item.departmentName" @if (item.departmentName == @education.department) { <text> selected="selected" </text> }>
+                                                                    @item.departmentName
+                                                                </option>
+                                                            }
+                                                        </select>
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>Başlangıç Yılı</h5></label>
+                                                        <input type="text" class="form-control" value=@education.startingDate onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year name="startingDate"  required>
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>Bitiş Yılı</h5></label>
+                                                        <input type="text" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year name="endingDate"  value=@education.endingDate>
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>GANO(100'lük Sistem)</h5></label>
+                                                        <input type="text" class="form-control" value=@education.GANOINT onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="3" name="GANOINT">
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div><div class="form-group text-danger small">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>GANO(4'lük Sistem)</h5></label>
+                                                        <input name="GANO" pattern="^\d*(\.\d{0,2})?$" class="form-control" value=@education.GANO />
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-12 col-xs-6">
+                                                            <button class="btn" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            }
+                                        </div>
+                                        <div class="panel-footer"></div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#newEducation"><i class="fas fa-plus-circle"></i> Yeni Eğitim Bilgisi Ekle</a>
+                                    </h4>
+                                </div>
+                                <div id="newEducation" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="text-danger small">
+                                            <div class="col-lg-12">
+                                                @ViewBag.Warning
+                                            </div>
+                                        </div>
+                                        <div class="text-success small">
+                                            <div class="col-lg-12">
+                                                @ViewBag.Success
+                                            </div>
+                                        </div>
+                                        @using (Html.BeginForm("AddEducation", "Student", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Eğitim Türü</h5></label>
+                                                    <select class="form-control" name="degreeName" required>
+                                                        <option class="text-muted" disabled selected>Eğitim Türü Seçiniz:</option>
+                                                        <option value="ÖnLisans">Ön Lisans</option>
+                                                        <option value="Lisans">Lisans</option>
+                                                        <option value="YüksekLisans">Yüksek Lisans</option>
+                                                        <option value="Doktora">Doktora</option>
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Üniversite</h5></label>
+                                                    <select class="form-control" name="universityName" required>
+                                                        <option class="text-muted" disabled selected>Üniversite Seçiniz:</option>
+                                                        @foreach (var item in universities)
+                                                        {
+                                                            <option value="@item.universityName">@item.universityName</option>
+                                                        }
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Bölüm</h5></label>
+                                                    <select class="form-control" name="department" required>
+                                                        <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                                                        @foreach (var item in departments)
+                                                        {
+                                                            <option value="@item.departmentName">@item.departmentName</option>
+                                                        }
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Başlangıç Yılı</h5></label>
+                                                    <input type="text" class="form-control" name="startingDate" placeholder="Başlangıç Yılı" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year required>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Bitiş Yılı</h5></label>
+                                                    <input type="text" class="form-control" name="endingDate" placeholder="Bitiş Yılı" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>GANO(100'lük Sistem)</h5></label>
+                                                    <input type="text" class="form-control" name="GANOINT" placeholder="GANO" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="3">
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>GANO(4'lük Sistem)</h5></label>
+                                                    <input name="GANO" pattern="^\d*(\.\d{0,2})?$" class="form-control" />
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-4 col-xs-6">
+                                                        <button class="btn" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                    <div class="panel-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="experienceInfo cd-form" id="experience">
+                        <h4 id="list-item-1">İş Deneyimleri</h4>
+                        <div class="panel-group">
+                            @foreach (var experience in Model.user_experinence_detail.ToList())
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" href="#education_@experience.experienceId"><i class="fas fa-plus-circle"></i> @experience.jobTitle</a>
+                                        </h4>
+                                    </div>
+                                    <div id="education_@experience.experienceId" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-danger small">
+                                                <div class="col-lg-12">
+                                                    @ViewBag.Warning
+                                                </div>
+                                            </div>
+                                            <div class="text-success small">
+                                                <div class="col-lg-12">
+                                                    @ViewBag.Success
+                                                </div>
+                                            </div>
+                                            @using (Html.BeginForm("EditProfileStudent", "Student", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.HiddenFor(x => experience.experienceId)
+
+                                                <div class="form-group cd-form">
+                                                    <div class="col-lg-6">
+                                                        <label><h5>Üniversite</h5></label>
+                                                        <select class="form-control" name="universityName" required>
+                                                            <option class="text-muted" disabled>Üniversite Seçiniz:</option>
+                                                            @foreach (var item in universities)
+                                                            {
+                                                                <option value="@item.universityName">
+                                                                    @item.universityName
+                                                                </option>
+                                                            }
+                                                        </select>
+                                                        <div class="form-group error">
+                                                            <div class="col-lg-6">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-12 col-xs-6">
+                                                            <button class="btn" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            }
+                                        </div>
+                                        <div class="panel-footer"></div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#newExperience"><i class="fas fa-plus-circle"></i> Yeni Eğitim Bilgisi Ekle</a>
+                                    </h4>
+                                </div>
+                                <div id="newExperience" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="text-danger small">
+                                            <div class="col-lg-12">
+                                                @ViewBag.Warning
+                                            </div>
+                                        </div>
+                                        <div class="text-success small">
+                                            <div class="col-lg-12">
+                                                @ViewBag.Success
+                                            </div>
+                                        </div>
+                                        @using (Html.BeginForm("EditProfileStudent", "Student", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(x => x.userAccountId)
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Eğitim Türü</h5></label>
+                                                    <select class="form-control" name="degreeName" required>
+                                                        <option class="text-muted" disabled selected>Eğitim Türü Seçiniz:</option>
+                                                        <option value="ÖnLisans">Ön Lisans</option>
+                                                        <option value="Lisans">Lisans</option>
+                                                        <option value="YüksekLisans">Yüksek Lisans</option>
+                                                        <option value="Doktora">Doktora</option>
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Üniversite</h5></label>
+                                                    <select class="form-control" name="universityName" required>
+                                                        <option class="text-muted" disabled selected>Üniversite Seçiniz:</option>
+                                                        @foreach (var item in universities)
+                                                        {
+                                                            <option value="@item.universityName">@item.universityName</option>
+                                                        }
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Bölüm</h5></label>
+                                                    <select class="form-control" name="department" required>
+                                                        <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                                                        @foreach (var item in departments)
+                                                        {
+                                                            <option value="@item.departmentName">@item.departmentName</option>
+                                                        }
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Başlangıç Yılı</h5></label>
+                                                    <input type="text" class="form-control" placeholder="Başlangıç Yılı" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year required>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Bitiş Yılı</h5></label>
+                                                    <input type="text" class="form-control" placeholder="Bitiş Yılı" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>GANO(100'lük Sistem)</h5></label>
+                                                    <input type="text" class="form-control" placeholder="GANO" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="3">
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>GANO(4'lük Sistem)</h5></label>
+                                                    <input name="GANO" pattern="^\d*(\.\d{0,2})?$" class="form-control" />
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-4 col-xs-6">
+                                                        <button class="btn" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                    <div class="panel-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="educationInfo cd-form" id="languageInfo">
+                        <h4 id="list-item-1">Yabancı Dil</h4>
+                        <div class="panel-group">
+                            @foreach (var language in Model.user_language_skill.ToList())
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" href="#education_@language.skillId"><i class="fas fa-plus-circle"></i> @language.languages.languageName</a>
+                                        </h4>
+                                    </div>
+                                    <div id="education_@language.skillId" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="text-danger small">
+                                                <div class="col-lg-12">
+                                                    @ViewBag.Warning
+                                                </div>
+                                            </div>
+                                            <div class="text-success small">
+                                                <div class="col-lg-12">
+                                                    @ViewBag.Success
+                                                </div>
+                                            </div>
+                                            @using (Html.BeginForm("EditProfileStudent", "Student", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.HiddenFor(x => language.skillId)
+                                               
+                                                <div class="form-group">
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-12 col-xs-6">
+                                                            <button class="btn" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            }
+                                        </div>
+                                        <div class="panel-footer"></div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#newLanguage"><i class="fas fa-plus-circle"></i> Yeni Eğitim Bilgisi Ekle</a>
+                                    </h4>
+                                </div>
+                                <div id="newLanguage" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="text-danger small">
+                                            <div class="col-lg-12">
+                                                @ViewBag.Warning
+                                            </div>
+                                        </div>
+                                        <div class="text-success small">
+                                            <div class="col-lg-12">
+                                                @ViewBag.Success
+                                            </div>
+                                        </div>
+                                        @using (Html.BeginForm("EditProfileStudent", "Student", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(x => x.userAccountId)
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Üniversite</h5></label>
+                                                    <select class="form-control" name="universityName" required>
+                                                        <option class="text-muted" disabled selected>Üniversite Seçiniz:</option>
+                                                        @foreach (var item in universities)
+                                                        {
+                                                            <option value="@item.universityName">@item.universityName</option>
+                                                        }
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Bölüm</h5></label>
+                                                    <select class="form-control" name="department" required>
+                                                        <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                                                        @foreach (var item in departments)
+                                                        {
+                                                            <option value="@item.departmentName">@item.departmentName</option>
+                                                        }
+                                                    </select>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Başlangıç Yılı</h5></label>
+                                                    <input type="text" class="form-control" placeholder="Başlangıç Yılı" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year required>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>Bitiş Yılı</h5></label>
+                                                    <input type="text" class="form-control" placeholder="Bitiş Yılı" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year>
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>GANO(100'lük Sistem)</h5></label>
+                                                    <input type="text" class="form-control" placeholder="GANO" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="3">
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group cd-form">
+                                                <div class="col-lg-6">
+                                                    <label><h5>GANO(4'lük Sistem)</h5></label>
+                                                    <input name="GANO" pattern="^\d*(\.\d{0,2})?$" class="form-control" />
+                                                    <div class="form-group error">
+                                                        <div class="col-lg-6">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-4 col-xs-6">
+                                                        <button class="btn" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Kaydet</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        }
+                                    </div>
+                                    <div class="panel-footer"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <script>
+     $('body').scrollspy({ target: '#list-example' })
+     $(document).on('keydown', 'input[pattern]', function (e) {
+         var input = $(this);
+         var oldVal = input.val();
+         var regex = new RegExp(input.attr('pattern'), 'g');
+
+         setTimeout(function () {
+             var newVal = input.val();
+             if (!regex.test(newVal) || newVal > 4.0) {
+                 input.val(oldVal);
+             }
+         }, 0);
+     });
+ </script>

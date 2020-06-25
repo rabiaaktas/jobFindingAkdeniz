@@ -68,7 +68,10 @@ namespace jobFinding_Akdeniz.Controllers
                 selectedStudent.userBday = user.userBday;
                 selectedStudent.userPhone = user.userPhone;
                 selectedStudent.userAddress = user.userAddress;
-                selectedStudent.user_student.intrestedSectorId = user.user_student.intrestedSectorId;
+                if(user.user_student.intrestedSectorId != null)
+                {
+                    selectedStudent.user_student.intrestedSectorId = user.user_student.intrestedSectorId;
+                }
                 selectedStudent.user_student.statusStd = user.user_student.statusStd;
                 db.SaveChanges();
                 TempData["Success"] = "Bilgileriniz Güncellendi.";
@@ -192,5 +195,76 @@ namespace jobFinding_Akdeniz.Controllers
             }
             return RedirectToAction("EditProfileStudent", "Student");
         }
+
+        [UserCheckStudent]
+        public ActionResult StudentInfos()
+        {
+            var info = db.user_account.Where(x => x.userAccountId == LoginStatus.Current.UserId).FirstOrDefault();
+            return View(info);
+        }
+
+        [UserCheckStudent]
+        public ActionResult experienceInfos()
+        {
+            var info = db.user_experinence_detail.Where(x => x.userAccountID == LoginStatus.Current.UserId).ToList();
+            return View(info);
+        }
+
+        [UserCheckStudent]  
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditEducation(int educationId, string degreeName, string universityName, string department, string startingDate, string endingDate, string GANOINT, string GANO)
+        {
+            var userEducation = db.user_education.Where(x => x.userAccountId == LoginStatus.Current.UserId && x.educationId == educationId).FirstOrDefault();
+            if(userEducation != null)
+            {
+                userEducation.degreeName = degreeName;
+                userEducation.universityName = universityName;
+                userEducation.department = department;
+                userEducation.startingDate = startingDate;
+                userEducation.endingDate = endingDate;
+                if (GANOINT != "")
+                {
+                    var gano = Convert.ToInt32(GANOINT);
+                    userEducation.GANOINT = gano;
+                }
+                if(GANO != "")
+                {
+                    var ganostr = GANO.Replace(".", ",");
+                    var gano = Convert.ToDouble(ganostr);
+                    userEducation.GANO = gano;
+                }
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Warning = "Bilgi bulunamadı.";
+            }
+            return RedirectToAction("StudentInfos", "Student");
+        }
+
+        [UserCheckStudent]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddEducation(string degreeName, string universityName, string department, string startingDate, string endingDate, string GANOINT, string GANO)
+        {
+            int gano = 0;
+            double ganoDouble = 0;
+            if (GANOINT != "")
+            {
+                gano = Convert.ToInt32(GANOINT);
+            }
+            if (GANO != "")
+            {
+                var ganostr = GANO.Replace(".", ",");
+                ganoDouble = Convert.ToDouble(ganostr);
+            }
+            var education = db.sp_EducationAdd(LoginStatus.Current.UserId, degreeName, universityName, startingDate, endingDate, ganoDouble, gano, department);
+
+            db.SaveChanges();
+            return RedirectToAction("StudentInfos", "Student");
+        }
+
+
     }
 }

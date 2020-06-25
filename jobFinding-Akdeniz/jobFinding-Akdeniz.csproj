@@ -299,6 +299,9 @@
     <Compile Include="Models\languages.cs">
       <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_StudentInfo_Result.cs">
+      <DependentUpon>JobFindingDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\universities.cs">
       <DependentUpon>JobFindingDB.tt</DependentUpon>
     </Compile>
@@ -372,6 +375,8 @@
     <Content Include="Views\ForgetPassword\ResetPasswordUser.cshtml" />
     <Content Include="Views\ForgetPassword\ForgetPasswordCompany.cshtml" />
     <Content Include="Views\ForgetPassword\ResetPasswordCompany.cshtml" />
+    <Content Include="Views\Student\StudentInfos.cshtml" />
+    <Content Include="Views\Student\experienceInfos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
