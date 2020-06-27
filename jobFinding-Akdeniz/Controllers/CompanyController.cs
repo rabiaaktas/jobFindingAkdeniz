@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
@@ -50,8 +52,8 @@ namespace jobFinding_Akdeniz.Controllers
                                join jt in db.job_type on jp.jobTypeID equals jt.jobTypeId
                                join co in db.company on jp.companyID equals co.companyId
                                where co.companyId == LoginStatus.Current.companyId
+                               orderby DbFunctions.TruncateTime(jp.postCreatedDate) descending
                                select new { jp.jobPostId, co.companyName, jp.jobPostTitle, jp.postCreatedDate, jp.postEndedDay, jp.department, jl.city, jp.isActivePost };
-                
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDir)))
                 {
                     custData = custData.OrderBy(sortColumn + " " + sortColumnDir);

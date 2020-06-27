@@ -47,7 +47,7 @@
                                                     @ViewBag.Success
                                                 </div>
                                             </div>
-                                            @using (Html.BeginForm("EditEducation", "Student", FormMethod.Post))
+                                            @using (Html.BeginForm("EditEducation", "Teacher", FormMethod.Post))
                                             {
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" value="@education.educationId" name="educationId" />
@@ -195,7 +195,7 @@
                                                 @ViewBag.Success
                                             </div>
                                         </div>
-                                        @using (Html.BeginForm("AddEducation", "Student", FormMethod.Post))
+                                        @using (Html.BeginForm("AddEducation", "Teacher", FormMethod.Post))
                                         {
                                             @Html.AntiForgeryToken()
                                             <div class="form-group cd-form">
@@ -333,7 +333,7 @@
                                                     @ViewBag.Success
                                                 </div>
                                             </div>
-                                            @using (Html.BeginForm("EditExperience", "Student", FormMethod.Post))
+                                            @using (Html.BeginForm("EditExperience", "Teacher", FormMethod.Post))
                                             {
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" value="@experience.experienceId" name="experienceId" />
@@ -449,7 +449,7 @@
                                                 @ViewBag.Success
                                             </div>
                                         </div>
-                                        @using (Html.BeginForm("AddExperience", "Student", FormMethod.Post))
+                                        @using (Html.BeginForm("AddExperience", "Teacher", FormMethod.Post))
                                         {
                                             @Html.AntiForgeryToken()
                                             @Html.HiddenFor(x => x.userAccountId)
@@ -552,7 +552,7 @@
                                                     @ViewBag.Success
                                                 </div>
                                             </div>
-                                            @using (Html.BeginForm("EditLanguage", "Student", FormMethod.Post))
+                                            @using (Html.BeginForm("EditLanguage", "Teacher", FormMethod.Post))
                                             {
                                                 @Html.AntiForgeryToken()
                                                 <input type="hidden" value="@language.skillId" name="skillId" />
@@ -628,7 +628,7 @@
                                                 @ViewBag.Success
                                             </div>
                                         </div>
-                                        @using (Html.BeginForm("AddLanguage", "Student", FormMethod.Post))
+                                        @using (Html.BeginForm("AddLanguage", "Teacher", FormMethod.Post))
                                         {
                                             @Html.AntiForgeryToken()
                                             <div class="form-group cd-form">
@@ -769,7 +769,7 @@
         console.log(id);
         $.ajax({
             type: "POST",
-            url: "/Student/DeleteLanguage/" + id,
+            url: "/Teacher/DeleteLanguage/" + id,
             data: JSON.stringify(id),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -789,7 +789,7 @@
         console.log(id);
         $.ajax({
             type: "POST",
-            url: "/Student/DeleteExperience/" + id,
+            url: "/Teacher/DeleteExperience/" + id,
             data: JSON.stringify(id),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -809,7 +809,7 @@
         console.log(id);
         $.ajax({
             type: "POST",
-            url: "/Student/DeleteEducation/" + id,
+            url: "/Teacher/DeleteEducation/" + id,
             data: JSON.stringify(id),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

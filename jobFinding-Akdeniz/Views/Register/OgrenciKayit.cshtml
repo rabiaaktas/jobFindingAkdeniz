@@ -148,7 +148,7 @@
             </div>
             <div class="form-group cd-form">
                 <label class="form-group">Gano(4'lük Sistem):</label>
-                <input name="GANO" pattern="^\d*(\.\d{0,2})?$" class="form-control" placeholder="GANO" />
+                <input name="GANO" pattern="^\-?\d+((\.|\,)\d+)?$" class="form-control" placeholder="GANO" />
                 <div class="form-group text-danger small">
                     @Html.ValidationMessageFor(m => m.GANO)
                 </div>
@@ -202,7 +202,7 @@
 
         setTimeout(function () {
             var newVal = input.val();
-            if (!regex.test(newVal) || newVal > 4.0) {
+            if (!regex.test(newVal) || newVal > 4.00) {
                 input.val(oldVal);
             }
         }, 0);

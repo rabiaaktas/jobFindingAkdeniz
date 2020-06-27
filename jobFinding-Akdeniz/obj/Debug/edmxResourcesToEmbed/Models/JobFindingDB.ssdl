@@ -187,7 +187,7 @@
     <Property Name="endDate" Type="date" />
     <Property Name="jobTitle" Type="varchar" MaxLength="1000" Nullable="false" />
     <Property Name="companyName" Type="varchar" MaxLength="1000" Nullable="false" />
-    <Property Name="description" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="1000" />
   </EntityType>
   <EntityType Name="user_image">
     <Key>
@@ -494,6 +494,14 @@
     <Parameter Name="educationInfo" Type="varchar" Mode="In" />
     <Parameter Name="militaryStiation" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="sp_InsertExperience" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
+    <Parameter Name="userAccountID" Type="int" Mode="In" />
+    <Parameter Name="startDate" Type="date" Mode="In" />
+    <Parameter Name="endDate" Type="date" Mode="In" />
+    <Parameter Name="jobTitle" Type="varchar" Mode="In" />
+    <Parameter Name="companyName" Type="varchar" Mode="In" />
+    <Parameter Name="description" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="sp_InsertFirstImageStd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
     <Parameter Name="userImage" Type="longblob" Mode="In" />
     <Parameter Name="userAccountId" Type="int" Mode="In" />
@@ -505,6 +513,11 @@
   <Function Name="sp_InsertFirstLogo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
     <Parameter Name="companyLogo" Type="longblob" Mode="In" />
     <Parameter Name="companyId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_InsertLanguage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
+    <Parameter Name="userAccountID" Type="int" Mode="In" />
+    <Parameter Name="languageID" Type="int" Mode="In" />
+    <Parameter Name="level" Type="varchar" Mode="In" />
   </Function>
   <Function Name="sp_InsertStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
     <Parameter Name="userEmail" Type="varchar" Mode="In" />

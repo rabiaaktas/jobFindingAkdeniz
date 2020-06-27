@@ -12,6 +12,7 @@
     <link href="~/Content/Form.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/buttons.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/loginUser.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/applied.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/bootstrap-select.css" />
@@ -60,7 +61,7 @@
                                         <span class="icon-bar"></span>
                                     </button>
                                     <div class="header-brand-logo">
-                                        <a class="navbar-brand" href="#">
+                                        <a class="navbar-brand" href="/">
                                             <img src="~/Content/Images/logo1.png" />
                                         </a>
                                     </div>
@@ -71,6 +72,7 @@
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav">
                                             <li class="nav-item navLink">@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+                                            <li class="nav-item navLink">@Html.ActionLink("İş İlanları", "Index", "JobPosts")</li>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="nav-item  navLink">
@@ -90,7 +92,7 @@
                                                 <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                                     <a class="dropdown-item" href="/eleman-arama/ogrenci">Öğrenci Arama</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Hoca Arama</a>
+                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Akademisyen Arama</a>
                                                 </div>
                                             </li>
                                             <li class=" dropdown navLink">
@@ -121,22 +123,18 @@
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav">
                                             <li class="nav-item navLink">@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+                                            <li class="nav-item navLink">@Html.ActionLink("İş İlanları", "Index", "JobPosts")</li>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="nav-item  navLink">
                                                 <a href="/ozgecmis-bilgileri">
-                                                    Özgeçmiş Bilgileri
+                                                    Özgeçmişim
                                                 </a>
                                             </li>
-                                            <li class=" dropdown navLink">
-                                                <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Eleman Ara <i class="fas fa-angle-down"></i>
+                                            <li class="nav-item  navLink">
+                                                <a href="/basvurular">
+                                                    Başvurularım
                                                 </a>
-                                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Öğrenci Arama</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Hoca Arama</a>
-                                                </div>
                                             </li>
                                             <li class=" dropdown navLink">
                                                 <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -166,27 +164,18 @@
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav">
                                             <li class="nav-item navLink">@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+                                            <li class="nav-item navLink">@Html.ActionLink("İş İlanları", "Index", "JobPosts")</li>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
                                             <li class="nav-item  navLink">
-                                                <a href="/ilanlarim">
-                                                    İlanlarım
+                                                <a href="/ozgecmis-bilgilerim">
+                                                    Özgeçmişim
                                                 </a>
                                             </li>
-                                            <li class="nav-item navLink">
-                                                <a href="/ilan-ekle">
-                                                    İlan Ekle
+                                            <li class="nav-item  navLink">
+                                                <a href="/basvurularim">
+                                                    Başvurularım
                                                 </a>
-                                            </li>
-                                            <li class=" dropdown navLink">
-                                                <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Eleman Ara <i class="fas fa-angle-down"></i>
-                                                </a>
-                                                <div class=" dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Öğrenci Arama</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="/eleman-arama/ogrenci">Hoca Arama</a>
-                                                </div>
                                             </li>
                                             <li class=" dropdown navLink">
                                                 <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -218,8 +207,19 @@
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav">
                                             <li class="nav-item navLink">@Html.ActionLink("Anasayfa", "Index", "Home")</li>
+                                            <li class="nav-item navLink">@Html.ActionLink("İş İlanları", "Index", "JobPosts")</li>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
+                                            <li class=" dropdown navLink">
+                                                <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Akademisyen <i class="fas fa-angle-down"></i>
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
+                                                    <a class="dropdown-item" href="/ogretmen-kayit">Akademisyen Kayıt</a>
+                                                    <a class="dropdown-item" href="/ogretmen-giris">Akademisyen Girişi</a>
+
+                                                </div>
+                                            </li>
                                             <li class="nav-item dropdown navLink">
                                                 <a class=" dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     İşveren <i class="fas fa-angle-down"></i>
@@ -241,16 +241,7 @@
 
                                                 </div>
                                             </li>
-                                            <li class=" dropdown navLink">
-                                                <a class="dropdown-toggle navLink" href="#" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Öğretmen <i class="fas fa-angle-down"></i>
-                                                </a>
-                                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
-                                                    <a class="dropdown-item" href="/ogretmen-kayit">Öğretmen Kayıt</a>
-                                                    <a class="dropdown-item" href="/ogretmen-giris">Öğretmen Girişi</a>
 
-                                                </div>
-                                            </li>
                                         </ul>
 
                                     </div><!-- /.navbar-collapse -->

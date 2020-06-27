@@ -13,8 +13,8 @@ namespace jobFinding_Akdeniz.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
-            return View();
+            var jobPosts = db.job_post.ToList();
+            return View(jobPosts);
         }
     }
 }

@@ -291,5 +291,51 @@ namespace jobFinding_Akdeniz.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EducationAdd", userAccountIdParameter, degreeNameParameter, universityNameParameter, startingDateParameter, endingDateParameter, gANOParameter, gANOINTParameter, departmentParameter);
         }
+    
+        public virtual int sp_InsertExperience(Nullable<int> userAccountID, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string jobTitle, string companyName, string description)
+        {
+            var userAccountIDParameter = userAccountID.HasValue ?
+                new ObjectParameter("userAccountID", userAccountID) :
+                new ObjectParameter("userAccountID", typeof(int));
+    
+            var startDateParameter = startDate.HasValue ?
+                new ObjectParameter("startDate", startDate) :
+                new ObjectParameter("startDate", typeof(System.DateTime));
+    
+            var endDateParameter = endDate.HasValue ?
+                new ObjectParameter("endDate", endDate) :
+                new ObjectParameter("endDate", typeof(System.DateTime));
+    
+            var jobTitleParameter = jobTitle != null ?
+                new ObjectParameter("jobTitle", jobTitle) :
+                new ObjectParameter("jobTitle", typeof(string));
+    
+            var companyNameParameter = companyName != null ?
+                new ObjectParameter("companyName", companyName) :
+                new ObjectParameter("companyName", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertExperience", userAccountIDParameter, startDateParameter, endDateParameter, jobTitleParameter, companyNameParameter, descriptionParameter);
+        }
+    
+        public virtual int sp_InsertLanguage(Nullable<int> userAccountID, Nullable<int> languageID, string level)
+        {
+            var userAccountIDParameter = userAccountID.HasValue ?
+                new ObjectParameter("userAccountID", userAccountID) :
+                new ObjectParameter("userAccountID", typeof(int));
+    
+            var languageIDParameter = languageID.HasValue ?
+                new ObjectParameter("languageID", languageID) :
+                new ObjectParameter("languageID", typeof(int));
+    
+            var levelParameter = level != null ?
+                new ObjectParameter("level", level) :
+                new ObjectParameter("level", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertLanguage", userAccountIDParameter, languageIDParameter, levelParameter);
+        }
     }
 }

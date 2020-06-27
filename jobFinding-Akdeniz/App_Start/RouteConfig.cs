@@ -14,6 +14,11 @@ namespace jobFinding_Akdeniz
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "İlanlar",
+               url: "is-ilanlari",
+               defaults: new { controller = "JobPosts", action = "Index" });
+
+            routes.MapRoute(
                 name: "Sirket Kayit",
                 url: "sirket-kayit",
                 defaults: new { controller = "Register", action = "SirketKayit" });
@@ -80,13 +85,24 @@ namespace jobFinding_Akdeniz
               defaults: new { controller = "Student", action = "EditProfileStudent" });
 
             routes.MapRoute(
-             name: "Ogrenci Deneyim Ozgecmis",
-             url: "deneyim-bilgileri",
-             defaults: new { controller = "Student", action = "experienceInfos" });
-            routes.MapRoute(
              name: "Ogrenci Ozgecmis",
              url: "ozgecmis-bilgileri",
              defaults: new { controller = "Student", action = "StudentInfos" });
+
+            routes.MapRoute(
+             name: "Ogretmen Ozgecmis",
+             url: "ozgecmis-bilgilerim",
+             defaults: new { controller = "Teacher", action = "TeacherInfos" });
+
+            routes.MapRoute(
+             name: "Ogrenci Basvuru",
+             url: "basvurular",
+             defaults: new { controller = "Student", action = "AppliedJobs" });
+
+            routes.MapRoute(
+             name: "Ogretmen Basvuru",
+             url: "basvurularim",
+             defaults: new { controller = "Teacher", action = "AppliedJobs" });
 
             routes.MapRoute(
               name: "Ogretmen Profil",

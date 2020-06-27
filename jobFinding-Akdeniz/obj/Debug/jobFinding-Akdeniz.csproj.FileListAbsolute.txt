@@ -184,3 +184,7 @@ C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\bin\MySql.Data
 C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\bin\MySql.Data.Entity.EF6.xml
 C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\bin\System.Linq.Dynamic.dll
 C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\obj\Debug\jobFinding-Akdeniz.csprojAssemblyReference.cache
+C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\bin\PagedList.dll
+C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\bin\PagedList.Mvc.dll
+C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\bin\PagedList.xml
+C:\Users\rabia\source\repos\jobFinding-Akdeniz\jobFinding-Akdeniz\bin\PagedList.Mvc.xml

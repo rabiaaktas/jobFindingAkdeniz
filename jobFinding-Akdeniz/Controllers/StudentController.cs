@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using jobFinding_Akdeniz.Models;
 using jobFinding_Akdeniz.Models.HelperModels;
+using PagedList;
 using static jobFinding_Akdeniz.States;
 
 namespace jobFinding_Akdeniz.Controllers
@@ -203,13 +204,6 @@ namespace jobFinding_Akdeniz.Controllers
             return View(info);
         }
 
-        [UserCheckStudent]
-        public ActionResult experienceInfos()
-        {
-            var info = db.user_experinence_detail.Where(x => x.userAccountID == LoginStatus.Current.UserId).ToList();
-            return View(info);
-        }
-
         [UserCheckStudent]  
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -265,6 +259,130 @@ namespace jobFinding_Akdeniz.Controllers
             return RedirectToAction("StudentInfos", "Student");
         }
 
+        [UserCheckStudent]
+        [HttpPost]
+        public JsonResult DeleteEducation(int id)
+        {
+            var education = db.user_education.Where(x => x.educationId == id).FirstOrDefault();
+            db.user_education.Remove(education);
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+
+        [UserCheckStudent]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditExperience(int experienceId, string companyName, string jobTitle, string startDate, string endDate, string description)
+        {
+            Nullable<DateTime> start = null;
+            Nullable<DateTime> end = null;
+            start = new DateTime();
+            end = new DateTime();
+            if (startDate != "")
+            {
+                start = Convert.ToDateTime(startDate);
+            }
+            if (endDate != "")
+            {
+                end = Convert.ToDateTime(endDate);
+            }
+            var userExperience = db.user_experinence_detail.Where(x => x.userAccountID == LoginStatus.Current.UserId && x.experienceId == experienceId).FirstOrDefault();
+            if (userExperience != null)
+            {
+                userExperience.companyName = companyName;
+                userExperience.jobTitle = jobTitle;
+                userExperience.startDate = start;
+                userExperience.endDate = end;
+                userExperience.description = description;
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Warning = "Bilgi bulunamadı.";
+            }
+            return RedirectToAction("StudentInfos", "Student");
+        }
+
+        [UserCheckStudent]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddExperience(string companyName, string jobTitle, string startDate, string endDate, string description)
+        {
+            Nullable<DateTime> start = null;
+            Nullable<DateTime> end = null;
+            start = new DateTime();
+            end = new DateTime();
+            if (startDate != "")
+            {
+               start = Convert.ToDateTime(startDate);
+            }
+            if (endDate != "")
+            {
+               end = Convert.ToDateTime(endDate);
+            }
+            var experience = db.sp_InsertExperience(LoginStatus.Current.UserId, start, end, jobTitle, companyName, description);
+            db.SaveChanges();
+            return RedirectToAction("StudentInfos", "Student");
+        }
+
+        [UserCheckStudent]
+        [HttpPost]
+        public JsonResult DeleteExperience(int id)
+        {
+            var experience = db.user_experinence_detail.Where(x => x.experienceId == id).FirstOrDefault();
+            db.user_experinence_detail.Remove(experience);
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+
+        [UserCheckStudent]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditLanguage(int skillId, int languageID, string level)
+        {
+            var userSkill = db.user_language_skill.Where(x => x.userAccountID == LoginStatus.Current.UserId && x.skillId == skillId).FirstOrDefault();
+            if (userSkill != null)
+            {
+                userSkill.languageID = languageID;
+                userSkill.level = level;
+                db.SaveChanges();
+            }
+            else
+            {
+                ViewBag.Warning = "Bilgi bulunamadı.";
+            }
+            return RedirectToAction("StudentInfos", "Student");
+        }
+
+        [UserCheckStudent]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddLanguage(string languageID, string level)
+        {
+            var id = Convert.ToInt32(languageID);
+            var language = db.sp_InsertLanguage(LoginStatus.Current.UserId, id, level);
+            db.SaveChanges();
+            return RedirectToAction("StudentInfos", "Student");
+        }
+
+        [UserCheckStudent]
+        [HttpPost]
+        public JsonResult DeleteLanguage(int id) {
+            var languageSkill = db.user_language_skill.Where(x => x.skillId == id).FirstOrDefault();
+            db.user_language_skill.Remove(languageSkill);
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
+        }
+
+        [UserCheckStudent]
+        public ActionResult AppliedJobs(int? page)
+        {
+            int pageIndex = page ?? 1;
+            int dataCount = 10;
+            var myApplies = db.job_post_activity.Where(x => x.userAccountID == LoginStatus.Current.UserId).ToList();
+            var applied = myApplies.OrderByDescending(x => x.applyDate.Date).ToPagedList(pageIndex, dataCount);
+            return View(applied);
+        }
 
     }
 }

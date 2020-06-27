@@ -192,7 +192,7 @@
           <Property Name="endDate" Type="date" />
           <Property Name="jobTitle" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="companyName" Type="varchar" MaxLength="1000" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="user_image">
           <Key>
@@ -499,6 +499,14 @@
           <Parameter Name="educationInfo" Type="varchar" Mode="In" />
           <Parameter Name="militaryStiation" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_InsertExperience" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
+          <Parameter Name="userAccountID" Type="int" Mode="In" />
+          <Parameter Name="startDate" Type="date" Mode="In" />
+          <Parameter Name="endDate" Type="date" Mode="In" />
+          <Parameter Name="jobTitle" Type="varchar" Mode="In" />
+          <Parameter Name="companyName" Type="varchar" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="sp_InsertFirstImageStd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
           <Parameter Name="userImage" Type="longblob" Mode="In" />
           <Parameter Name="userAccountId" Type="int" Mode="In" />
@@ -510,6 +518,11 @@
         <Function Name="sp_InsertFirstLogo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
           <Parameter Name="companyLogo" Type="longblob" Mode="In" />
           <Parameter Name="companyId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_InsertLanguage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
+          <Parameter Name="userAccountID" Type="int" Mode="In" />
+          <Parameter Name="languageID" Type="int" Mode="In" />
+          <Parameter Name="level" Type="varchar" Mode="In" />
         </Function>
         <Function Name="sp_InsertStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="akdenizjobfinding">
           <Parameter Name="userEmail" Type="varchar" Mode="In" />
@@ -1326,6 +1339,19 @@
             <Parameter Name="GANOINT" Mode="In" Type="Int32" />
             <Parameter Name="department" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="sp_InsertExperience">
+            <Parameter Name="userAccountID" Mode="In" Type="Int32" />
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="jobTitle" Mode="In" Type="String" />
+            <Parameter Name="companyName" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_InsertLanguage">
+            <Parameter Name="userAccountID" Mode="In" Type="Int32" />
+            <Parameter Name="languageID" Mode="In" Type="Int32" />
+            <Parameter Name="level" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_StudentInfo_Result" />
       </Schema>
@@ -1606,6 +1632,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_EducationAdd" FunctionName="akdenizjobfindingModel.Store.sp_EducationAdd" />
+          <FunctionImportMapping FunctionImportName="sp_InsertExperience" FunctionName="akdenizjobfindingModel.Store.sp_InsertExperience" />
+          <FunctionImportMapping FunctionImportName="sp_InsertLanguage" FunctionName="akdenizjobfindingModel.Store.sp_InsertLanguage" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

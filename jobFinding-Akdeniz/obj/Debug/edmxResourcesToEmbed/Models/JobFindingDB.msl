@@ -273,5 +273,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_EducationAdd" FunctionName="akdenizjobfindingModel.Store.sp_EducationAdd" />
+    <FunctionImportMapping FunctionImportName="sp_InsertExperience" FunctionName="akdenizjobfindingModel.Store.sp_InsertExperience" />
+    <FunctionImportMapping FunctionImportName="sp_InsertLanguage" FunctionName="akdenizjobfindingModel.Store.sp_InsertLanguage" />
   </EntityContainerMapping>
 </Mapping>

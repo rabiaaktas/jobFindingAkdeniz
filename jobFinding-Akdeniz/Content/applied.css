@@ -1,0 +1,156 @@
+﻿body {
+    font-family: "Nunito Sans", Arial, sans-serif;
+    background-color: #ededed;
+}
+
+h2 span, h3 span, h4 span, h5 span, h6 span {
+    color: #f7941d;
+}
+
+/* Button Orange Css */
+
+.btn_orange.medium, a.btn_orange.medium {
+    padding: 10px 25px;
+    font-size: 14px;
+}
+
+.btn_orange, a.btn_orange {
+    border: none;
+    font-family: inherit;
+    color: #fff;
+    background: #51bce6;
+    cursor: pointer;
+    padding: 7px 20px;
+    display: inline-block;
+    outline: 0;
+    font-size: 12px;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+a.btn_orange, .btn_orange {
+    background: #f7941d;
+}
+
+.white_bg {
+    background-color: #fff;
+}
+
+.strong, b, strong {
+    color: #000;
+    font-weight: 500;
+}
+
+.btn-min-block {
+    min-width: 170px;
+    line-height: 26px;
+}
+
+.btn-theme {
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin-right: 15px;
+}
+
+    .btn-theme:hover {
+        color: #000;
+        background-color: #f7941d;
+        border-color: #fff;
+    }
+
+
+/* listing css */
+
+.tb-padding {
+    padding: 50px 0px;
+}
+
+.cover-size {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.image-size > img {
+    width: 30%;
+}
+
+.image-size2 > img {
+    width: 100%;
+}
+
+@media screen and (max-width:500px){
+    .image-size > img {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width:800px){
+    .image-size > img {
+        width: 50%;
+    }
+}
+p span {
+    color: #c2c2c2;
+    padding: 0px 5px;
+}
+
+.customs-p p {
+    line-height: 20px;
+    margin: 0px;
+}
+
+.small-padding-bg {
+    padding: 20px 0px;
+    background-color: #fff;
+    margin: 10px 0px;
+}
+
+    .small-padding-bg:hover {
+        box-shadow: 3px 3px 5px #c2c2c2, -3px -3px 5px #c2c2c2;
+    }
+
+.customs-margin {
+    margin-top: 30px;
+}
+
+.customs-margin2 {
+    margin-top: 15px;
+}
+
+.side-bar {
+    border: 1px solid #c2c2c2;
+    margin-top: 20px;
+}
+
+    .side-bar ul li {
+        padding: 10px 0px;
+        border-bottom: 1px solid #c2c2c2;
+    }
+
+        .side-bar ul li:last-child {
+            border: none;
+        }
+
+        .side-bar ul li i {
+            color: #c2c2c2;
+            padding: 0px 5px;
+        }
+
+
+
+        .side-bar ul li a {
+            text-decoration: none;
+        }
+

@@ -679,6 +679,19 @@
       <Parameter Name="GANOINT" Mode="In" Type="Int32" />
       <Parameter Name="department" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="sp_InsertExperience">
+      <Parameter Name="userAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="startDate" Mode="In" Type="DateTime" />
+      <Parameter Name="endDate" Mode="In" Type="DateTime" />
+      <Parameter Name="jobTitle" Mode="In" Type="String" />
+      <Parameter Name="companyName" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_InsertLanguage">
+      <Parameter Name="userAccountID" Mode="In" Type="Int32" />
+      <Parameter Name="languageID" Mode="In" Type="Int32" />
+      <Parameter Name="level" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_StudentInfo_Result" />
 </Schema>
