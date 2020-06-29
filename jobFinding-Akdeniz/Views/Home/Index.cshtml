@@ -19,20 +19,23 @@
 
                 <div>
                     <h3 class="SearchJobText" style="display:none;">Aradığın İşi Bul!</h3>
-                    <input name="g" type="text" placeholder="Örnek: garson, mühendis, muhasebe..." />
+                    @using (Html.BeginForm("Index", "JobPosts", FormMethod.Post)){
+                    <input name="searchSt" type="text" placeholder="Örnek: garson, mühendis, muhasebe..." />
                     <div class="select-cities">
                         <p class="cd-select">
-                            <select name="a">
+                            <select name="city">
                                 <option value="">T&#252;m Şehirler</option>
                                 @foreach (var item in cities)
                                 {
-                                    <option value="87">@item.countryName</option>
+                                    <option value="@item.countryName">@item.countryName</option>
 
                                 }
                             </select>
                         </p>
                     </div>
-                    <input type="submit" class="uni-button-darkblue" value="Ara" />
+                        <input type="submit" class="uni-button-orange" value="Ara" />
+                    }
+
                 </div>
 
             </form>

@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Arama Sonuçları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
+    var languages = db.languages.ToList();
+    var departments = db.departments.ToList();
+    var bDepartment = db.business_stream.ToList();
+}
+
+@model PagedList.IPagedList<jobFinding_Akdeniz.Models.user_account>
+@using PagedList.Mvc;
+@using PagedList;
+
+<section>
+    <div class="container tb-padding">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div>
+                    <div class="searchForm">
+                        @using (Html.BeginForm("ResultStudentEmployee", "Company", FormMethod.Post, new { name = "postEdit" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label class="form-group">Öğrenci/Mezun Durumu:</label>
+                                <div class="">
+                                    <select class="form-control" name="statusStd">
+                                        <option class="text-muted" disabled selected>Öğrenci/Mezun Durumu</option>
+                                        <option @if ("ÖĞRENCİ" == ViewBag.statusStd) { <text> selected="selected" </text> }>ÖĞRENCİ</option>
+                                        <option @if ("MEZUN" == ViewBag.statusStd) { <text> selected="selected" </text> }>MEZUN</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group"> *Bölümü:</label>
+                                <select class="form-control" name="department" required>
+                                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                                    @foreach (var item in departments)
+                                    {
+                                        <option value="@item.departmentsId" @if (item.departmentsId == ViewBag.department) { <text> selected="selected" </text> }>@item.departmentName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group"> Yabancı Dil:</label>
+                                <select class="form-control" name="languageID">
+                                    <option class="text-muted" disabled selected>Dil Seçiniz:</option>
+                                    @foreach (var item in languages)
+                                    {
+                                        <option value="@item.languageId" @if (item.languageId == ViewBag.languageID) { <text> selected="selected" </text> }>@item.languageName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-group"> İlgilendiği Alan:</label>
+                                <select class="form-control" name="intrestedSectorId">
+                                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
+                                    @foreach (var item in bDepartment)
+                                    {
+                                        <option value="@item.businessId" @if (item.businessId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.businessName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group text-danger small">
+                                @ViewBag.Warning
+                            </div>
+                            <div class="form-group cd-form">
+                                <input type="submit" value="Filtrele" class="btn_orange medium customs-margin" />
+                            </div>
+                        }
+                    </div>
+                   
+                </div>
+            </div>
+
+
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="row">
+                    <div class="col-sm-10 cd-form"><h2></h2></div>
+                    <div class="col-sm-2"></div>
+                </div>
+                @if (Model.Count != 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="row small-padding-bg">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                @if (@item.userImageID == null)
+                                {
+                                    <div class="image-size2"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" /></div>
+                                }
+                                else
+                                {
+                                    <div class="image-size2"><img src="data:image/jpg;base64,@Convert.ToBase64String(@item.user_image.userImage)" /></div>
+                                }
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 customs-p">
+                                <h4>@item.firstName</h4>
+                        @*<p><span><i class="fas fa-clock"></i></span>@item.postCreatedDate.ToShortDateString()</p>
+                        <p><span><i class="fas fa-map-marker-alt"></i></span>@item.job_location.city</p>*@
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                <a href="/ozgecmisi-goruntule/@item.userAccountId" class="btn_orange medium customs-margin">Özgeçmiş</a>
+                            </div>
+                        </div>
+                    }
+                    
+                    <div class="text-center">
+                        @Html.PagedListPager(Model, page => Url.Action("ResultStudentEmployee", new { intrestedSectorId = ViewBag.intrestedSectorId, statusStd = ViewBag.statusStd, department = ViewBag.department, languageID = ViewBag.languageID,  page }))
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger" role="alert">
+                        Aradığınız kriterlere uygun kişi bulunamadı.
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>

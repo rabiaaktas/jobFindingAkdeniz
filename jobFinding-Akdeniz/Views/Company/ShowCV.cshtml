@@ -1,0 +1,311 @@
+﻿
+@{
+    ViewBag.Title = Model.firstName + " Özgeçmişi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model jobFinding_Akdeniz.Models.user_account
+
+<div class=" profile-forms">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 cd-form"><h2>@Model.firstName @Model.lastName</h2></div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <!--left col-->
+
+                <div class="text-center">
+                        @if (@Model.userImageID == null)
+                        {
+                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+
+                        }
+                        else
+                        {
+                            <img src="data:image/jpg;base64,@Convert.ToBase64String(@Model.user_image.userImage)" class="avatar img-circle img-thumbnail" alt="avatar">
+                        }
+                </div>
+                </hr><br>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">E-mail <i class="fa fa-link fa-1x"></i></div>
+                    <div class="panel-body"><a href="mailto:@Model.userEmail" target="_blank">@Model.userEmail</a></div>
+                </div>
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-10 cd-form"><h2>Özgeçmiş</h2></div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <strong>
+                                                İsim
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            @Model.firstName
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>
+                                                Soyisim
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            @Model.lastName
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>
+                                                Telefon
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            @Model.userPhone
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>
+                                                Doğum Tarihi
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            @if (Model.userBday.HasValue == true)
+                                            {
+                                                @Model.userBday.Value.ToShortDateString()
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>
+                                                Adres
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            @Model.userAddress
+                                        </td>
+                                    </tr>
+                                    @if (Model.userTypeID == 2)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Öğrenci/Mezun Durumu
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @Model.user_student.statusStd
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    İlgi Alanı
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @if (Model.user_student.intrestedSectorId.HasValue)
+                                                {
+                                                    @Model.user_student.business_stream.businessName
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Ünvanı
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @Model.user_teacher.degree
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    İlgi Alanları
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @Model.user_teacher.interestAreas
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div><!--/col-9-->
+                <div class="row">
+                    <div class="col-sm-10 cd-form"><h2>Eğitim Bilgileri</h2></div>
+                    <div class="col-sm-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach (var education in Model.user_education.ToList())
+                        {
+                            <div class="table-responsive">
+                                <strong>Eğitim Bilgisi</strong>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Derecesi
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @education.degreeName
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Üniversite
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @education.universityName
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Bölümü
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @education.department
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Başlama Tarihi
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @education.startingDate
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Bitirme Tarihi
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @education.endingDate
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    GANO
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @education.GANO / 4 -  @education.GANOINT / 100
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 cd-form"><h2>Deneyim Bilgileri</h2></div>
+                    <div class="col-sm-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach (var experience in Model.user_experinence_detail.ToList())
+                        {
+                            <div class="table-responsive">
+                                <strong>Deneyim Bilgisi</strong>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Şirket
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @experience.companyName
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Ünvanı
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @experience.jobTitle
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Başlama Tarihi
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @if (experience.startDate.HasValue == true)
+                                                {
+                                                    @experience.startDate.Value.ToShortDateString()
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Çıkış Tarihi
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @if (experience.endDate.HasValue == true)
+                                                {
+                                                    @experience.endDate.Value.ToShortDateString()
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Açıklama
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @experience.description
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div><!--/row-->
+    </div>

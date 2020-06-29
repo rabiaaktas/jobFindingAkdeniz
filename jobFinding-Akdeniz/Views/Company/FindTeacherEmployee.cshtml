@@ -1,32 +1,39 @@
 ﻿
 @{
-    ViewBag.Title = "Öğrenci Arama";
+    ViewBag.Title = "Akademisyen Arama";
     Layout = "~/Views/Shared/_Layout.cshtml";
     jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
     var languages = db.languages.ToList();
     var departments = db.departments.ToList();
     var bDepartment = db.business_stream.ToList();
+    var universities = db.universities.ToList();
+
 }
+
 
 <div class="user-login">
     <div class="container">
         <div class="cd-form">
-            <h2>Öğrenci Arama</h2>
+            <h2>Akademisyen Arama</h2>
             <label class="small form-group">İstediğiniz özellikleri seçerek listeye ulaşabilirsiniz.</label>
             <label class="small form-group">* ile işaretli alanlar zorunludur.</label>
         </div>
-        @using (Html.BeginForm("ResultStudentEmployee", "Company", FormMethod.Post))
+        @using (Html.BeginForm("ResultTeacherEmployee", "Company", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
             <div class="form-group">
-                <label class="form-group">Öğrenci/Mezun Durumu:</label>
-                <div class="">
-                    <select class="form-control" name="statusStd">
-                        <option class="text-muted" disabled selected>Öğrenci/Mezun Durumu</option>
-                        <option>ÖĞRENCİ</option>
-                        <option>MEZUN</option>
-                    </select>
-                </div>
+                <label class="form-group">Ünvan:</label>
+                <select class="form-control" name="degree">
+                    <option class="text-muted" disabled selected>Ünvan Seçiniz:</option>
+                    <option value="Öğr.Gör.">Öğretim Görevlisi</option>
+                    <option value="Arş.Gör.">Araştırma Görevlisi</option>
+                    <option value="Arş.Gör.Dr.">Araştırma Görevlisi Doktor</option>
+                    <option value="Dr.Öğr.Üyesi">Doktor Öğretim Üyesi</option>
+                    <option value="Doç.">Doçent </option>
+                    <option value="Doç.Dr."> Doçent Doktor </option>
+                    <option value="Prof."> Profesör  </option>
+
+                </select>
 
             </div>
             <div class="form-group">
@@ -39,6 +46,16 @@
                     }
                 </select>
             </div>
+            @*<div class="form-group">
+                <label class="form-group">Çalıştığı Üniversite:</label>
+                <select class="form-control" name="universityId">
+                    <option class="text-muted" disabled selected>Üniversite Seçiniz:</option>
+                    @foreach (var item in universities)
+                    {
+                        <option value="@item.universityId">@item.universityName</option>
+                    }
+                </select>
+            </div>*@
             <div class="form-group">
                 <label class="form-group"> Yabancı Dil:</label>
                 <select class="form-control" name="languageID">
@@ -46,16 +63,6 @@
                     @foreach (var item in languages)
                     {
                         <option value="@item.languageId">@item.languageName</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="form-group"> İlgilendiği Alan:</label>
-                <select class="form-control" name="intrestedSectorId">
-                    <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
-                    @foreach (var item in bDepartment)
-                    {
-                        <option value="@item.businessId">@item.businessName</option>
                     }
                 </select>
             </div>
@@ -70,3 +77,6 @@
 
     </div>
 </div>
+
+
+

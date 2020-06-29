@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "GetApplicants";
+    ViewBag.Title = "Başvuranlar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,6 +15,7 @@
                     <th>Adı</th>
                     <th>Soyadı</th>
                     <th>Başvuru Tarihi</th>
+                    <th>Özgeçmişi Görüntüle</th>
                 </tr>
             </thead>
         </table>
@@ -80,6 +81,13 @@
                     "targets": [4],
                     "render": function (data, type, row) {
                         return ToJavaScriptDate(row.applyDate);
+                    },
+                },
+                {
+                    "targets": [5],
+                    "render": function (data, type, row) {
+                        var id = row.userAccountID;
+                        return '<a  href="/ozgecmisi-goruntule/' + id + '" data-id = "' + id + '" class="companyPosts btn btn-sm btn-success float-center ml-1 text-white" ><i class="fas fa-id-card-alt"></i> Özgeçmişi Görüntüle</a>';
                     },
                 },
                 ],

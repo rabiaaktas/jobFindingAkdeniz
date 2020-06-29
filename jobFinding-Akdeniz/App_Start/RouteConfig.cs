@@ -14,6 +14,11 @@ namespace jobFinding_Akdeniz
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+              name: "Ozgecmis",
+              url: "ozgecmisi-goruntule/{id}",
+              defaults: new { controller = "Company", action = "ShowCV", id = UrlParameter.Optional });
+
+            routes.MapRoute(
                name: "İlanlar",
                url: "is-ilanlari",
                defaults: new { controller = "JobPosts", action = "Index" });
@@ -30,7 +35,7 @@ namespace jobFinding_Akdeniz
 
             routes.MapRoute(
                name: "Ogretmen Kayit",
-               url: "ogretmen-kayit",
+               url: "akademisyen-kayit",
                defaults: new { controller = "Register", action = "OgretmenKayit" });
 
             routes.MapRoute(
@@ -45,7 +50,7 @@ namespace jobFinding_Akdeniz
 
             routes.MapRoute(
                name: "Ogretmen Giris",
-               url: "ogretmen-giris",
+               url: "akademisyen-giris",
                defaults: new { controller = "Login", action = "OgretmenGirisi" });
 
 
@@ -73,6 +78,22 @@ namespace jobFinding_Akdeniz
               name: "İsveren Eleman Arama",
               url: "eleman-arama/ogrenci",
               defaults: new { controller = "Company", action = "FindStudentEmployee" });
+
+            routes.MapRoute(
+             name: "İsveren Eleman Arama Ogrenci Sonuc",
+             url: "eleman-arama/ogrenci-sonuc",
+             defaults: new { controller = "Company", action = "ResultStudentEmployee" });
+
+            routes.MapRoute(
+              name: "İsveren Akademisyen Arama",
+              url: "akademisyen-arama",
+              defaults: new { controller = "Company", action = "FindTeacherEmployee" });
+
+            routes.MapRoute(
+              name: "İsveren Akademisyen Arama Sonuc",
+              url: "akademisyen-arama/sonuc",
+              defaults: new { controller = "Company", action = "ResultTeacherEmployee" });
+
 
             routes.MapRoute(
               name: "İsveren Profil",

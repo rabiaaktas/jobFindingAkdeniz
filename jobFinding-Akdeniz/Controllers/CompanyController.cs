@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using jobFinding_Akdeniz.Models;
 using jobFinding_Akdeniz.Models.HelperModels;
+using PagedList;
 using static jobFinding_Akdeniz.States;
 
 namespace jobFinding_Akdeniz.Controllers
@@ -225,6 +226,57 @@ namespace jobFinding_Akdeniz.Controllers
         }
 
         [UserCheckCompany]
+        public ActionResult ResultStudentEmployee(Nullable<int> intrestedSectorId, string statusStd, string department, Nullable<int> languageID, int? page)
+        {
+            int pageIndex = page ?? 1;
+            int dataCount = 1;
+            var departmentId = Convert.ToInt32(department);
+            var dp = db.departments.Where(x => x.departmentsId == departmentId).FirstOrDefault();
+            var users = from ua in db.user_account
+                        join stu in db.user_student on ua.userAccountId equals stu.userAccountID
+                        join edu in db.user_education on ua.userAccountId equals edu.userAccountId
+                        join ue in db.user_experinence_detail on ua.userAccountId equals ue.userAccountID
+                        join us in db.user_language_skill on ua.userAccountId equals us.userAccountID
+                        where ((string.IsNullOrEmpty(department) ? true : edu.department == dp.departmentName)) && ((string.IsNullOrEmpty(statusStd) ? true : stu.statusStd == statusStd)) && (ua.userTypeID == 2) && (intrestedSectorId == null ? true : stu.intrestedSectorId == intrestedSectorId) && (languageID == null ? true : us.languageID == languageID)
+                        select ua;
+            var userList = users.Distinct().ToList().OrderByDescending(x => x.firstName).ToPagedList(pageIndex, dataCount);
+            ViewBag.statusStd = statusStd;
+            ViewBag.languageID = languageID;
+            ViewBag.intrestedSectorId = intrestedSectorId;
+            ViewBag.department = departmentId;
+            return View(userList);
+        }
+
+        [UserCheckCompany]
+        public ActionResult FindTeacherEmployee()
+        {
+            return View();
+        }
+
+        [UserCheckCompany]
+        public ActionResult ResultTeacherEmployee(Nullable<int> languageID, string degree, string department, int? page)
+        {
+            int pageIndex = page ?? 1;
+            int dataCount = 10;
+            var departmentId = Convert.ToInt32(department);
+            var dp = db.departments.Where(x => x.departmentsId == departmentId).FirstOrDefault();
+           // var uni = db.universities.Where(x => x.universityId == universityId).FirstOrDefault();
+            var users = from ua in db.user_account
+                        join tea in db.user_teacher on ua.userAccountId equals tea.userAccountID
+                        join edu in db.user_education on ua.userAccountId equals edu.userAccountId
+                        join ue in db.user_experinence_detail on ua.userAccountId equals ue.userAccountID
+                        join us in db.user_language_skill on ua.userAccountId equals us.userAccountID
+                        where ((string.IsNullOrEmpty(department) ? true : edu.department == dp.departmentName)) && ((string.IsNullOrEmpty(degree) ? true : tea.degree == degree)) && (ua.userTypeID == 3) && (languageID == null ? true : us.languageID == languageID)
+                        select ua;
+            var userList = users.Distinct().ToList().OrderByDescending(x => x.firstName).ToPagedList(pageIndex, dataCount);
+            ViewBag.degree = degree;
+            ViewBag.department = departmentId;
+            //ViewBag.universityId = universityId;
+            ViewBag.languageID = languageID; 
+            return View(userList);
+        }
+
+        [UserCheckCompany]
         [RestoreModelStateFromTempData]
         public ActionResult EditProfileCompany()
         {
@@ -393,6 +445,13 @@ namespace jobFinding_Akdeniz.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("EditProfileCompany", "Company");
+        }
+
+        [UserCheckCompany]
+        public ActionResult ShowCV(int id)
+        {
+            var user = db.user_account.Where(x => x.userAccountId == id).FirstOrDefault();
+            return View(user);
         }
     }
 }

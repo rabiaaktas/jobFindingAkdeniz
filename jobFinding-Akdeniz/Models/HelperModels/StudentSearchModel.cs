@@ -12,7 +12,7 @@ namespace jobFinding_Akdeniz.Models.HelperModels
         public string statusStd { get; set; }
         [Required]
         public string department { get; set; }
-        public int languageID { get; set; }
+        public string languageID { get; set; }
 
     }
 }

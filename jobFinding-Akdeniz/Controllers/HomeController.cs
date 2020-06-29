@@ -16,5 +16,6 @@ namespace jobFinding_Akdeniz.Controllers
             var jobPosts = db.job_post.ToList();
             return View(jobPosts);
         }
+
     }
 }
