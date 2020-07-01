@@ -20,25 +20,28 @@
                         @foreach (var item in Model)
                         {
                             <div class="row small-padding-bg">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                    @if (@item.job_post.company.companyLogoID == null)
-                                    {
-                                        <div class="image-size"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" /></div>
-                                    }
-                                    else
-                                    {
-                                        <div class="image-size"><img src="data:image/jpg;base64,@Convert.ToBase64String(@item.job_post.company.company_logo.companyLogo)" /></div>
-                                    }
-                                </div>
-                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 customs-p">
-                                    <h4>@item.job_post.jobPostTitle</h4>
-                                    <p><span><i class="fas fa-building"></i></span>@item.job_post.company.companyName</p>
-                                    <p><span><i class="fas fa-clock"></i></span>@item.applyDate.ToShortDateString()</p>
-                                    <p><span><i class="fas fa-map-marker-alt"></i></span>@item.job_post.job_location.city</p>
-                                </div>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                    <a href="about.html" class="btn_orange medium customs-margin2">Read more</a>
-                                </div>
+                                <a href="ilan-detaylari/@item.jobPostID" target="_blank">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        @if (@item.job_post.company.companyLogoID == null)
+                                        {
+                                            <div class="image-size"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" /></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="image-size"><img src="data:image/jpg;base64,@Convert.ToBase64String(@item.job_post.company.company_logo.companyLogo)" /></div>
+                                        }
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 customs-p">
+                                        <h4>@item.job_post.jobPostTitle</h4>
+                                        <p><span><i class="fas fa-building"></i></span>@item.job_post.company.companyName</p>
+                                        <p><span><i class="fas fa-clock"></i></span>@item.applyDate.ToShortDateString()</p>
+                                        <p><span><i class="fas fa-map-marker-alt"></i></span>@item.job_post.job_location.city</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                        <a href="ilan-detaylari/@item.jobPostID"  target="_blank" class="btn_orange medium customs-margin">İlana Git</a>
+                                    </div>
+                                </a>
+                                
                             </div>
                         }
                         <div class="text-center">

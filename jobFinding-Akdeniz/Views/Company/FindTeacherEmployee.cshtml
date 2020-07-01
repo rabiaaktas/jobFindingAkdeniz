@@ -21,7 +21,7 @@
         @using (Html.BeginForm("ResultTeacherEmployee", "Company", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            <div class="form-group">
+            <div class="form-group cd-form">
                 <label class="form-group">Ünvan:</label>
                 <select class="form-control" name="degree">
                     <option class="text-muted" disabled selected>Ünvan Seçiniz:</option>
@@ -35,8 +35,8 @@
 
                 </select>
 
-            </div>
-            <div class="form-group">
+            </div> 
+            <div class="form-group cd-form">
                 <label class="form-group"> *Bölümü:</label>
                 <select class="form-control" name="department" required>
                     <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
@@ -56,9 +56,9 @@
                     }
                 </select>
             </div>*@
-            <div class="form-group">
+            <div class="form-group cd-form">
                 <label class="form-group"> Yabancı Dil:</label>
-                <select class="form-control" name="languageID">
+                <select class="form-control" name="languageID" >
                     <option class="text-muted" disabled selected>Dil Seçiniz:</option>
                     @foreach (var item in languages)
                     {

@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "İş İlanları";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
+    var departments = db.departments.ToList();
+    var bDepartment = db.business_stream.ToList();
+    var cities = db.countries.ToList();
+    var jobType = db.job_type.ToList();
+
 }
 @model PagedList.IPagedList<jobFinding_Akdeniz.Models.job_post>
 @using PagedList.Mvc;
@@ -10,29 +16,60 @@
     <div class="container tb-padding">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div class="side-bar">
-                    <ul>
-                        <li><i class="fa fa-wrench" aria-hidden="true"></i>RELATED SERVICE PROVIDERS</li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Electricians</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Plumbers</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Carpenters</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Hospitals</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Ambulance Services</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Blood Banks</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Wallpapers Dealers</a></li>
-                    </ul>
-                </div>
-                <div class="side-bar">
-                    <ul>
-                        <li><i class="fa fa-paper-plane-o" aria-hidden="true"></i>Locations Service Providers</li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">New Delhi</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Amritsar</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Chandigarh</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Mumbai</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Jaipur</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Mohali</a></li>
-                        <li><i class="fa fa-angle-double-right" aria-hidden="true"></i><a href="">Banglore</a></li>
-                    </ul>
+                <div class="container">
+                    <div class="searchForm">
+                        @using (Html.BeginForm("Index", "JobPosts", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group cd-form">
+                                <label class="form-group"><h5>Şehir</h5> </label>
+                                <select class="form-control" name="city">
+                                    <option class="text-muted" disabled selected>Şehir Seçiniz</option>
+                                    @foreach (var item in cities)
+                                    {
+                                        <option value="@item.countryId" @if (item.countryId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.countryName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group cd-form">
+                                <label class="form-group"><h5>Sektör</h5> </label>
+                                <select class="form-control" name="bDepartment">
+                                    <option class="text-muted" disabled selected>Sektör Seçiniz</option>
+                                    @foreach (var item in bDepartment)
+                                    {
+                                        <option value="@item.businessId" @if (item.businessId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.businessName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group cd-form">
+                                <label class="form-group"><h5>Departman</h5> </label>
+                                <select class="form-control" name="department">
+                                    <option class="text-muted" disabled selected>Departman Seçiniz</option>
+                                    @foreach (var item in departments)
+                                    {
+                                        <option value="@item.departmentsId" @if (item.departmentsId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.departmentName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group cd-form">
+                                <label class="form-group"><h5>Çalışma Şekli</h5> </label>
+                                <select class="form-control" name="jobType">
+                                    <option class="text-muted" disabled selected>Çalışma Şekli Seçiniz</option>
+                                    @foreach (var item in jobType)
+                                    {
+                                        <option value="@item.jobTypeId" @if (item.jobTypeId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.jobTypeName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group text-danger small">
+                                @ViewBag.Warning
+                            </div>
+                            <div class="form-group cd-form">
+                                <input type="submit" value="Filtrele" class="btn_orange medium customs-margin" />
+                            </div>
+                        }
+                    </div>
+
                 </div>
             </div>
 
@@ -42,33 +79,45 @@
                     <div class="col-sm-10 cd-form"><h2>İlanlar(<span>@ViewBag.Count</span>)</h2></div>
                     <div class="col-sm-2"></div>
                 </div>
-                @foreach (var item in Model)
+                @if (Model != null)
                 {
-                    <div class="row small-padding-bg">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                            @if (@item.company.companyLogoID == null)
-                            {
-                                <div class="image-size2"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" /></div>
-                            }
-                            else
-                            {
-                                <div class="image-size2"><img src="data:image/jpg;base64,@Convert.ToBase64String(@item.company.company_logo.companyLogo)" /></div>
-                            }
+                    foreach (var item in Model)
+                    {
+                        <div class="row small-padding-bg">
+                            <a href="/ilan-detaylari/@item.jobPostId" target="_blank">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                                    @if (@item.company.companyLogoID == null)
+                                    {
+                                        <div class="image-size2"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" /></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="image-size2"><img src="data:image/jpg;base64,@Convert.ToBase64String(@item.company.company_logo.companyLogo)" /></div>
+                                    }
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 customs-p">
+                                    <h4>@item.jobPostTitle</h4>
+                                    <p><span><i class="fas fa-building"></i></span>@item.company.companyName</p>
+                                    <p><span><i class="fas fa-clock"></i></span>@item.postEndedDay.Value.ToShortDateString()</p>
+                                    <p><span><i class="fas fa-map-marker-alt"></i></span>@item.job_location.city</p>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <a href="ilan-detaylari/@item.jobPostId" class="btn_orange medium customs-margin">İlana Git</a>
+                                </div>
+                            </a>
                         </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 customs-p">
-                            <h4>@item.jobPostTitle</h4>
-                            <p><span><i class="fas fa-building"></i></span>@item.company.companyName</p>
-                            <p><span><i class="fas fa-clock"></i></span>@item.postCreatedDate.ToShortDateString()</p>
-                            <p><span><i class="fas fa-map-marker-alt"></i></span>@item.job_location.city</p>
+                    }
+                        <div class="text-center">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <a href="about.html" class="btn_orange medium customs-margin">Read more</a>
-                        </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger" role="alert">
+                        Uygun ilan bulunamadı.  
                     </div>
                 }
-                <div class="text-center">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
-                </div>
             </div>
         </div>
     </div>

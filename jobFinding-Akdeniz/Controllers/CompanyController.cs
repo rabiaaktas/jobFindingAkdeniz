@@ -237,7 +237,7 @@ namespace jobFinding_Akdeniz.Controllers
                         join edu in db.user_education on ua.userAccountId equals edu.userAccountId
                         join ue in db.user_experinence_detail on ua.userAccountId equals ue.userAccountID
                         join us in db.user_language_skill on ua.userAccountId equals us.userAccountID
-                        where ((string.IsNullOrEmpty(department) ? true : edu.department == dp.departmentName)) && ((string.IsNullOrEmpty(statusStd) ? true : stu.statusStd == statusStd)) && (ua.userTypeID == 2) && (intrestedSectorId == null ? true : stu.intrestedSectorId == intrestedSectorId) && (languageID == null ? true : us.languageID == languageID)
+                        where ((string.IsNullOrEmpty(department) ? true : edu.department == dp.departmentName)) && ((string.IsNullOrEmpty(statusStd) ? true : stu.statusStd == statusStd)) && (ua.userTypeID == 2) && (intrestedSectorId == null ? true : stu.intrestedSectorId == intrestedSectorId) && (languageID == null ? true : us.languageID == languageID) && (ua.userIsActive == "1")
                         select ua;
             var userList = users.Distinct().ToList().OrderByDescending(x => x.firstName).ToPagedList(pageIndex, dataCount);
             ViewBag.statusStd = statusStd;
@@ -266,7 +266,7 @@ namespace jobFinding_Akdeniz.Controllers
                         join edu in db.user_education on ua.userAccountId equals edu.userAccountId
                         join ue in db.user_experinence_detail on ua.userAccountId equals ue.userAccountID
                         join us in db.user_language_skill on ua.userAccountId equals us.userAccountID
-                        where ((string.IsNullOrEmpty(department) ? true : edu.department == dp.departmentName)) && ((string.IsNullOrEmpty(degree) ? true : tea.degree == degree)) && (ua.userTypeID == 3) && (languageID == null ? true : us.languageID == languageID)
+                        where ((string.IsNullOrEmpty(department) ? true : edu.department == dp.departmentName)) && ((string.IsNullOrEmpty(degree) ? true : tea.degree == degree)) && (ua.userTypeID == 3) && (languageID == null ? true : us.languageID == languageID) && (ua.userIsActive == "1")
                         select ua;
             var userList = users.Distinct().ToList().OrderByDescending(x => x.firstName).ToPagedList(pageIndex, dataCount);
             ViewBag.degree = degree;

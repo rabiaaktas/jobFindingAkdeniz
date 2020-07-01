@@ -18,7 +18,7 @@
         @using (Html.BeginForm("ResultStudentEmployee", "Company", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            <div class="form-group">
+            <div class="form-group cd-form">
                 <label class="form-group">Öğrenci/Mezun Durumu:</label>
                 <div class="">
                     <select class="form-control" name="statusStd">
@@ -29,7 +29,7 @@
                 </div>
 
             </div>
-            <div class="form-group">
+            <div class="form-group cd-form">
                 <label class="form-group"> *Bölümü:</label>
                 <select class="form-control" name="department" required>
                     <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
@@ -39,7 +39,7 @@
                     }
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group cd-form">
                 <label class="form-group"> Yabancı Dil:</label>
                 <select class="form-control" name="languageID">
                     <option class="text-muted" disabled selected>Dil Seçiniz:</option>
@@ -49,7 +49,7 @@
                     }
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group cd-form">
                 <label class="form-group"> İlgilendiği Alan:</label>
                 <select class="form-control" name="intrestedSectorId">
                     <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>

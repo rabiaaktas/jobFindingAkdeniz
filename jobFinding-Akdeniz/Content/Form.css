@@ -5,7 +5,7 @@
 .cd-form input {
     border: 2px solid #ccc;
 }
-cd-form > div {
+cd-form div {
     position: relative;
     margin: 20px 0;
 }
@@ -30,3 +30,82 @@ cd-form > div {
 .cd-form .input-group-addon {
     padding: 5px 4px;
 }
+
+
+.cd-form::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.cd-form input[type="text"],
+.cd-form input[type="search"],
+.cd-form input[type="password"],
+.cd-form input[type="email"],
+.cd-form textarea,
+.cd-form select,
+.cd-form legend {
+    display: block;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+.cd-form input[type="text"],
+.cd-form input[type="search"],
+.cd-form input[type="password"],
+.cd-form input[type="email"],
+.cd-form textarea,
+.cd-form select {
+    /* general style for input elements */
+    /*padding: 12px;*/
+    border: 1px solid #cfd9db;
+    background-color: #ffffff;
+    border-radius: .25em;
+    /*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08);*/
+}
+
+    .cd-form input[type="text"]:focus,
+    .cd-form input[type="search"]:focus,
+    .cd-form input[type="password"]:focus,
+    .cd-form input[type="email"]:focus,
+    .cd-form textarea:focus,
+    .cd-form select:focus {
+        outline: none;
+        border-color: #2c97de;
+        /*box-shadow: 0 0 5px rgba(44, 151, 222, 0.2);*/
+    }
+
+.cd-form .cd-select {
+    /* select element wapper */
+    position: relative;
+    margin: 0;
+    line-height: 1;
+}
+
+    .cd-form .cd-select::after {
+        /* arrow icon for select element */
+        content: '';
+        position: absolute;
+        z-index: 1;
+        right: 16px;
+        top: 50%;
+        margin-top: -8px;
+        display: block;
+        width: 16px;
+        height: 16px;
+        background: url("../Content/Images/cd-icon-arrow.svg") no-repeat center center;
+        pointer-events: none;
+    }
+
+.cd-form select {
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);*/
+    cursor: pointer;
+}
+
+    .cd-form select::-ms-expand {
+        display: none;
+    }
+

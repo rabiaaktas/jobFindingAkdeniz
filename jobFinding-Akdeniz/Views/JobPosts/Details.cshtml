@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = @Model.jobPostTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var now = DateTime.Now.Date;
+}
+@model jobFinding_Akdeniz.Models.job_post
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="header" style="margin: 0 0 45px 0;">
+                    <h1 style="font-size: 34px; font-weight: 300; margin: 0px; padding: 0px;">@Model.jobPostTitle</h1>
+                </div>
+                <h3 class="DetailTitleHeader">İş Tanımı</h3>
+                <div>@Model.jobDescription</div>
+                <h3 class="DetailTitleHeader">İlan Bilgileri</h3>
+                <div class="PostInformation">
+                    <dl>
+                        @if (Model.job_type.jobTypeName != null)
+                        {
+                            <dt>Çalışma Şekli</dt>
+                            <dd>@Model.job_type.jobTypeName</dd>
+                        }
+                        @if (Model.educationInfo != null)
+                        {
+                            <dt>Eğitim Durumu</dt>
+                            <dd>@Model.educationInfo</dd>
+                        }
+                        @if (Model.experienceStatus != null)
+                        {
+                            <dt>Deneyim Durumu</dt>
+                            <dd>@Model.experienceStatus</dd>
+                        }
+                        @if (Model.militaryStiation != null)
+                        {
+                            <dt>Askerlik Durumu</dt>
+                            <dd>@Model.militaryStiation</dd>
+                        }
+                        <dt>Yayınlanma Tarihi</dt>
+                        <dd>@Model.postCreatedDate.ToShortDateString()</dd>
+                        <dt>Son Başvuru Tarihi</dt>
+                        <dd>
+                            @if (Model.postEndedDay.HasValue)
+                            {
+                                @Model.postEndedDay.Value.ToShortDateString()
+                            }
+                        </dd>
+                        <dt>Şehir</dt>
+                        <dd>@Model.job_location.city</dd>
+                    </dl>
+                </div>
+                @if (Model.postEndedDay != null)
+                {
+
+                    if ((DateTime.Compare(Model.postEndedDay.Value, now) > 0) && (LoginStatus.Current.IsLogin == false))
+                    {
+                        <div class="basvur-buton text-center">
+                            <div class="alert alert-danger" role="alert">
+                                Başvurmak için giriş yapmanız gerekmektedir.
+                                <div class="basvur-buton text-center">
+                                    <a class="btn btn-lg uni-button-orange" href="/akademisyen-giris">Akademisyen Girişi</a>
+                                </div>
+                                <div class="basvur-buton text-center">
+                                    <a class="btn btn-lg uni-button-orange" href="/ogrenci-giris">Öğrenci Girişi</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    else if ((DateTime.Compare(Model.postEndedDay.Value, now) > 0) && (LoginStatus.Current.UserType == 2 || LoginStatus.Current.UserType == 3))
+                    {
+                        if (Model.job_post_activity.Any(x => x.userAccountID == LoginStatus.Current.UserId))
+                        {
+                        <div class="basvur-buton text-center">
+                            <a class="btn btn-lg uni-button-orange">Başvuruldu</a>
+                        </div>
+
+                        }
+                        else
+                        {
+                            <div class="basvur-buton text-center">
+                                <a class="btn btn-lg uni-button-orange" href="/JobPosts/ApplyJob/@Model.jobPostId">Başvur</a>
+                            </div>
+                        }
+
+
+                    }
+                    else if ((DateTime.Compare(Model.postEndedDay.Value, now) < 0) || (Model.isActivePost == "0"))
+                    {
+                        <div class="basvur-buton text-center">
+                            <div class="alert alert-danger" role="alert">
+                                Bu ilan yayından kaldırılmış ya da ilanın süresi geçmiş olabilir.
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            </div>
+                        <div class="col-sm-4 company-info-cardDiv">
+                            <div class="company-info-card">
+                                <div class="company-info-image logoDivision">
+                                    <a href="/firma-detay/@Model.companyID" target="_blank">
+                                        @if (Model.company.companyLogoID != null)
+                                        {
+                                            <img src="data:image/jpg;base64,@Convert.ToBase64String(@Model.company.company_logo.companyLogo)" />
+                                        }
+                                        else
+                                        {
+                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                                        }
+                                    </a>
+                                </div>
+                                <div class="company-info-data">
+                                    <dl>
+                                        <dt>Firma</dt>
+                                        <dd>@Model.company.companyName</dd>
+                                        <dt>İlan Numarası</dt>
+                                        <dd>@Model.jobPostId</dd>
+                                    </dl>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+    </div>
+</div>
+
+

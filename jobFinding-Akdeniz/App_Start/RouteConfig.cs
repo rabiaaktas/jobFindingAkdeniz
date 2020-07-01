@@ -24,6 +24,16 @@ namespace jobFinding_Akdeniz
                defaults: new { controller = "JobPosts", action = "Index" });
 
             routes.MapRoute(
+              name: "İlan Detayları",
+              url: "ilan-detaylari/{id}",
+              defaults: new { controller = "JobPosts", action = "Details" });
+
+            routes.MapRoute(
+              name: "Firma Detayları",
+              url: "firma-detay/{id}",
+              defaults: new { controller = "JobPosts", action = "CompanyDetails" });
+
+            routes.MapRoute(
                 name: "Sirket Kayit",
                 url: "sirket-kayit",
                 defaults: new { controller = "Register", action = "SirketKayit" });

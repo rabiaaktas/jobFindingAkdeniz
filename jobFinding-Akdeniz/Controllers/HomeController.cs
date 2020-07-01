@@ -13,8 +13,9 @@ namespace jobFinding_Akdeniz.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var jobPosts = db.job_post.ToList();
-            return View(jobPosts);
+            var jobPosts = db.job_post.OrderByDescending(x => x.postCreatedDate).ToList();
+            ViewBag.LastAdded = jobPosts.Take(10);
+            return View();
         }
 
     }

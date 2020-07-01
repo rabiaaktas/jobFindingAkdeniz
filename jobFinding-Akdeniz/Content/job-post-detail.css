@@ -1,0 +1,66 @@
+﻿.main {
+    padding: 60px 0px;
+}
+.DetailTitleHeader {
+    font-weight: 600 !important;
+    color: #f7941d;
+    border-bottom: 1px solid #eeeeee;
+    padding: 20px 0px 20px 0px;
+    margin: 20px 0px 20px 0px;
+}
+
+.PostInformation dl {
+    margin: 0px;
+    padding: 0px;
+}
+.PostInformation dt {
+    background-color: #f7f7f7;
+    float: left;
+    line-height: 28px;
+    margin: 0px 0px 2px 0px;
+    padding: 7px 20px;
+    text-align: right;
+    width: 170px;
+}
+.PostInformation dd {
+    background-color: #f9f9f9;
+    line-height: 28px;
+    margin: 0px 0px 2px 172px;
+    padding: 7px 20px;
+}
+.company-info-cardDiv {
+    padding-top: 25px;
+}
+.company-info-card {
+    border: 1px solid #e9e9e9;
+    border-radius: 3px;
+    margin: 0px 0px 50px 0px;
+    margin-bottom: 50px;
+}
+.company-info-image {
+    padding: 30px 20px;
+    position: relative;
+    text-align: center;
+}
+.logoDivision img {
+    width: 50%;
+}
+.company-info-data {
+    background-color: #f7f7f7;
+    border-top: 1px solid #e9e9e9;
+    padding: 15px 0px;
+}
+.company-info-data dt {
+    float: left;
+    line-height: 24px;
+    padding: 8px 0px 8px 20px;
+    width: 110px;
+}
+.company-info-data dd {
+    display: table-cell;
+    line-height: 24px;
+    padding: 8px 20px;
+}
+.basvur-buton {
+    padding-top: 25px;
+}

@@ -15,36 +15,110 @@
 
         </div>
         <div class="mainSearchBox">
-            <form id="homepagejobsearch" class="cd-form" action="/is-ilanlari" autocomplete="off">
+            <div>
+                <h3 class="SearchJobText" style="display:none;">Aradığın İşi Bul!</h3>
+                @using (Html.BeginForm("Index", "JobPosts", FormMethod.Post, new { @class = "cd-form" }))
+                {
 
-                <div>
-                    <h3 class="SearchJobText" style="display:none;">Aradığın İşi Bul!</h3>
-                    @using (Html.BeginForm("Index", "JobPosts", FormMethod.Post)){
                     <input name="searchSt" type="text" placeholder="Örnek: garson, mühendis, muhasebe..." />
+
                     <div class="select-cities">
                         <p class="cd-select">
                             <select name="city">
-                                <option value="">T&#252;m Şehirler</option>
+                                <option value="">Tüm İller</option>
                                 @foreach (var item in cities)
                                 {
-                                    <option value="@item.countryName">@item.countryName</option>
+                                    <option value="@item.countryId">@item.countryName</option>
 
                                 }
                             </select>
                         </p>
                     </div>
-                        <input type="submit" class="uni-button-orange" value="Ara" />
-                    }
 
-                </div>
-
-            </form>
+                    <input type="submit" class="uni-button-orange" value="Ara" />
+                }
+            </div>
         </div>
     </div>
- </div>
+</div>
 <div class="lastAddedPosts">
     <div class="container">
-        <h2 class="text-center">Son Eklenen İlanlar</h2>
-            
+        <h2 class="text-center h3-title">Son Eklenen İlanlar</h2>
+        <div class="owl-ilanlar">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="owl-carousel owl-theme">
+                        @foreach (var item in ViewBag.LastAdded)
+                        {
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xl-2 owl-ilanlar-item small-padding-bg">
+                                        <a href="/ilan-detaylari/@item.jobPostId" target="_blank">
+                                            <div class="card">
+                                                @if (@item.company.companyLogoID == null)
+                                                {
+                                                    <div class="image-size3"><img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" /></div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="image-size3"><img src="data:image/jpg;base64,@Convert.ToBase64String(@item.company.company_logo.companyLogo)" /></div>
+                                                }
+                                                <div class="card-body customs-p">
+                                                    <h5 class="card-title">@item.jobPostTitle</h5>
+                                                    <p class="card-text"><span><i class="fas fa-building"></i></span>@item.company.companyName</p>
+                                                    <p class="card-text"><span><i class="fas fa-clock"></i></span>@item.postEndedDay.ToShortDateString()</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                       
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
     </div>
 </div>
+@*<div class="container">
+    <div class="example-links">
+        <div class="row">
+            <div class="col-md-6">
+                <span class="title">Çalışma Şekline Göre İş İlanları</span>
+                <ul class="links">
+                        
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>*@
+<script>
+    $(document).ready(function () {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: false
+                },
+                1000: {
+                    items: 5,
+                    nav: true,
+                    loop: false,
+                    margin: 20
+                }
+            }
+        })
+    })</script>

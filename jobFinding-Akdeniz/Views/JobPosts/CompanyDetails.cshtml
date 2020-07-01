@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = Model.companyName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model jobFinding_Akdeniz.Models.company
+
+<div class="main">
+    <div class="container">
+        <div class="company-content">
+            <div class="company-detail">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div>
+                            <h1>@Model.companyName</h1>
+                        </div>
+                        <p>
+                            @Model.companyInfo
+                        </p>
+                        <h3 class="DetailTitleHeader">Firma Bilgileri</h3>
+                        <div class="PostInformation">
+                            <dl>
+                                @if (Model.companyPhone != null)
+                                {
+                                    <dt>Telefon</dt>
+                                    <dd>@Model.companyPhone</dd>
+                                }
+                                @if (Model.companyPhone != null)
+                                {
+                                    <dt>Adres</dt>
+                                    <dd>@Model.companyAddress</dd>
+                                }
+                                @if (Model.business_stream.businessName != null)
+                                {
+                                    <dt>Sektör</dt>
+                                    <dd>@Model.business_stream.businessName</dd>
+                                }
+                                @if (Model.webSiteUrl != null)
+                                {
+                                    <dt>Web Sitesi</dt>
+                                    <dd><span><a href="@Model.webSiteUrl" target="_blank">@Model.companyName</a></span></dd>
+                                } 
+
+
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 company-detail-card">
+                        <div class="company-info-card">
+                            <div class="company-info-image logoDivision">
+                                <a href="/firma-detay/@Model.companyId">
+                                    @if (Model.companyLogoID != null)
+                                    {
+                                    <img src="data:image/jpg;base64,@Convert.ToBase64String(@Model.company_logo.companyLogo)" >                                  
+                                    }
+                                    else
+                                    {
+                                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                                    }
+                                </a>
+                            </div>
+                            <div class="company-info-data">
+                                <dl>
+                                    <dt>Firma</dt>
+                                    <dd>@Model.companyName</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3 class="DetailTitleHeader">@Model.companyName İş İlanları</h3>
+                        <div id="post-table">
+                            <table class="table">
+                                <thead>
+                                    <tr class="table-info">
+                                        <th>İlan Başlığı</th>
+                                        <th>Şehir</th>
+                                        <th>Son Başvuru Tarihi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var item in Model.job_post.ToList())
+                                    {
+                                    <tr>
+                                        <td data-title="İlan Başlığı"><a href="/ilan-detaylari/@item.jobPostId" target="_blank">@item.jobPostTitle</a></td>
+                                        <td data-title="Şehir">@item.job_location.city</td>
+                                        <td data-title="Son Başvuru Tarihi">@item.postEndedDay.Value.ToShortDateString()</td>
+                                    </tr>
+                                      
+                                    }
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

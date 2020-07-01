@@ -46,6 +46,16 @@
                                     <tr>
                                         <td>
                                             <strong>
+                                                E-mail
+                                            </strong>
+                                        </td>
+                                        <td class="text-primary">
+                                            <a href="mailto:@Model.userEmail">@Model.userEmail</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>
                                                 İsim
                                             </strong>
                                         </td>
@@ -298,6 +308,46 @@
                                             </td>
                                             <td class="text-primary">
                                                 @experience.description
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-10 cd-form"><h2>Dil Bilgileri</h2></div>
+                    <div class="col-sm-2"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach (var language in Model.user_language_skill.ToList())
+                        {
+                            <div class="table-responsive">
+                                <strong>Dil Bilgisi</strong>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Dil
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @language.languages.languageName
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    Seviyesi
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @language.level/5
                                             </td>
                                         </tr>
                                     </tbody>

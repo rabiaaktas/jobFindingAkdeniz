@@ -145,17 +145,22 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\buttons.css" />
+    <Content Include="Content\company-detail.css" />
     <Content Include="Content\DataTableCss\dataTables.bootstrap4.min.css" />
     <Content Include="Content\DataTableCss\jquery.dataTables.min.css" />
     <Content Include="Content\DataTableCss\responsive.bootstrap.min.css" />
     <Content Include="Content\DataTableCss\responsive.dataTables.min.css" />
     <Content Include="Content\Form.css" />
+    <Content Include="Content\Images\cd-icon-arrow.svg" />
     <Content Include="Content\Images\search.png" />
     <Content Include="Content\Images\undraw_work_time_lhoj.svg" />
     <Content Include="Content\Images\unnamed.jpg" />
+    <Content Include="Content\job-post-detail.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\loginUser.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\owl-carousel\owl.carousel.min.css" />
+    <Content Include="Content\owl-carousel\owl.theme.default.min.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="fonts\flaticon\backup.txt" />
     <Content Include="fonts\flaticon\font\flaticon.css" />
@@ -230,6 +235,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\owl-js\owl.carousel.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -349,6 +355,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States.cs" />
+    <Compile Include="UserCheck.cs" />
     <Compile Include="UserCheckCompany.cs" />
     <Compile Include="UserCheckStudent.cs" />
     <Compile Include="UserCheckTeacher.cs" />
@@ -396,6 +403,8 @@
     <Content Include="Views\Company\ResultStudentEmployee.cshtml" />
     <Content Include="Views\Company\FindTeacherEmployee.cshtml" />
     <Content Include="Views\Company\ResultTeacherEmployee.cshtml" />
+    <Content Include="Views\JobPosts\Details.cshtml" />
+    <Content Include="Views\JobPosts\CompanyDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -405,6 +414,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Apply\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

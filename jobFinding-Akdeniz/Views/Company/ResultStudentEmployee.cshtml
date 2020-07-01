@@ -16,13 +16,13 @@
     <div class="container tb-padding">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div>
+                <div class="container">
                     <div class="searchForm">
                         @using (Html.BeginForm("ResultStudentEmployee", "Company", FormMethod.Post, new { name = "postEdit" }))
                         {
                             @Html.AntiForgeryToken()
-                            <div class="form-group">
-                                <label class="form-group">Öğrenci/Mezun Durumu:</label>
+                            <div class="form-group cd-form">
+                                <label class="form-group cd-form"><h5>Öğrenci/Mezun Durumu</h5></label>
                                 <div class="">
                                     <select class="form-control" name="statusStd">
                                         <option class="text-muted" disabled selected>Öğrenci/Mezun Durumu</option>
@@ -32,8 +32,8 @@
                                 </div>
 
                             </div>
-                            <div class="form-group">
-                                <label class="form-group"> *Bölümü:</label>
+                            <div class="form-group cd-form">
+                                <label class="form-group"><h5>*Bölümü</h5> </label>
                                 <select class="form-control" name="department" required>
                                     <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
                                     @foreach (var item in departments)
@@ -42,8 +42,8 @@
                                     }
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label class="form-group"> Yabancı Dil:</label>
+                            <div class="form-group cd-form">
+                                <label class="form-group"><h5>Yabancı Dil</h5> </label>
                                 <select class="form-control" name="languageID">
                                     <option class="text-muted" disabled selected>Dil Seçiniz:</option>
                                     @foreach (var item in languages)
@@ -52,8 +52,8 @@
                                     }
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label class="form-group"> İlgilendiği Alan:</label>
+                            <div class="form-group cd-form">
+                                <label class="form-group"><h5>İlgilendiği Alan</h5> </label>
                                 <select class="form-control" name="intrestedSectorId">
                                     <option class="text-muted" disabled selected>Bölüm Seçiniz:</option>
                                     @foreach (var item in bDepartment)
@@ -84,7 +84,8 @@
                 {
                     foreach (var item in Model)
                     {
-                        <div class="row small-padding-bg">
+                    <div class="row small-padding-bg">
+                        <a href="/ozgecmisi-goruntule/@item.userAccountId" target="_blank">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 @if (@item.userImageID == null)
                                 {
@@ -96,14 +97,15 @@
                                 }
                             </div>
                             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 customs-p">
-                                <h4>@item.firstName</h4>
-                        @*<p><span><i class="fas fa-clock"></i></span>@item.postCreatedDate.ToShortDateString()</p>
-                        <p><span><i class="fas fa-map-marker-alt"></i></span>@item.job_location.city</p>*@
+                                <h4>@item.firstName @item.lastName</h4>
+                                <p><span><i class="fas fa-envelope"></i></span>@item.userEmail</p>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                <a href="/ozgecmisi-goruntule/@item.userAccountId" class="btn_orange medium customs-margin">Özgeçmiş</a>
+                                <a href="/ozgecmisi-goruntule/@item.userAccountId" target="_blank" class="btn_orange medium customs-margin">Özgeçmiş</a>
                             </div>
-                        </div>
+                        </a>
+                            
+                    </div>
                     }
                     
                     <div class="text-center">

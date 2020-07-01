@@ -117,7 +117,7 @@
                                                 <div class="form-group cd-form">
                                                     <div class="col-lg-6">
                                                         <label><h5>Başlangıç Yılı</h5></label>
-                                                        <input type="text" class="form-control" value=@education.startingDate onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year name="startingDate" required>
+                                                        <input type="text" class="form-control"  onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="4" max=@DateTime.Now.Year name="startingDate" required value=@education.startingDate >
                                                         <div class="form-group error">
                                                             <div class="col-lg-6">
 

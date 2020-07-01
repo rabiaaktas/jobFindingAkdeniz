@@ -5,6 +5,10 @@
     width: 100%;
 }
 
+.homeSearchWrapper {
+    outline: none !important;
+}
+
 .homeSearchImage .bg-search-image {
     height: 598px;
     background-image: url(/Content/Images/search.png);
@@ -63,29 +67,121 @@
     font-size: 16px;
 }
 
-.mainSearchBox input[type=text] {
-     width: 100%;
-     padding: 21px 16px;
-     padding-right: 16px;
-     padding-left: 16px;
+.homeSearchWrapper .homeSearch .mainSearchBox input[type=text] {
+    width: 100%;
+    padding: 21px 16px;
+    padding-right: 16px;
+    padding-left: 16px;
     /*padding-right: 150px;
     padding-left: 50px;*/
-     position: relative;
-     border: none;
- }
+    position: relative;
+    border: none;
+}
 
-    .mainSearchBox input[type=submit] {
-        position: absolute;
-        /*top: 0;
+.homeSearchWrapper .homeSearch .mainSearchBox input[type=submit] {
+    position: absolute;
+    /*top: 0;
         right: 0;*/
-        padding: 21px 40px;
-        border-radius: 0 2px 2px 0;
-        border:none;
-    }
+    padding: 21px 40px;
+    border-radius: 0 2px 2px 0;
+    border: none;
+}
 #imageSearch {
      align-self: flex-end !important;
      width: 50%;
      position: relative;
      /*z-index:-1;*/
 }
+.lastAddedPosts {
+    padding-top: 25px;
+}
+    .lastAddedPosts .owl-ilanlar {
+        padding-top: 25px;
+    }
+    .lastAddedPosts .owl-ilanlar .owl-ilanlar-item {
+        margin-right: 25px;
+        margin-left: 25px;
+        padding: 10px;
+    }
+        .lastAddedPosts .owl-ilanlar .owl-ilanlar-item .image-size3 > img {
+            width: 100%;
+
+        }
+        .lastAddedPosts .owl-ilanlar .owl-ilanlar-item p span {
+            color: #c2c2c2;
+            padding: 0px 5px;
+        }
+        .lastAddedPosts .owl-ilanlar .owl-ilanlar-item .customs-p p {
+            line-height: 20px;
+            margin: 0px;
+        }
+        .lastAddedPosts .owl-ilanlar .small-padding-bg:hover a {
+            text-decoration: none;
+        }
+
+.lastAddedPosts .h3-title {
+    background: #fff;
+    display: table;
+    width: 100%;
+    border-radius: 2px;
+    border-bottom: 2px solid #000036;
+    margin-bottom: 15px;
+    padding: 15px 0;
+    padding-left: 0px;
+    font-weight: 700;
+    color: #000036;
+    padding-left: 20px;
+}
+.example-links .title {
+    background: #fff;
+    display: table;
+    width: 100%;
+    text-align: left;
+    border-radius: 2px;
+    border-bottom: 2px solid #000036;
+    margin-bottom: 15px;
+    padding: 15px 0;
+    padding-left: 0px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000036;
+    padding-left: 20px;
+}
+.example-links ul.links {
+    padding: 0 20px;
+}
+
+.example-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    margin-top: 25px;
+    /*position: absolute;*/
+    bottom: 0px;
+    height: 30px;
+}
+    footer .footer-up {
+        background-color: #f0f4ed;
+        min-height: 40px;
+    }
+
+    footer .footer-down {
+        background-color: #000036;
+        min-height: 30px;
+        padding-top: 10px;
+    }
+
+        footer .footer-down .footer-link {
+            font-size: 10px;
+        }
+
+    footer .model {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+
 
