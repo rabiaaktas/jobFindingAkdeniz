@@ -53,7 +53,7 @@
                 @if (Model.postEndedDay != null)
                 {
 
-                    if ((DateTime.Compare(Model.postEndedDay.Value, now) > 0) && (LoginStatus.Current.IsLogin == false))
+                    if (((DateTime.Compare(Model.postEndedDay.Value, now) > 0) || (DateTime.Compare(Model.postEndedDay.Value, now) == 0)) && (LoginStatus.Current.IsLogin == false))
                     {
                         <div class="basvur-buton text-center">
                             <div class="alert alert-danger" role="alert">
@@ -68,7 +68,7 @@
                         </div>
 
                     }
-                    else if ((DateTime.Compare(Model.postEndedDay.Value, now) > 0) && (LoginStatus.Current.UserType == 2 || LoginStatus.Current.UserType == 3))
+                    else if (((DateTime.Compare(Model.postEndedDay.Value, now) > 0) || (DateTime.Compare(Model.postEndedDay.Value, now) == 0)) && (LoginStatus.Current.UserType == 2 || LoginStatus.Current.UserType == 3))
                     {
                         if (Model.job_post_activity.Any(x => x.userAccountID == LoginStatus.Current.UserId))
                         {

@@ -5,10 +5,33 @@
 .cd-form input {
     border: 2px solid #ccc;
 }
-cd-form div {
+.cd-form div {
     position: relative;
-    margin: 20px 0;
+    /*margin: 20px 0;*/
 }
+.cd-form > div.first {
+    margin-top: 0 !important;
+}
+
+.cd-form > div.last {
+    margin-bottom: 0 !important;
+}
+
+    .cd-form input[type="text"],
+    .cd-form input[type="search"],
+    .cd-form input[type="password"],
+    .cd-form input[type="email"],
+    .cd-form textarea,
+    .cd-form select,
+    .cd-form legend {
+        display: block;
+        width: 100%;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
 .cd-form select,textarea {
     border: 2px solid #ccc;
 }
@@ -32,11 +55,11 @@ cd-form div {
 }
 
 
-.cd-form::after {
+/*.cd-form::after {
     clear: both;
     content: "";
     display: table;
-}
+}*/
 .cd-form input[type="text"],
 .cd-form input[type="search"],
 .cd-form input[type="password"],

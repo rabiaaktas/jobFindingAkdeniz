@@ -3,8 +3,8 @@
     ViewBag.Title = "İş İlanları";
     Layout = "~/Views/Shared/_Layout.cshtml";
     jobFinding_Akdeniz.Models.DBEntities db = new jobFinding_Akdeniz.Models.DBEntities();
-    var departments = db.departments.ToList();
-    var bDepartment = db.business_stream.ToList();
+    var stream = db.business_stream.ToList();
+    var bDepartment = db.business_departments.ToList();
     var cities = db.countries.ToList();
     var jobType = db.job_type.ToList();
 
@@ -27,27 +27,27 @@
                                     <option class="text-muted" disabled selected>Şehir Seçiniz</option>
                                     @foreach (var item in cities)
                                     {
-                                        <option value="@item.countryId" @if (item.countryId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.countryName</option>
+                                        <option value="@item.countryId" @if (item.countryId.ToString() == ViewBag.city) { <text> selected="selected" </text> }>@item.countryName</option>
                                     }
                                 </select>
                             </div>
                             <div class="form-group cd-form">
                                 <label class="form-group"><h5>Sektör</h5> </label>
-                                <select class="form-control" name="bDepartment">
+                                <select class="form-control" name="department">
                                     <option class="text-muted" disabled selected>Sektör Seçiniz</option>
-                                    @foreach (var item in bDepartment)
+                                    @foreach (var item in stream)
                                     {
-                                        <option value="@item.businessId" @if (item.businessId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.businessName</option>
+                                        <option value="@item.businessId" @if (item.businessId.ToString() == ViewBag.department) { <text> selected="selected" </text> }>@item.businessName</option>
                                     }
                                 </select>
                             </div>
                             <div class="form-group cd-form">
                                 <label class="form-group"><h5>Departman</h5> </label>
-                                <select class="form-control" name="department">
+                                <select class="form-control" name="bDepartment">
                                     <option class="text-muted" disabled selected>Departman Seçiniz</option>
-                                    @foreach (var item in departments)
+                                    @foreach (var item in bDepartment)
                                     {
-                                        <option value="@item.departmentsId" @if (item.departmentsId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.departmentName</option>
+                                        <option value="@item.businessDepId" @if (item.businessDepId.ToString() == ViewBag.bDepartment) { <text> selected="selected" </text> }>@item.businessDepName</option>
                                     }
                                 </select>
                             </div>
@@ -57,7 +57,7 @@
                                     <option class="text-muted" disabled selected>Çalışma Şekli Seçiniz</option>
                                     @foreach (var item in jobType)
                                     {
-                                        <option value="@item.jobTypeId" @if (item.jobTypeId == ViewBag.intrestedSectorId) { <text> selected="selected" </text> }>@item.jobTypeName</option>
+                                        <option value="@item.jobTypeId" @if (item.jobTypeId.ToString() == ViewBag.jobType) { <text> selected="selected" </text> }>@item.jobTypeName</option>
                                     }
                                 </select>
                             </div>
@@ -79,7 +79,7 @@
                     <div class="col-sm-10 cd-form"><h2>İlanlar(<span>@ViewBag.Count</span>)</h2></div>
                     <div class="col-sm-2"></div>
                 </div>
-                @if (Model != null)
+                @if (Model.Count !=0)
                 {
                     foreach (var item in Model)
                     {
@@ -109,13 +109,13 @@
                         </div>
                     }
                         <div class="text-center">
-                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { searchSt = ViewBag.searchSt, city = ViewBag.city, department = ViewBag.department, bDepartment = ViewBag.bDepartment, jobType = ViewBag.jobType, page = page }))
                         </div>
                 }
                 else
                 {
-                    <div class="alert alert-danger" role="alert">
-                        Uygun ilan bulunamadı.  
+                    <div class="alert alert-danger mt-5" role="alert">
+                        Aradığınız kriterlere uygun ilan bulunamadı.  
                     </div>
                 }
             </div>

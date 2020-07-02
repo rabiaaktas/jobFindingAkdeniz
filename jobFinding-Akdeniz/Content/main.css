@@ -61,6 +61,9 @@
 .homeSearchWrapper .homeSearch .mainSearchBox div{
     margin:0;
 }
+.homeSearchWrapper .homeSearch .mainSearchBox #job-search {
+    background-color: #fff;
+}
 
 .mainSearchBox input {
     border-radius: 2px;
@@ -80,8 +83,8 @@
 
 .homeSearchWrapper .homeSearch .mainSearchBox input[type=submit] {
     position: absolute;
-    /*top: 0;
-        right: 0;*/
+    top: 0;
+    right: 0;
     padding: 21px 40px;
     border-radius: 0 2px 2px 0;
     border: none;
@@ -91,6 +94,35 @@
      width: 50%;
      position: relative;
      /*z-index:-1;*/
+}
+@media screen and (max-width:767px){
+    .homeSearchWrapper .homeSearch .mainSearchBox {
+        width: 100%;
+        padding: 15px 15px;
+        background-color: #feba02;
+        background: -webkit-gradient(linear,left top,left bottom,color-stop(25%,#fecf53),to(#feba02));
+        background: -webkit-linear-gradient(top,#fecf53 25%,#feba02 100%);
+        background: linear-gradient(to bottom,#fecf53 25%,#feba02 100%);
+    }
+        .homeSearchWrapper .homeSearch .mainSearchBox input[type="submit"] {
+            margin-top: 15px;
+            position: relative;
+            padding: 20px;
+            border-radius: 2px;
+            width: 100%;
+        }
+        .homeSearchWrapper .homeSearch .mainSearchBox .select-cities {
+            position: static;
+            border-radius: .25em;
+            border: 1px solid #cfd9db;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 5px;
+        }
+        .homeSearchWrapper .homeSearch .mainSearchBox #job-search {
+            background-color: none;
+        }
+        
 }
 .lastAddedPosts {
     padding-top: 25px;
@@ -158,10 +190,11 @@
 }
 
 footer {
-    margin-top: 25px;
+    margin-top: 60px;
     /*position: absolute;*/
+    left: 0px;
     bottom: 0px;
-    height: 30px;
+    width: 100%;
 }
     footer .footer-up {
         background-color: #f0f4ed;

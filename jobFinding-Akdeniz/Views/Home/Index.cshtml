@@ -15,13 +15,12 @@
 
         </div>
         <div class="mainSearchBox">
-            <div>
-                <h3 class="SearchJobText" style="display:none;">Aradığın İşi Bul!</h3>
-                @using (Html.BeginForm("Index", "JobPosts", FormMethod.Post, new { @class = "cd-form" }))
-                {
 
-                    <input name="searchSt" type="text" placeholder="Örnek: garson, mühendis, muhasebe..." />
-
+            <h3 class="SearchJobText" style="display:none;">Aradığın İşi Bul!</h3>
+            @using (Html.BeginForm("Index", "JobPosts", FormMethod.Post, new { @class = "cd-form", id = "job-search" }))
+            {
+                <div>
+                    <input name="searchSt" type="text" placeholder="Örnek: garson, mühendis..." />
                     <div class="select-cities">
                         <p class="cd-select">
                             <select name="city">
@@ -34,11 +33,14 @@
                             </select>
                         </p>
                     </div>
-
                     <input type="submit" class="uni-button-orange" value="Ara" />
-                }
+
+
+                </div>
+
+                    }
+              
             </div>
-        </div>
     </div>
 </div>
 <div class="lastAddedPosts">
