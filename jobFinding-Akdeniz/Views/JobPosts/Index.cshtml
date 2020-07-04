@@ -22,55 +22,59 @@
                         {
                             @Html.AntiForgeryToken()
                             <div class="form-group cd-form">
-                                <label class="form-group"><h5>Şehir</h5> </label>
-                                <select class="form-control" name="city">
-                                    <option class="text-muted" disabled selected>Şehir Seçiniz</option>
-                                    @foreach (var item in cities)
-                                    {
-                                        <option value="@item.countryId" @if (item.countryId.ToString() == ViewBag.city) { <text> selected="selected" </text> }>@item.countryName</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-group cd-form">
-                                <label class="form-group"><h5>Sektör</h5> </label>
-                                <select class="form-control" name="department">
-                                    <option class="text-muted" disabled selected>Sektör Seçiniz</option>
-                                    @foreach (var item in stream)
-                                    {
-                                        <option value="@item.businessId" @if (item.businessId.ToString() == ViewBag.department) { <text> selected="selected" </text> }>@item.businessName</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-group cd-form">
-                                <label class="form-group"><h5>Departman</h5> </label>
-                                <select class="form-control" name="bDepartment">
-                                    <option class="text-muted" disabled selected>Departman Seçiniz</option>
-                                    @foreach (var item in bDepartment)
-                                    {
-                                        <option value="@item.businessDepId" @if (item.businessDepId.ToString() == ViewBag.bDepartment) { <text> selected="selected" </text> }>@item.businessDepName</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-group cd-form">
-                                <label class="form-group"><h5>Çalışma Şekli</h5> </label>
-                                <select class="form-control" name="jobType">
-                                    <option class="text-muted" disabled selected>Çalışma Şekli Seçiniz</option>
-                                    @foreach (var item in jobType)
-                                    {
-                                        <option value="@item.jobTypeId" @if (item.jobTypeId.ToString() == ViewBag.jobType) { <text> selected="selected" </text> }>@item.jobTypeName</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="form-group text-danger small">
-                                @ViewBag.Warning
-                            </div>
-                            <div class="form-group cd-form">
-                                <input type="submit" value="Filtrele" class="btn_orange medium customs-margin" />
-                            </div>
-                        }
+                                <label class="form-group"><h5>Arama</h5> </label>
+                               <input type="text" value="@ViewBag.searchSt" class="form-control" name="searchSt" />
+                             </div>
+                                <div class="form-group cd-form">
+                                    <label class="form-group"><h5>Şehir</h5> </label>
+                                    <select class="form-control" name="city">
+                                        <option class="text-muted" disabled selected>Şehir Seçiniz</option>
+                                        @foreach (var item in cities)
+                                        {
+                                            <option value="@item.countryId" @if (item.countryId.ToString() == ViewBag.city) { <text> selected="selected" </text> }>@item.countryName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group cd-form">
+                                    <label class="form-group"><h5>Sektör</h5> </label>
+                                    <select class="form-control" name="department">
+                                        <option class="text-muted" disabled selected>Sektör Seçiniz</option>
+                                        @foreach (var item in stream)
+                                        {
+                                            <option value="@item.businessId" @if (item.businessId.ToString() == ViewBag.department) { <text> selected="selected" </text> }>@item.businessName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group cd-form">
+                                    <label class="form-group"><h5>Departman</h5> </label>
+                                    <select class="form-control" name="bDepartment">
+                                        <option class="text-muted" disabled selected>Departman Seçiniz</option>
+                                        @foreach (var item in bDepartment)
+                                        {
+                                            <option value="@item.businessDepId" @if (item.businessDepId.ToString() == ViewBag.bDepartment) { <text> selected="selected" </text> }>@item.businessDepName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group cd-form">
+                                    <label class="form-group"><h5>Çalışma Şekli</h5> </label>
+                                    <select class="form-control" name="jobType">
+                                        <option class="text-muted" disabled selected>Çalışma Şekli Seçiniz</option>
+                                        @foreach (var item in jobType)
+                                        {
+                                            <option value="@item.jobTypeId" @if (item.jobTypeId.ToString() == ViewBag.jobType) { <text> selected="selected" </text> }>@item.jobTypeName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="form-group text-danger small">
+                                    @ViewBag.Warning
+                                </div>
+                                <div class="form-group cd-form">
+                                    <input type="submit" value="Filtrele" class="btn_orange medium customs-margin" />
+                                </div>
+                            }
                     </div>
 
-                </div>
+                    </div>
             </div>
 
 
